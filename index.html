@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makowski Sad - Soki Naturalne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2C5E2E',
+                        'secondary': '#F5F5DC',
+                    },
+                    fontFamily: {
+                        'sans': ['Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-secondary">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo.svg" alt="Makowski Sad Logo" class="h-12 w-auto mr-4">
+                <span class="text-xl font-bold text-primary">MAKOWSKI SAD</span>
+            </div>
+            <div class="block lg:hidden">
+                <button id="menu-toggle" class="text-primary focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul id="menu" class="hidden lg:flex space-x-6">
+                <li><a href="#" class="text-primary hover:text-opacity-80">O nas</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Ekologia</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu" class="lg:hidden hidden">
+            <ul class="flex flex-col space-y-2 p-4 bg-white">
+                <li><a href="#" class="text-primary hover:text-opacity-80">O nas</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Ekologia</a></li>
+                <li><a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative h-[500px] bg-cover bg-center" style="background-image: url('orchard.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="container mx-auto px-4 h-full flex flex-col justify-center items-start relative z-10">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Naturalne soki z Makowskiego Sadu</h1>
+                <p class="text-xl text-white mb-8">Odkryj wyjątkowe walory tłoczonych soków jabłkowych z ekologicznego sadu w Małopolsce</p>
+                <div class="bg-white p-4 rounded-lg shadow-lg">
+                    <img src="juice-box.jpg" alt="Sok jabłkowy" class="w-32 h-32 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-primary mb-8">O nas</h2>
+                <p class="text-lg mb-8">Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa Podhalańskiego. Zajmujemy się tworzeniem naturalnych soków jabłkowych, z pasją oraz troską o środowisko. To dla nas nie tylko przedsięwzięcie, ale również styl życia.</p>
+                <button class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition">Skontaktuj się z nami</button>
+            </div>
+        </section>
+
+        <!-- Add more sections for "Nasze jabłonie", "Ekologia", and "Tłoczenia" -->
+
+    </main>
+
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="logo-white.svg" alt="Makowski Sad Logo" class="h-12 w-auto mr-4">
+                <span class="text-xl font-bold">MAKOWSKI SAD</span>
+            </div>
+            <div>
+                <p>ul. Sosnowa 7</p>
+                <p>34-220 Maków Podhalański</p>
+                <p>info@makowskisad.pl</p>
+            </div>
+            <div>
+                <h3 class="font-bold mb-2">Znajdź nas na socialach</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:opacity-80"><img src="instagram-icon.svg" alt="Instagram" class="h-6 w-6"></a>
+                    <a href="#" class="hover:opacity-80"><img src="facebook-icon.svg" alt="Facebook" class="h-6 w-6"></a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 flex justify-between items-center text-sm">
+            <p>© 2024 HorizonCrafts.</p>
+            <a href="#" class="hover:underline">Polityka Prywatności</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
