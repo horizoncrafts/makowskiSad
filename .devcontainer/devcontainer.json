@@ -1,0 +1,16 @@
+{
+    "name": "Node.js & Tailwind Development",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "ms-vscode.live-server"
+            ]
+        }
+    },
+    "forwardPorts": [3000],
+    "postCreateCommand": "npm install"
+} 
