@@ -4,9 +4,13 @@
   "description": "Makowski Sad website",
   "scripts": {
     "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "format": "prettier --write \"src/**/*.{html,js}\"",
+    "format:check": "prettier --check \"src/**/*.{html,js}\""
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "prettier": "^3.2.0",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   }
 } 

@@ -1,100 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Makowski Sad - Soki Naturalne</title>
-    <link href="../dist/output.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body class="font-sans bg-secondary">
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-sans bg-secondary">
     <header class="bg-white shadow-md">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/assets/icons/horizontal_color.svg" alt="Makowski Sad Logo" class="h-12 w-auto mr-4">
-                <!-- <span class="text-xl font-bold text-primary">MAKOWSKI SAD</span> -->
-            </div>
-            <div class="block sm:hidden">
-                <button id="menu-toggle" class="text-primary focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul id="menu" class="hidden sm:flex space-x-6">
-                <li><a href="#" class="text-primary hover:text-opacity-80">O nas</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Ekologia</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu" class="hidden">
-            <ul class="flex flex-col space-y-2 p-4 bg-white">
-                <li><a href="#" class="text-primary hover:text-opacity-80">O nas</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Ekologia</a></li>
-                <li><a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a></li>
-            </ul>
+      <nav
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <img
+            src="/assets/icons/horizontal_color.svg"
+            alt="Makowski Sad Logo"
+            class="h-12 w-auto mr-4"
+          />
+          <!-- <span class="text-xl font-bold text-primary">MAKOWSKI SAD</span> -->
         </div>
+        <div class="block sm:hidden">
+          <button id="menu-toggle" class="text-primary focus:outline-none">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <ul id="menu" class="hidden sm:flex space-x-6">
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">O nas</a>
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80"
+              >Nasze jabłonie</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">Ekologia</a>
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a>
+          </li>
+        </ul>
+      </nav>
+      <div id="mobile-menu" class="hidden">
+        <ul class="flex flex-col space-y-2 p-4 bg-white">
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">O nas</a>
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80"
+              >Nasze jabłonie</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">Ekologia</a>
+          </li>
+          <li>
+            <a href="#" class="text-primary hover:text-opacity-80">Tłoczenia</a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <main>
-        <section class="py-8 lg:py-16 bg-white relative h-[300px] bg-cover bg-center" style="background-image: url('/assets/images/IMG_1506.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-10"></div>
-            <div class="container mx-auto px-4 h-full flex flex-row justify-center items-center relative z-10">
-                <div class="flex flex-col justify-center items-start">
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">Naturalne soki z Makowskiego Sadu</h1>
-                    <p class="text-md sm:text-lg md:text-xl text-white mb-8">Odkryj wyjątkowe walory tłoczonych soków jabłkowych z ekologicznego sadu w Małopolsce</p>
-                </div>
-                <div class="bg-opacity-100 p-1 ml-1 flex-grow">
-                    <img src="/assets/images/karton_wizualizacja_1 1.png" alt="Sok jabłkowy" class="w-full max-w-[350px] max-h-[350px] object-contain">
-                </div>
-            </div>
-        </section>
+      <section
+        class="py-8 lg:py-16 bg-white relative h-[300px] bg-cover bg-center"
+        style="background-image: url(&quot;/assets/images/IMG_1506.png&quot;)"
+      >
+        <div class="absolute inset-0 bg-black bg-opacity-10"></div>
+        <div
+          class="container mx-auto px-4 h-full flex flex-row justify-center items-center relative z-10"
+        >
+          <div class="flex flex-col justify-center items-start">
+            <h1
+              class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+            >
+              Naturalne soki z Makowskiego Sadu
+            </h1>
+            <p class="text-md sm:text-lg md:text-xl text-white mb-8">
+              Odkryj wyjątkowe walory tłoczonych soków jabłkowych z
+              ekologicznego sadu w Małopolsce
+            </p>
+          </div>
+          <div class="bg-opacity-100 p-1 ml-1 flex-grow">
+            <img
+              src="/assets/images/karton_wizualizacja_1 1.png"
+              alt="Sok jabłkowy"
+              class="w-full max-w-[350px] max-h-[350px] object-contain"
+            />
+          </div>
+        </div>
+      </section>
 
-        <section class="py-8 lg:py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-primary mb-5">O nas</h2>
-                <p class="text-md sm:text-lg mb-8">Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa Podhalańskiego. Zajmujemy się tworzeniem naturalnych soków jabłkowych, z pasją oraz troską o środowisko. To dla nas nie tylko przedsięwzięcie, ale również styl życia.</p>
-                <button class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition">Skontaktuj się z nami</button>
-            </div>
-        </section>
+      <section class="py-8 lg:py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-primary mb-5">O nas</h2>
+          <p class="text-md sm:text-lg mb-8">
+            Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa
+            Podhalańskiego. Zajmujemy się tworzeniem naturalnych soków
+            jabłkowych, z pasją oraz troską o środowisko. To dla nas nie tylko
+            przedsięwzięcie, ale również styl życia.
+          </p>
+          <button
+            class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition"
+          >
+            Skontaktuj się z nami
+          </button>
+        </div>
+      </section>
 
-        <!-- Add more sections for "Nasze jabłonie", "Ekologia", and "Tłoczenia" -->
-
+      <!-- Add more sections for "Nasze jabłonie", "Ekologia", and "Tłoczenia" -->
     </main>
 
     <footer class="bg-primary text-white py-8">
-        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between">
-            <div class="flex flex-row flex-1 items-start justify-between mb-0">
-                <div class=" items-center flex-1 mb-0">
-                    <img src="/assets/icons/vertical_black.svg" alt="Makowski Sad Logo" class="h-28 w-auto mr-1">
-                </div>
-                <div class="flex-1">
-                    <p>ul. Sosnowa 7</p>
-                    <p>34-220 Maków Podhalański</p>
-                    <p>info@makowskisad.pl</p>
-                </div>
-            </div>
-            <div class="flex flex-row items-start mb-0 ">
-                <div class="sm:hidden flex-1"></div>
-                <div class="w-full sm:w-auto flex-1 mt-2 sm:mt-0 border-t sm:border-0 items-start">
-                    <h3 class="font-bold mb-2 sm:text-center text-left">Znajdź nas na socialach</h3>
-                    <div class="flex justify-start space-x-4">
-                        <a href="https://instagram.com/makowskisad" class="hover:opacity-80"><img src="/assets/icons/instagram.svg" alt="Instagram" class="h-6 w-6"></a>
-                        <a href="https://facebook.com/makowskisad" class="hover:opacity-80"><img src="/assets/icons/facebook.svg" alt="Facebook" class="h-6 w-6"></a>
-                    </div>
-                </div>
-            </div>
+      <div
+        class="container mx-auto px-4 flex flex-col sm:flex-row justify-between"
+      >
+        <div class="flex flex-row flex-1 items-start justify-between mb-0">
+          <div class="items-center flex-1 mb-0">
+            <img
+              src="/assets/icons/vertical_black.svg"
+              alt="Makowski Sad Logo"
+              class="h-28 w-auto mr-1"
+            />
+          </div>
+          <div class="flex-1">
+            <p>ul. Sosnowa 7</p>
+            <p>34-220 Maków Podhalański</p>
+            <p>info@makowskisad.pl</p>
+          </div>
         </div>
-        <div class="container mx-auto px-4 mt-8 flex flex-col items-center text-sm">
-            <!-- Added black separator line -->
-            <hr class="w-full border-t border-black mb-2"> 
-            <p>© 2024 HorizonCrafts.</p>
-            <!-- <a href="#" class="hover:underline">Polityka Prywatności</a> -->
+        <div class="flex flex-row items-start mb-0">
+          <div class="sm:hidden flex-1"></div>
+          <div
+            class="w-full sm:w-auto flex-1 mt-2 sm:mt-0 border-t sm:border-0 items-start"
+          >
+            <h3 class="font-bold mb-2 sm:text-center text-left">
+              Znajdź nas na socialach
+            </h3>
+            <div class="flex justify-start space-x-4">
+              <a
+                href="https://instagram.com/makowskisad"
+                class="hover:opacity-80"
+                ><img
+                  src="/assets/icons/instagram.svg"
+                  alt="Instagram"
+                  class="h-6 w-6"
+              /></a>
+              <a
+                href="https://facebook.com/makowskisad"
+                class="hover:opacity-80"
+                ><img
+                  src="/assets/icons/facebook.svg"
+                  alt="Facebook"
+                  class="h-6 w-6"
+              /></a>
+            </div>
+          </div>
         </div>
+      </div>
+      <div
+        class="container mx-auto px-4 mt-8 flex flex-col items-center text-sm"
+      >
+        <!-- Added black separator line -->
+        <hr class="w-full border-t border-black mb-2" />
+        <p>© 2024 HorizonCrafts.</p>
+        <!-- <a href="#" class="hover:underline">Polityka Prywatności</a> -->
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
