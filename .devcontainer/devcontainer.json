@@ -20,5 +20,7 @@
     }
   },
   "forwardPorts": [3000],
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
+  "runArgs": ["--init"],
+  "postStartCommand": "npx prettier --write '**/*.html' && npx prettier --write '**/*.js'"
 }
