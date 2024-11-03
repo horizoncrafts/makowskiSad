@@ -10,23 +10,21 @@
       rel="stylesheet"
     />
   </head>
-  <body class="font-sans bg-secondary">
+  <body class="bg-secondary font-sans">
     <header class="bg-white shadow-md">
-      <nav
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
+      <nav class="container mx-auto flex items-center justify-between px-4 py-4">
         <div class="flex items-center">
           <img
             src="/assets/icons/horizontal_color.svg"
             alt="Makowski Sad Logo"
-            class="h-12 w-auto mr-4"
+            class="mr-4 h-12 w-auto"
           />
           <!-- <span class="text-xl font-bold text-primary">MAKOWSKI SAD</span> -->
         </div>
         <div class="block sm:hidden">
           <button id="menu-toggle" class="text-primary focus:outline-none">
             <svg
-              class="w-6 h-6"
+              class="h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -41,14 +39,12 @@
             </svg>
           </button>
         </div>
-        <ul id="menu" class="hidden sm:flex space-x-6">
+        <ul id="menu" class="hidden space-x-6 sm:flex">
           <li>
             <a href="#" class="text-primary hover:text-opacity-80">O nas</a>
           </li>
           <li>
-            <a href="#" class="text-primary hover:text-opacity-80"
-              >Nasze jabłonie</a
-            >
+            <a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a>
           </li>
           <li>
             <a href="#" class="text-primary hover:text-opacity-80">Ekologia</a>
@@ -59,14 +55,12 @@
         </ul>
       </nav>
       <div id="mobile-menu" class="hidden">
-        <ul class="flex flex-col space-y-2 p-4 bg-white">
+        <ul class="flex flex-col space-y-2 bg-white p-4">
           <li>
             <a href="#" class="text-primary hover:text-opacity-80">O nas</a>
           </li>
           <li>
-            <a href="#" class="text-primary hover:text-opacity-80"
-              >Nasze jabłonie</a
-            >
+            <a href="#" class="text-primary hover:text-opacity-80">Nasze jabłonie</a>
           </li>
           <li>
             <a href="#" class="text-primary hover:text-opacity-80">Ekologia</a>
@@ -80,64 +74,111 @@
 
     <main>
       <section
-        class="py-8 lg:py-16 bg-white relative h-[300px] bg-cover bg-center"
-        style="background-image: url(&quot;/assets/images/IMG_1506.png&quot;)"
+        class="relative h-[300px] bg-white bg-cover bg-center py-8 lg:py-16"
+        style="background-image: url('/assets/images/IMG_1506.png')"
       >
         <div class="absolute inset-0 bg-black bg-opacity-10"></div>
         <div
-          class="container mx-auto px-4 h-full flex flex-row justify-center items-center relative z-10"
+          class="container relative z-10 mx-auto flex h-full flex-row items-center justify-center px-4"
         >
-          <div class="flex flex-col justify-center items-start">
-            <h1
-              class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
-            >
+          <div class="flex flex-col items-start justify-center">
+            <h1 class="mb-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Naturalne soki z Makowskiego Sadu
             </h1>
-            <p class="text-md sm:text-lg md:text-xl text-white mb-8">
-              Odkryj wyjątkowe walory tłoczonych soków jabłkowych z
-              ekologicznego sadu w Małopolsce
+            <p class="text-md mb-8 text-white sm:text-lg md:text-xl">
+              Odkryj wyjątkowe walory tłoczonych soków jabłkowych z ekologicznego sadu w Małopolsce
             </p>
           </div>
-          <div class="bg-opacity-100 p-1 ml-1 flex-grow">
+          <div class="ml-1 flex-grow bg-opacity-100 p-1">
             <img
               src="/assets/images/karton_wizualizacja_1 1.png"
               alt="Sok jabłkowy"
-              class="w-full max-w-[350px] max-h-[350px] object-contain"
+              class="max-h-[350px] w-full max-w-[350px] object-contain"
             />
           </div>
         </div>
       </section>
 
-      <section class="py-8 lg:py-16 bg-white">
+      <section class="bg-white py-8 lg:py-12">
         <div class="container mx-auto px-4">
-          <h2 class="text-3xl font-bold text-primary mb-5">O nas</h2>
-          <p class="text-md sm:text-lg mb-8">
-            Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa
-            Podhalańskiego. Zajmujemy się tworzeniem naturalnych soków
-            jabłkowych, z pasją oraz troską o środowisko. To dla nas nie tylko
-            przedsięwzięcie, ale również styl życia.
+          <h2 class="mb-5 text-3xl font-bold text-primary">Tradycja i pasja</h2>
+          <p class="text-md mb-8 sm:text-lg">
+            Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa Podhalańskiego.
+            Zajmujemy się tworzeniem naturalnych soków jabłkowych, z pasją oraz troską o środowisko.
+            To dla nas nie tylko przedsięwzięcie, ale również styl życia.
           </p>
-          <button
+          <!-- <button
             class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition"
           >
             Skontaktuj się z nami
-          </button>
+          </button> -->
         </div>
       </section>
 
-      <!-- Add more sections for "Nasze jabłonie", "Ekologia", and "Tłoczenia" -->
+      <section class="border-2 border-primary py-4">
+        <div class="container mx-auto flex h-auto flex-row gap-1 border-2 border-black p-4">
+          <div class="flex-2 h-full w-full border-2 border-black p-4">
+            <h2 class="mb-4 text-3xl font-bold text-primary">
+              Nasz produkt - 100% natury sprytnie zapakowane
+            </h2>
+            <p class="text-md mb-4 sm:text-lg">
+              Oferujemy naturalny, pasteryzowany sok jabłkowy bag-in-box, lub w postaci samych
+              worków.
+            </p>
+            <h3 class="mb-2 font-bold">Czemu warto wybrać takie pakowanie?</h3>
+            <ul class="mb-4 list-inside list-disc">
+              <li>Przydatność do spożycia przez 5 lub więcej dni po otwarciu</li>
+              <li>85% mniej materiałów na opakowanie</li>
+              <li>Łatwe przechowywanie i nalewanie</li>
+            </ul>
+          </div>
+          <div class="max-h-[240px] flex-1 border-2 border-black p-0">
+            <img
+              src="/assets/images/IMG_1819.jpg"
+              alt="Bag-in-box sok jabłkowy"
+              class="h-full w-full object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="bg-white py-8">
+        <div class="container mx-auto flex flex-col px-4 sm:flex-row">
+          <div class="flex-2 flex flex-col justify-start">
+            <h2 class="mb-4 text-3xl font-bold text-primary">
+              Nasz produkt - 100% natury sprytnie zapakowane
+            </h2>
+            <p class="text-md mb-4 sm:text-lg">
+              Oferujemy naturalny, pasteryzowany sok jabłkowy bag-in-box, lub w postaci samych
+              worków.
+            </p>
+            <h3 class="mb-2 font-bold">Czemu warto wybrać takie pakowanie?</h3>
+            <ul class="mb-4 list-inside list-disc">
+              <li>Przydatność do spożycia przez 5 lub więcej dni po otwarciu</li>
+              <li>85% mniej materiałów na opakowanie</li>
+              <li>Łatwe przechowywanie i nalewanie</li>
+            </ul>
+          </div>
+          <div class="flex items-center justify-center flex-1 border-2 border-black p-4">
+            <div class="w-full h-full bg-red-500"></div>
+            <img
+              src="/assets/images/IMG_1819.jpg"
+              alt="Bag-in-box sok jabłkowy"
+              class="max-h-[100px] w-full object-contain"
+            /> 
+          </div>
+        </div>
+      </section> -->
     </main>
 
-    <footer class="bg-primary text-white py-8">
-      <div
-        class="container mx-auto px-4 flex flex-col sm:flex-row justify-between"
-      >
-        <div class="flex flex-row flex-1 items-start justify-between mb-0">
-          <div class="items-center flex-1 mb-0">
+    <footer class="bg-primary py-8 text-white">
+      <div class="container mx-auto flex flex-col justify-between px-4 sm:flex-row">
+        <div class="mb-0 flex flex-1 flex-row items-start justify-between">
+          <div class="mb-0 flex-1 items-center">
             <img
               src="/assets/icons/vertical_black.svg"
               alt="Makowski Sad Logo"
-              class="h-28 w-auto mr-1"
+              class="mr-1 h-28 w-auto"
             />
           </div>
           <div class="flex-1">
@@ -146,40 +187,24 @@
             <p>info@makowskisad.pl</p>
           </div>
         </div>
-        <div class="flex flex-row items-start mb-0">
-          <div class="sm:hidden flex-1"></div>
-          <div
-            class="w-full sm:w-auto flex-1 mt-2 sm:mt-0 border-t sm:border-0 items-start"
-          >
-            <h3 class="font-bold mb-2 sm:text-center text-left">
-              Znajdź nas na socialach
-            </h3>
+        <div class="mb-0 flex flex-row items-start">
+          <div class="flex-1 sm:hidden"></div>
+          <div class="mt-2 w-full flex-1 items-start border-t sm:mt-0 sm:w-auto sm:border-0">
+            <h3 class="mb-2 text-left font-bold sm:text-center">Znajdź nas na socialach</h3>
             <div class="flex justify-start space-x-4">
-              <a
-                href="https://instagram.com/makowskisad"
-                class="hover:opacity-80"
-                ><img
-                  src="/assets/icons/instagram.svg"
-                  alt="Instagram"
-                  class="h-6 w-6"
+              <a href="https://instagram.com/makowskisad" class="hover:opacity-80"
+                ><img src="/assets/icons/instagram.svg" alt="Instagram" class="h-6 w-6"
               /></a>
-              <a
-                href="https://facebook.com/makowskisad"
-                class="hover:opacity-80"
-                ><img
-                  src="/assets/icons/facebook.svg"
-                  alt="Facebook"
-                  class="h-6 w-6"
+              <a href="https://facebook.com/makowskisad" class="hover:opacity-80"
+                ><img src="/assets/icons/facebook.svg" alt="Facebook" class="h-6 w-6"
               /></a>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="container mx-auto px-4 mt-8 flex flex-col items-center text-sm"
-      >
+      <div class="container mx-auto mt-8 flex flex-col items-center px-4 text-sm">
         <!-- Added black separator line -->
-        <hr class="w-full border-t border-black mb-2" />
+        <hr class="mb-2 w-full border-t border-black" />
         <p>© 2024 HorizonCrafts.</p>
         <!-- <a href="#" class="hover:underline">Polityka Prywatności</a> -->
       </div>
