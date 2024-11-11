@@ -20,6 +20,6 @@
     }
   },
   "forwardPorts": [3000],
-  "postCreateCommand": "npm install",
-  "postStartCommand": "npm run dev"
+  "postCreateCommand": "npm install"
+  // "postStartCommand": "npm run dev"
 }
