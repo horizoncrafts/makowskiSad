@@ -10,6 +10,11 @@
     /* for dev purposes */
     @apply border-2 border-red-500;
   }
+
+  p {
+    /* for dev purposes */
+    @apply border border-dotted  border-teal-300;
+  }
 }
 
 @tailwind components;
