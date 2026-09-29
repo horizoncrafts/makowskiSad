@@ -1,5 +1,4 @@
-// Mobile menu: the hamburger button shows/hides the nav links on small screens.
-// Smooth scrolling to #sections is handled in CSS (scroll-behavior).
+// Mobile menu: show/hide nav links on small screens.
 const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 
