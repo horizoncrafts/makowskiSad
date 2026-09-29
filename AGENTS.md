@@ -1,0 +1,2 @@
+- work in the `main` branch only, unless approved to create branches
+- Keep this page simple, HTML + js, no server-side unless needed and approved.
