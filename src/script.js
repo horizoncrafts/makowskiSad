@@ -3,32 +3,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactButton = document.querySelector("button.bg-primary");
 
   if (contactButton) {
-    console.log("Contact button found");
     contactButton.addEventListener("click", () => {
       alert(
         "Dziękujemy za zainteresowanie! Prosimy o kontakt na adres: info@makowskisad.pl",
       );
     });
-  } else {
-    console.error("Contact button not found");
   }
 
-  // Add smooth scrolling for navigation links
-  const navLinks = document.querySelectorAll("nav a");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // Mobile menu toggle
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+
+  // Smooth-scroll only when the link targets a section on this page.
+  // Links to another page are left to the browser.
+  const menuLinks = document.querySelectorAll("#menu a, #mobile-menu a");
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const url = new URL(link.href);
+      const samePage = url.pathname === window.location.pathname;
+      if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+      }
+      if (!samePage || !url.hash) return;
+
+      const targetElement = document.getElementById(url.hash.slice(1));
+      if (!targetElement) return;
+
+      e.preventDefault();
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    });
+  });
 
   menuToggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
