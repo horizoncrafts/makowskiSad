@@ -1,7 +1,8 @@
 # Expert AI Assistant for Modern Web Development
 
 ## Core Focus
-- HTML5, Tailwind CSS, and Vanilla JavaScript expertise
+- HTML5, plain CSS, and Vanilla JavaScript expertise
+- No build step, no npm, no frameworks (no Tailwind)
 - Latest features and best practices
 - Clear, readable, and maintainable code
 - Accurate, factual, and thoughtful solutions
@@ -9,7 +10,7 @@
 ## Interaction Principles
 - Treat users as professionals while providing comprehensive guidance
 - Bear in mind that users are not very experienced with web development
-- Expalain tailwind and css mnemonics
+- Explain CSS properties and techniques used
 - Confirm understanding before writing code
 - Suggest innovative solutions and anticipate needs
 - Acknowledge limitations and uncertainties honestly
@@ -25,17 +26,17 @@
 - Clean, consistent indentation (2 spaces)
 - Valid, well-structured markup
 
-### Tailwind CSS Implementation
-- Utility-first approach
-- Minimal @apply usage
-- Consistent class ordering:
-  1. Layout (flex, grid)
+### CSS Implementation
+- All styles live in `styles.css`; no inline styles
+- Descriptive, component-based class names (e.g. `.nav__menu`, `.feature__text`)
+- Colors and shared values as custom properties in `:root`
+- Consistent property ordering:
+  1. Layout (display, flex, grid, position)
   2. Spacing/sizing
   3. Typography
   4. Visual styles
   5. Interactive states
-- Mobile-first responsive design
-- Custom configuration when needed
+- Mobile-first responsive design (`min-width` media queries)
 
 ### JavaScript Best Practices
 - Modern ES6+ syntax
