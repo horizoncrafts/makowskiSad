@@ -147,18 +147,27 @@
             </h1>
             <figure class="medallion" data-loop>
               <div class="medallion__frame frame frame--oval">
-                <img
-                  src="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg"
-                  srcset="
-                    ../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg 1000w,
-                    ../shared/photos/0-miejsce-jablon-przed-domem-2000.jpg 2000w
-                  "
-                  sizes="(min-width: 64rem) 20rem, 66vw"
-                  width="1000"
-                  height="1333"
-                  fetchpriority="high"
-                  alt="Kwitnąca jabłoń przed naszym domem w sadzie"
-                />
+                <!-- Below 30rem every photo uses its 640 px copy, at any screen density.
+                     640w stays out of the img srcset so wider screens keep the larger files. -->
+                <picture>
+                  <source
+                    media="(max-width: 29.99rem)"
+                    srcset="../shared/photos/0-miejsce-jablon-przed-domem-640.jpg 640w"
+                    sizes="66vw"
+                  />
+                  <img
+                    src="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg"
+                    srcset="
+                      ../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg 1000w,
+                      ../shared/photos/0-miejsce-jablon-przed-domem-2000.jpg 2000w
+                    "
+                    sizes="(min-width: 64rem) 20rem, 66vw"
+                    width="1000"
+                    height="1333"
+                    fetchpriority="high"
+                    alt="Kwitnąca jabłoń przed naszym domem w sadzie"
+                  />
+                </picture>
               </div>
               <svg class="medallion__wreath vine" viewBox="0 0 360 460" aria-hidden="true" focusable="false">
                 <path class="vine__stem" pathLength="1" d="M180.0 438.0 C153.1 433.8 124.5 432.7 101.8 410.7 C75.4 396.9 61.1 363.8 44.1 336.1 C33.1 303.5 19.3 270.5 22.0 233.6 C17.6 196.7 31.9 163.6 41.4 130.2 C57.0 101.2 71.5 68.7 97.1 53.0 C118.9 29.1 147.9 28.4 174.5 22.1" />
@@ -335,19 +344,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg"
-                srcset="
-                  ../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg 1000w,
-                  ../shared/photos/0-miejsce-hamak-w-sloncu-1440.jpg 1440w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1160"
-                loading="lazy"
-                decoding="async"
-                alt="Hamak pod plandeką w promieniach słońca, w tle dolina"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/0-miejsce-hamak-w-sloncu-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg"
+                  srcset="
+                    ../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg 1000w,
+                    ../shared/photos/0-miejsce-hamak-w-sloncu-1440.jpg 1440w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1160"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Hamak pod plandeką w promieniach słońca, w tle dolina"
+                />
+              </picture>
             </div>
             <figcaption>Hamak pod drzewami, w&nbsp;promieniach słońca</figcaption>
           </figure>
@@ -368,55 +384,76 @@
             <div class="gallery">
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/0-miejsce-korona-nad-domem-1000.jpg"
-                    srcset="
-                      ../shared/photos/0-miejsce-korona-nad-domem-1000.jpg 1000w,
-                      ../shared/photos/0-miejsce-korona-nad-domem-1440.jpg 1440w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="674"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Biała od kwiatów korona jabłoni na tle nieba, w dole nasz dom"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/0-miejsce-korona-nad-domem-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/0-miejsce-korona-nad-domem-1000.jpg"
+                      srcset="
+                        ../shared/photos/0-miejsce-korona-nad-domem-1000.jpg 1000w,
+                        ../shared/photos/0-miejsce-korona-nad-domem-1440.jpg 1440w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="674"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Biała od kwiatów korona jabłoni na tle nieba, w dole nasz dom"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Nasz dom pod kwitnącą jabłonią</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape">
-                  <img
-                    src="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg"
-                    srcset="
-                      ../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg 1000w,
-                      ../shared/photos/0-miejsce-taras-ze-stolem-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Drewniany taras z nakrytym stołem wśród kwitnących jabłoni, w oddali wzgórza"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/0-miejsce-taras-ze-stolem-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg"
+                      srcset="
+                        ../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg 1000w,
+                        ../shared/photos/0-miejsce-taras-ze-stolem-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Drewniany taras z nakrytym stołem wśród kwitnących jabłoni, w oddali wzgórza"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Taras wśród kwitnących jabłoni</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape">
-                  <img
-                    src="../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg"
-                    srcset="
-                      ../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg 1000w,
-                      ../shared/photos/0-miejsce-widok-z-balkonu-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Kwitnąca jabłoń widziana z drewnianego balkonu, w oddali wzgórza"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/0-miejsce-widok-z-balkonu-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg"
+                      srcset="
+                        ../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg 1000w,
+                        ../shared/photos/0-miejsce-widok-z-balkonu-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Kwitnąca jabłoń widziana z drewnianego balkonu, w oddali wzgórza"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Widok z&nbsp;balkonu</figcaption>
               </figure>
@@ -508,19 +545,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg"
-                srcset="
-                  ../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg 1000w,
-                  ../shared/photos/1-kwiat-kwiaty-zblizenie-1440.jpg 1440w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1167"
-                loading="lazy"
-                decoding="async"
-                alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami z bliska"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg"
+                  srcset="
+                    ../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg 1000w,
+                    ../shared/photos/1-kwiat-kwiaty-zblizenie-1440.jpg 1440w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1167"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami z bliska"
+                />
+              </picture>
             </div>
             <figcaption>Kwiaty jabłoni z&nbsp;bliska</figcaption>
           </figure>
@@ -543,15 +587,22 @@
 
             <figure class="plate plate--film" data-reveal data-film>
               <div class="frame frame--film">
-                <img
-                  class="film__poster"
-                  src="../shared/photos/1-kwiat-kwitnaca-jablon-film-1000.jpg"
-                  width="1000"
-                  height="562"
-                  loading="lazy"
-                  decoding="async"
-                  alt=""
-                />
+                <picture>
+                  <source
+                    media="(max-width: 29.99rem)"
+                    srcset="../shared/photos/1-kwiat-kwitnaca-jablon-film-640.jpg 640w"
+                    sizes="84vw"
+                  />
+                  <img
+                    class="film__poster"
+                    src="../shared/photos/1-kwiat-kwitnaca-jablon-film-1000.jpg"
+                    width="1000"
+                    height="562"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                  />
+                </picture>
                 <video
                   class="film__video"
                   id="film-kwiat"
@@ -582,55 +633,76 @@
             <div class="gallery">
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg"
-                    srcset="
-                      ../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg 1000w,
-                      ../shared/photos/1-kwiat-slonce-w-koronie-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="671"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Słońce prześwitujące przez kwitnącą koronę jabłoni"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/1-kwiat-slonce-w-koronie-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg"
+                      srcset="
+                        ../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg 1000w,
+                        ../shared/photos/1-kwiat-slonce-w-koronie-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="671"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Słońce prześwitujące przez kwitnącą koronę jabłoni"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Słońce w&nbsp;kwitnącej koronie</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/1-kwiat-rozowe-paki-1000.jpg"
-                    srcset="
-                      ../shared/photos/1-kwiat-rozowe-paki-1000.jpg 1000w,
-                      ../shared/photos/1-kwiat-rozowe-paki-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1333"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Różowe pąki jabłoni tuż przed rozkwitnięciem"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/1-kwiat-rozowe-paki-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/1-kwiat-rozowe-paki-1000.jpg"
+                      srcset="
+                        ../shared/photos/1-kwiat-rozowe-paki-1000.jpg 1000w,
+                        ../shared/photos/1-kwiat-rozowe-paki-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1333"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Różowe pąki jabłoni tuż przed rozkwitnięciem"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Pąki tuż przed rozkwitnięciem</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait frame--focus-right">
-                  <img
-                    src="../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg"
-                    srcset="
-                      ../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg 1000w,
-                      ../shared/photos/1-kwiat-kwiat-i-paki-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="712"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Kwiat jabłoni i różowe pąki na gałęzi"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/1-kwiat-kwiat-i-paki-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg"
+                      srcset="
+                        ../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg 1000w,
+                        ../shared/photos/1-kwiat-kwiat-i-paki-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="712"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Kwiat jabłoni i różowe pąki na gałęzi"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Kwiat i&nbsp;pąki na gałęzi</figcaption>
               </figure>
@@ -702,19 +774,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg"
-                srcset="
-                  ../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg 1000w,
-                  ../shared/photos/2-jablko-zielone-w-smugach-slonca-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1333"
-                loading="lazy"
-                decoding="async"
-                alt="Zielone jabłko na gałęzi, w tle sad w smugach słońca"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/2-jablko-zielone-w-smugach-slonca-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg"
+                  srcset="
+                    ../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg 1000w,
+                    ../shared/photos/2-jablko-zielone-w-smugach-slonca-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1333"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Zielone jabłko na gałęzi, w tle sad w smugach słońca"
+                />
+              </picture>
             </div>
             <figcaption>Zielone jabłko w&nbsp;smugach słońca</figcaption>
           </figure>
@@ -734,55 +813,76 @@
             <div class="gallery">
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/2-jablko-zawiazek-1000.jpg"
-                    srcset="
-                      ../shared/photos/2-jablko-zawiazek-1000.jpg 1000w,
-                      ../shared/photos/2-jablko-zawiazek-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1030"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Maleńki zawiązek jabłka wśród liści"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/2-jablko-zawiazek-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/2-jablko-zawiazek-1000.jpg"
+                      srcset="
+                        ../shared/photos/2-jablko-zawiazek-1000.jpg 1000w,
+                        ../shared/photos/2-jablko-zawiazek-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1030"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Maleńki zawiązek jabłka wśród liści"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Zawiązek jabłka</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg"
-                    srcset="
-                      ../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg 1000w,
-                      ../shared/photos/2-jablko-kisc-pod-slonce-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1205"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Kiść jasnozielonych jabłek pod słońce"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/2-jablko-kisc-pod-slonce-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg"
+                      srcset="
+                        ../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg 1000w,
+                        ../shared/photos/2-jablko-kisc-pod-slonce-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1205"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Kiść jasnozielonych jabłek pod słońce"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Kiść jabłek pod słońce</figcaption>
               </figure>
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg"
-                    srcset="
-                      ../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg 1000w,
-                      ../shared/photos/2-jablko-czerwone-pod-slonce-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Czerwone jabłka na gałęzi pod słońce"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/2-jablko-czerwone-pod-slonce-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg"
+                      srcset="
+                        ../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg 1000w,
+                        ../shared/photos/2-jablko-czerwone-pod-slonce-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Czerwone jabłka na gałęzi pod słońce"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Czerwone jabłka pod słońce</figcaption>
               </figure>
@@ -798,14 +898,21 @@
                 <li>
                   <figure class="plate plate--cameo" data-reveal>
                     <div class="frame frame--round">
-                      <img
-                        src="../shared/photos/2-jablko-jaszczurka-1000.jpg"
-                        width="1000"
-                        height="751"
-                        loading="lazy"
-                        decoding="async"
-                        alt="Jaszczurka na ziemi wśród liści"
-                      />
+                      <picture>
+                        <source
+                          media="(max-width: 29.99rem)"
+                          srcset="../shared/photos/2-jablko-jaszczurka-640.jpg 640w"
+                          sizes="25vw"
+                        />
+                        <img
+                          src="../shared/photos/2-jablko-jaszczurka-1000.jpg"
+                          width="1000"
+                          height="751"
+                          loading="lazy"
+                          decoding="async"
+                          alt="Jaszczurka na ziemi wśród liści"
+                        />
+                      </picture>
                     </div>
                     <figcaption>Jaszczurka</figcaption>
                   </figure>
@@ -813,14 +920,21 @@
                 <li>
                   <figure class="plate plate--cameo" data-reveal>
                     <div class="frame frame--round">
-                      <img
-                        src="../shared/photos/2-jablko-piskleta-w-gniezdzie-888.jpg"
-                        width="888"
-                        height="1024"
-                        loading="lazy"
-                        decoding="async"
-                        alt="Pisklęta w gnieździe uwitym z traw"
-                      />
+                      <picture>
+                        <source
+                          media="(max-width: 29.99rem)"
+                          srcset="../shared/photos/2-jablko-piskleta-w-gniezdzie-640.jpg 640w"
+                          sizes="25vw"
+                        />
+                        <img
+                          src="../shared/photos/2-jablko-piskleta-w-gniezdzie-888.jpg"
+                          width="888"
+                          height="1024"
+                          loading="lazy"
+                          decoding="async"
+                          alt="Pisklęta w gnieździe uwitym z traw"
+                        />
+                      </picture>
                     </div>
                     <figcaption>Pisklęta</figcaption>
                   </figure>
@@ -828,14 +942,21 @@
                 <li>
                   <figure class="plate plate--cameo" data-reveal>
                     <div class="frame frame--round">
-                      <img
-                        src="../shared/photos/2-jablko-piskle-mucholowki-1000.jpg"
-                        width="1000"
-                        height="921"
-                        loading="lazy"
-                        decoding="async"
-                        alt="Pisklę muchołówki szarej z szeroko otwartym dziobem"
-                      />
+                      <picture>
+                        <source
+                          media="(max-width: 29.99rem)"
+                          srcset="../shared/photos/2-jablko-piskle-mucholowki-640.jpg 640w"
+                          sizes="25vw"
+                        />
+                        <img
+                          src="../shared/photos/2-jablko-piskle-mucholowki-1000.jpg"
+                          width="1000"
+                          height="921"
+                          loading="lazy"
+                          decoding="async"
+                          alt="Pisklę muchołówki szarej z szeroko otwartym dziobem"
+                        />
+                      </picture>
                     </div>
                     <figcaption>Pisklę muchołówki szarej</figcaption>
                   </figure>
@@ -845,19 +966,26 @@
 
             <figure class="plate plate--small" data-reveal>
               <div class="frame frame--portrait">
-                <img
-                  src="../shared/photos/2-jablko-w-dloni-1000.jpg"
-                  srcset="
-                    ../shared/photos/2-jablko-w-dloni-1000.jpg 1000w,
-                    ../shared/photos/2-jablko-w-dloni-2000.jpg 2000w
-                  "
-                  sizes="(min-width: 64rem) 15rem, 56vw"
-                  width="1000"
-                  height="1333"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Czerwone jabłko w dłoni"
-                />
+                <picture>
+                  <source
+                    media="(max-width: 29.99rem)"
+                    srcset="../shared/photos/2-jablko-w-dloni-640.jpg 640w"
+                    sizes="56vw"
+                  />
+                  <img
+                    src="../shared/photos/2-jablko-w-dloni-1000.jpg"
+                    srcset="
+                      ../shared/photos/2-jablko-w-dloni-1000.jpg 1000w,
+                      ../shared/photos/2-jablko-w-dloni-2000.jpg 2000w
+                    "
+                    sizes="(min-width: 64rem) 15rem, 56vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Czerwone jabłko w dłoni"
+                  />
+                </picture>
               </div>
               <figcaption>Jabłko w&nbsp;dłoni</figcaption>
             </figure>
@@ -928,19 +1056,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch frame--focus-picker">
-              <img
-                src="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg"
-                srcset="
-                  ../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg 1000w,
-                  ../shared/photos/3-zbior-zrywanie-z-drzewa-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1484"
-                loading="lazy"
-                decoding="async"
-                alt="Zrywanie jabłek prosto z drzewa"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/3-zbior-zrywanie-z-drzewa-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg"
+                  srcset="
+                    ../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg 1000w,
+                    ../shared/photos/3-zbior-zrywanie-z-drzewa-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1484"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Zrywanie jabłek prosto z drzewa"
+                />
+              </picture>
             </div>
             <figcaption>Prosto z&nbsp;drzewa</figcaption>
           </figure>
@@ -958,91 +1093,126 @@
             <div class="gallery">
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/3-zbior-jesienna-jablon-1000.jpg"
-                    srcset="
-                      ../shared/photos/3-zbior-jesienna-jablon-1000.jpg 1000w,
-                      ../shared/photos/3-zbior-jesienna-jablon-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="775"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Jesienna jabłoń z owocami w promieniach słońca"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/3-zbior-jesienna-jablon-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/3-zbior-jesienna-jablon-1000.jpg"
+                      srcset="
+                        ../shared/photos/3-zbior-jesienna-jablon-1000.jpg 1000w,
+                        ../shared/photos/3-zbior-jesienna-jablon-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="775"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Jesienna jabłoń z owocami w promieniach słońca"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Jesienna jabłoń w&nbsp;słońcu</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg"
-                    srcset="
-                      ../shared/photos/3-zbior-skrzynki-jablek-1000.jpg 1000w,
-                      ../shared/photos/3-zbior-skrzynki-jablek-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1308"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Drewniane skrzynki pełne czerwonych jabłek na trawie"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/3-zbior-skrzynki-jablek-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg"
+                      srcset="
+                        ../shared/photos/3-zbior-skrzynki-jablek-1000.jpg 1000w,
+                        ../shared/photos/3-zbior-skrzynki-jablek-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1308"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Drewniane skrzynki pełne czerwonych jabłek na trawie"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Skrzynki pełne jabłek</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/3-zbior-jablka-na-siatce-1000.jpg"
-                    srcset="
-                      ../shared/photos/3-zbior-jablka-na-siatce-1000.jpg 1000w,
-                      ../shared/photos/3-zbior-jablka-na-siatce-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1334"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Jabłka leżące na zielonej siatce pod drzewami"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/3-zbior-jablka-na-siatce-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/3-zbior-jablka-na-siatce-1000.jpg"
+                      srcset="
+                        ../shared/photos/3-zbior-jablka-na-siatce-1000.jpg 1000w,
+                        ../shared/photos/3-zbior-jablka-na-siatce-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1334"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Jabłka leżące na zielonej siatce pod drzewami"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Jabłka na siatce</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape">
-                  <img
-                    src="../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg"
-                    srcset="
-                      ../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg 1000w,
-                      ../shared/photos/3-zbior-siatki-pod-jabloniami-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Zielone siatki rozłożone pod jabłoniami"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/3-zbior-siatki-pod-jabloniami-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg"
+                      srcset="
+                        ../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg 1000w,
+                        ../shared/photos/3-zbior-siatki-pod-jabloniami-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Zielone siatki rozłożone pod jabłoniami"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Siatki pod jabłoniami</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape frame--focus-bin">
-                  <img
-                    src="../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg"
-                    srcset="
-                      ../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg 1000w,
-                      ../shared/photos/3-zbior-pojemnik-na-jablka-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1599"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Zielony pojemnik na jabłka zawieszony na metalowym stojaku"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/3-zbior-pojemnik-na-jablka-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg"
+                      srcset="
+                        ../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg 1000w,
+                        ../shared/photos/3-zbior-pojemnik-na-jablka-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1599"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Zielony pojemnik na jabłka zawieszony na metalowym stojaku"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Pojemnik na jabłka</figcaption>
               </figure>
@@ -1114,19 +1284,26 @@
 
           <figure class="plate plate--hero plate--hero-landscape" data-reveal>
             <div class="frame frame--landscape">
-              <img
-                src="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg"
-                srcset="
-                  ../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg 1000w,
-                  ../shared/photos/4-transport-bagaznik-pelen-workow-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 30rem, 84vw"
-                width="1000"
-                height="750"
-                loading="lazy"
-                decoding="async"
-                alt="Bagażnik samochodu pełen worków z jabłkami"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/4-transport-bagaznik-pelen-workow-640.jpg 640w"
+                  sizes="84vw"
+                />
+                <img
+                  src="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg"
+                  srcset="
+                    ../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg 1000w,
+                    ../shared/photos/4-transport-bagaznik-pelen-workow-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 30rem, 84vw"
+                  width="1000"
+                  height="750"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Bagażnik samochodu pełen worków z jabłkami"
+                />
+              </picture>
             </div>
             <figcaption>Bagażnik pełen worków z&nbsp;jabłkami</figcaption>
           </figure>
@@ -1242,14 +1419,21 @@
               <div class="partner">
                 <figure class="plate plate--cameo" data-reveal>
                   <div class="frame frame--round">
-                    <img
-                      src="../shared/photos/4-transport-koniki-1000.jpg"
-                      width="1000"
-                      height="760"
-                      loading="lazy"
-                      decoding="async"
-                      alt="Dwa konie na pastwisku, w tle zalesione wzgórza i słońce"
-                    />
+                    <picture>
+                      <source
+                        media="(max-width: 29.99rem)"
+                        srcset="../shared/photos/4-transport-koniki-640.jpg 640w"
+                        sizes="5.75rem"
+                      />
+                      <img
+                        src="../shared/photos/4-transport-koniki-1000.jpg"
+                        width="1000"
+                        height="760"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Dwa konie na pastwisku, w tle zalesione wzgórza i słońce"
+                      />
+                    </picture>
                   </div>
                 </figure>
                 <h4 class="partner__title">Stadnina koni</h4>
@@ -1345,19 +1529,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg"
-                srcset="
-                  ../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg 1000w,
-                  ../shared/photos/5-tloczenie-worki-w-tloczni-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1411"
-                loading="lazy"
-                decoding="async"
-                alt="Worki z jabłkami w tłoczni, obok waga"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/5-tloczenie-worki-w-tloczni-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg"
+                  srcset="
+                    ../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg 1000w,
+                    ../shared/photos/5-tloczenie-worki-w-tloczni-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1411"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Worki z jabłkami w tłoczni, obok waga"
+                />
+              </picture>
             </div>
             <figcaption>Worki z&nbsp;jabłkami w&nbsp;tłoczni</figcaption>
           </figure>
@@ -1511,19 +1702,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg"
-                srcset="
-                  ../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg 1000w,
-                  ../shared/photos/6-pakowanie-kartony-na-jabloni-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1333"
-                loading="lazy"
-                decoding="async"
-                alt="Dwa kartony soku ustawione w rozwidleniu jabłoni"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/6-pakowanie-kartony-na-jabloni-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg"
+                  srcset="
+                    ../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg 1000w,
+                    ../shared/photos/6-pakowanie-kartony-na-jabloni-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1333"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Dwa kartony soku ustawione w rozwidleniu jabłoni"
+                />
+              </picture>
             </div>
             <figcaption>Kartony soku na jabłoni</figcaption>
           </figure>
@@ -1578,37 +1776,51 @@
             <div class="gallery">
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg"
-                    srcset="
-                      ../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg 1000w,
-                      ../shared/photos/6-pakowanie-worki-z-zawieszkami-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="782"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Worki soku z kranikami i ręcznie wyciętymi zawieszkami na sznurku"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/6-pakowanie-worki-z-zawieszkami-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg"
+                      srcset="
+                        ../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg 1000w,
+                        ../shared/photos/6-pakowanie-worki-z-zawieszkami-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="782"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Worki soku z kranikami i ręcznie wyciętymi zawieszkami na sznurku"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Worki soku z&nbsp;zawieszkami</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg"
-                    srcset="
-                      ../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg 1000w,
-                      ../shared/photos/6-pakowanie-stempel-i-etykiety-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1333"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Stempel z logo, ręcznie wycięte kartonowe etykiety i szpulka sznurka"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg"
+                      srcset="
+                        ../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg 1000w,
+                        ../shared/photos/6-pakowanie-stempel-i-etykiety-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1333"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Stempel z logo, ręcznie wycięte kartonowe etykiety i szpulka sznurka"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Stempel i&nbsp;etykiety</figcaption>
               </figure>
@@ -1627,37 +1839,51 @@
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape">
-                  <img
-                    src="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg"
-                    srcset="
-                      ../shared/photos/6-pakowanie-karton-i-worek-1000.jpg 1000w,
-                      ../shared/photos/6-pakowanie-karton-i-worek-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Kartony z ostemplowanym logo i worki soku z kranikami na stole pod jabłonią"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/6-pakowanie-karton-i-worek-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg"
+                      srcset="
+                        ../shared/photos/6-pakowanie-karton-i-worek-1000.jpg 1000w,
+                        ../shared/photos/6-pakowanie-karton-i-worek-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Kartony z ostemplowanym logo i worki soku z kranikami na stole pod jabłonią"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Karton i&nbsp;worek</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--landscape">
-                  <img
-                    src="../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg"
-                    srcset="
-                      ../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg 1000w,
-                      ../shared/photos/6-pakowanie-polki-z-sokami-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="750"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Drewniane półki pełne worków soku z zawieszkami"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/6-pakowanie-polki-z-sokami-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg"
+                      srcset="
+                        ../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg 1000w,
+                        ../shared/photos/6-pakowanie-polki-z-sokami-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Drewniane półki pełne worków soku z zawieszkami"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Półki pełne soku</figcaption>
               </figure>
@@ -1747,19 +1973,26 @@
 
           <figure class="plate plate--hero" data-reveal>
             <div class="frame frame--arch">
-              <img
-                src="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg"
-                srcset="
-                  ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg 1000w,
-                  ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-2000.jpg 2000w
-                "
-                sizes="(min-width: 64rem) 26rem, 80vw"
-                width="1000"
-                height="1333"
-                loading="lazy"
-                decoding="async"
-                alt="Stoisko z sokami pod białym namiotem, za stołem dwie osoby"
-              />
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-640.jpg 640w"
+                  sizes="80vw"
+                />
+                <img
+                  src="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg"
+                  srcset="
+                    ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg 1000w,
+                    ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-2000.jpg 2000w
+                  "
+                  sizes="(min-width: 64rem) 26rem, 80vw"
+                  width="1000"
+                  height="1333"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Stoisko z sokami pod białym namiotem, za stołem dwie osoby"
+                />
+              </picture>
             </div>
             <figcaption>Nasze stoisko pod namiotem</figcaption>
           </figure>
@@ -1776,50 +2009,71 @@
             <div class="gallery">
               <figure class="plate plate--wide" data-reveal>
                 <div class="frame frame--wide">
-                  <img
-                    src="../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg"
-                    srcset="
-                      ../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg 1000w,
-                      ../shared/photos/7-sprzedaz-drewniane-stoisko-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 28rem, 80vw"
-                    width="1000"
-                    height="748"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Drewniane stoisko z sokami"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/7-sprzedaz-drewniane-stoisko-640.jpg 640w"
+                      sizes="80vw"
+                    />
+                    <img
+                      src="../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg"
+                      srcset="
+                        ../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg 1000w,
+                        ../shared/photos/7-sprzedaz-drewniane-stoisko-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 28rem, 80vw"
+                      width="1000"
+                      height="748"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Drewniane stoisko z sokami"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Drewniane stoisko z&nbsp;sokami</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/7-sprzedaz-impreza-ludowa-914.jpg"
-                    width="914"
-                    height="1024"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Karton z logo i worek soku, w tle występ zespołu w strojach ludowych"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/7-sprzedaz-impreza-ludowa-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/7-sprzedaz-impreza-ludowa-914.jpg"
+                      width="914"
+                      height="1024"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Karton z logo i worek soku, w tle występ zespołu w strojach ludowych"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Na lokalnej imprezie</figcaption>
               </figure>
               <figure class="plate" data-reveal>
                 <div class="frame frame--portrait">
-                  <img
-                    src="../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg"
-                    srcset="
-                      ../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg 1000w,
-                      ../shared/photos/7-sprzedaz-stol-w-sadzie-2000.jpg 2000w
-                    "
-                    sizes="(min-width: 64rem) 13rem, 40vw"
-                    width="1000"
-                    height="1333"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Biały drewniany stół w sadzie z kartonami soku"
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 29.99rem)"
+                      srcset="../shared/photos/7-sprzedaz-stol-w-sadzie-640.jpg 640w"
+                      sizes="40vw"
+                    />
+                    <img
+                      src="../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg"
+                      srcset="
+                        ../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg 1000w,
+                        ../shared/photos/7-sprzedaz-stol-w-sadzie-2000.jpg 2000w
+                      "
+                      sizes="(min-width: 64rem) 13rem, 40vw"
+                      width="1000"
+                      height="1333"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Biały drewniany stół w sadzie z kartonami soku"
+                    />
+                  </picture>
                 </div>
                 <figcaption>Stół w&nbsp;sadzie</figcaption>
               </figure>
