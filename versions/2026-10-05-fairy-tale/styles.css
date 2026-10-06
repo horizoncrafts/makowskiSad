@@ -851,6 +851,16 @@ body {
   object-fit: cover;
 }
 
+/* Until the page has loaded, photos below the opening screen stay out of the layout,
+   so the browser doesn't fetch them alongside the opening photo. Every frame has its
+   own aspect ratio, so nothing moves when they appear. The class comes from the
+   script in the head of index.html; script.js releases photos the reader reaches sooner. */
+@media screen {
+  .is-holding-photos .frame:not(.is-released) img[loading='lazy'] {
+    display: none;
+  }
+}
+
 /* Soft vignette: warm shade at the edges, the photo itself untouched in the middle. */
 .frame::after {
   content: '';

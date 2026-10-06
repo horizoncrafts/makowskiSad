@@ -18,6 +18,27 @@
     }
   };
 
+  // Photos below the opening screen are held until the page has loaded (see the
+  // head of index.html). A reader who scrolls to one sooner gets it straight away,
+  // with or without motion.
+  function initPhotoRelease() {
+    const root = document.documentElement;
+    if (!hasObserver || !root.classList.contains('is-holding-photos')) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-released');
+        observer.unobserve(entry.target);
+      }
+    });
+
+    for (const photo of document.querySelectorAll('.frame img[loading="lazy"]')) {
+      observer.observe(photo.closest('.frame'));
+    }
+    window.addEventListener('load', () => observer.disconnect(), { once: true });
+  }
+
   // Browsers without scroll-driven animations: ornaments that start below the
   // fold are "armed" (hidden by CSS) and drawn once they scroll into view.
   // Anything already on screen is left as it is, fully drawn.
@@ -233,6 +254,7 @@
     });
   }
 
+  initPhotoRelease();
   initRevealFallback();
   initLoops();
   initFilm();

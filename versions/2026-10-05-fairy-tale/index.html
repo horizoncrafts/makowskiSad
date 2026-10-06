@@ -20,6 +20,15 @@
       crossorigin
     />
     <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Holds back the photos below the opening screen until the page has loaded (see
+         styles.css). It must run before the first layout, so it stays inline and ahead
+         of the stylesheet. Without JavaScript nothing is held. -->
+    <script>
+      document.documentElement.classList.add('is-holding-photos');
+      window.addEventListener('load', () => {
+        document.documentElement.classList.remove('is-holding-photos');
+      });
+    </script>
     <link href="styles.css" rel="stylesheet" />
     <script src="script.js" defer></script>
   </head>
