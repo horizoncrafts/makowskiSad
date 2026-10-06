@@ -20,14 +20,29 @@
       crossorigin
     />
     <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- Holds back the photos below the opening screen until the page has loaded (see
-         styles.css). It must run before the first layout, so it stays inline and ahead
-         of the stylesheet. Without JavaScript nothing is held. -->
+    <!-- Holds back the photos below the opening screen until the page has loaded and
+         been painted (see styles.css); the load event can come before the first paint.
+         It must run before the first layout, so it stays inline and ahead of the
+         stylesheet. Without JavaScript nothing is held. -->
     <script>
-      document.documentElement.classList.add('is-holding-photos');
-      window.addEventListener('load', () => {
-        document.documentElement.classList.remove('is-holding-photos');
-      });
+      (() => {
+        const root = document.documentElement;
+        const loaded = new Promise((resolve) => window.addEventListener('load', resolve));
+        const painted = new Promise((resolve) => {
+          if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {
+            resolve();
+            return;
+          }
+          new PerformanceObserver((list, observer) => {
+            if (!list.getEntriesByName('first-contentful-paint').length) return;
+            observer.disconnect();
+            resolve();
+          }).observe({ type: 'paint', buffered: true });
+        });
+
+        root.classList.add('is-holding-photos');
+        Promise.all([loaded, painted]).then(() => root.classList.remove('is-holding-photos'));
+      })();
     </script>
     <link href="styles.css" rel="stylesheet" />
     <script src="script.js" defer></script>

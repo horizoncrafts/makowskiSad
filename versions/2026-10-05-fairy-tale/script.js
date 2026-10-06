@@ -18,14 +18,18 @@
     }
   };
 
-  // Photos below the opening screen are held until the page has loaded (see the
-  // head of index.html). A reader who scrolls to one sooner gets it straight away,
-  // with or without motion.
+  // Photos below the opening screen are held until the page has loaded and been painted
+  // (see the head of index.html). A reader who scrolls to one sooner gets it straight
+  // away, with or without motion.
   function initPhotoRelease() {
     const root = document.documentElement;
     if (!hasObserver || !root.classList.contains('is-holding-photos')) return;
 
     const observer = new IntersectionObserver((entries) => {
+      if (!root.classList.contains('is-holding-photos')) {
+        observer.disconnect();
+        return;
+      }
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         entry.target.classList.add('is-released');
@@ -36,7 +40,6 @@
     for (const photo of document.querySelectorAll('.frame img[loading="lazy"]')) {
       observer.observe(photo.closest('.frame'));
     }
-    window.addEventListener('load', () => observer.disconnect(), { once: true });
   }
 
   // Browsers without scroll-driven animations: ornaments that start below the
