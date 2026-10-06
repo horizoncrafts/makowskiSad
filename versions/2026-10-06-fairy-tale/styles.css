@@ -1,0 +1,3244 @@
+/* ==========================================================================
+   Wejdź do sadu – Makowski Sad, wersja z 6 października 2026
+   One walk through the orchard: through the gate, past the house, from blossom
+   to the market lanterns. The real photographs are lit windows in the dark;
+   the juice is the golden magic in between. Mobile first.
+   ========================================================================== */
+
+/* IM Fell French Canon and MakSad Text (a renamed Lora subset), cut down to
+   A–Z, a–z, digits, the Polish letters and the punctuation this page uses.
+   Any other character falls back to the system serif, so add it to the subset
+   first. index.html preloads the two upright files. Licence: fonts/OFL.txt. */
+@font-face {
+  font-family: 'IM Fell French Canon';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/im-fell-french-canon.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IM Fell French Canon';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/im-fell-french-canon-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'MakSad Text';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('fonts/maksad-text.woff2') format('woff2');
+}
+
+:root {
+  --night: #070b14;
+  --cream: #f8efdc;
+  --cream-2: #e3d5ba;
+  --gold: #f3b64b;
+  --gold-2: #ffd98e;
+  --amber: #e08a2e;
+  --rose: #f2c4cc;
+  --blossom: #f7e3e6;
+  --leaf: #3e6b34;
+  --leaf-light: #8fbf6a;
+  --brand: #2c5e2e;
+  --apple: #c83a2f;
+  --wood: #4a3322;
+  --ink: #2a1a0e;
+  --paper: #f4ead6;
+  --line: rgb(255 217 142 / 0.28);
+
+  --font-display: 'IM Fell French Canon', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+    serif;
+  --font-text: 'MakSad Text', Georgia, 'Times New Roman', serif;
+
+  --measure: 36rem;
+  --wide: 72rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --radius: 1.25rem;
+  --shadow-deep: 0 1.75rem 3.5rem -1.25rem rgb(0 0 0 / 0.75);
+  --glow: rgb(243 182 75 / 0.3);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-sway: cubic-bezier(0.45, 0, 0.55, 1);
+
+  color-scheme: dark;
+}
+
+/* Base ===================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-kerning: normal;
+  color: var(--cream);
+  background: var(--night);
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--gold-2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+a:hover {
+  color: var(--cream);
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold-2);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 30;
+  padding: 0.75rem 1.1rem;
+  font-weight: 600;
+  color: var(--night);
+  background: var(--gold-2);
+  border-radius: 0.5rem;
+  transform: translateY(-250%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Shared drawings. Colours come in through custom properties, so each
+   chapter can give the same branch its own season. */
+.bloom__petals {
+  fill: var(--petal, var(--blossom));
+}
+
+.bloom__heart {
+  fill: var(--heart, #f3c45a);
+}
+
+.apple__body {
+  fill: var(--fruit, var(--apple));
+}
+
+.apple__stalk {
+  fill: none;
+  stroke: var(--stalk, #5b3b22);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.apple__shine {
+  fill: rgb(255 255 255 / 0.45);
+}
+
+.bough__art {
+  fill: var(--foliage, var(--leaf));
+}
+
+.br-wood {
+  fill: var(--bark, var(--wood));
+}
+
+/* Masthead ================================================================= */
+
+.masthead {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 10;
+  padding: 0.4rem var(--gutter);
+}
+
+.masthead__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 1rem;
+  max-width: var(--wide);
+  margin: 0 auto;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+.masthead a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0 0.15rem;
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.masthead a:hover {
+  color: var(--gold-2);
+  text-decoration: underline;
+}
+
+.masthead__home {
+  justify-content: center;
+  min-width: 2.75rem;
+}
+
+.masthead__icon {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Below 23rem the three links do not fit on one line, so home is the bloom. */
+.masthead__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (min-width: 23rem) {
+  .masthead__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+.masthead__links {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The magic switch (added by script.js): stops every decorative movement. */
+.magic-toggle {
+  position: fixed;
+  right: max(0.75rem, env(safe-area-inset-right));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 2.875rem;
+  min-height: 2.875rem;
+  padding: 0 0.8rem;
+  font: 600 0.8125rem/1 var(--font-text);
+  letter-spacing: 0.04em;
+  color: var(--gold-2);
+  background: rgb(8 11 22 / 0.86);
+  border: 1px solid rgb(255 217 142 / 0.55);
+  border-radius: 999px;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.45);
+  cursor: pointer;
+}
+
+.magic-toggle[hidden] {
+  display: none;
+}
+
+.magic-toggle:hover {
+  color: var(--night);
+  background: var(--gold-2);
+}
+
+.magic-toggle__icon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.magic-toggle__icon--off,
+.is-still .magic-toggle__icon--on {
+  display: none;
+}
+
+.is-still .magic-toggle__icon--off {
+  display: block;
+}
+
+.magic-toggle__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.magic {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+}
+
+@media (min-width: 48rem) {
+  .masthead {
+    padding-top: 0.75rem;
+  }
+
+  .masthead__nav {
+    font-size: 0.875rem;
+  }
+
+  .masthead__links {
+    gap: 1.5rem;
+  }
+
+  .magic-toggle {
+    padding: 0 1.1rem 0 0.9rem;
+  }
+
+  .magic-toggle__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+/* The gate ================================================================= */
+
+.gate {
+  position: relative;
+  overflow: clip;
+  background: #06100f;
+}
+
+.gate__stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 34rem;
+  overflow: clip;
+  container-type: size;
+  background:
+    radial-gradient(ellipse 55% 40% at 50% 42%, rgb(40 90 150 / 0.32), transparent 70%),
+    linear-gradient(#030912, #0a1a22 62%, #08130f);
+}
+
+.gate__sky {
+  position: absolute;
+  inset: 0 0 40%;
+  background:
+    radial-gradient(1.5px 1.5px at 8% 22%, rgb(255 244 220 / 0.85) 50%, transparent 51%),
+    radial-gradient(1px 1px at 17% 46%, rgb(255 244 220 / 0.7) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 27% 30%, rgb(255 244 220 / 0.75) 50%, transparent 51%),
+    radial-gradient(1px 1px at 73% 26%, rgb(255 244 220 / 0.7) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 84% 44%, rgb(255 244 220 / 0.85) 50%, transparent 51%),
+    radial-gradient(1px 1px at 93% 18%, rgb(255 244 220 / 0.7) 50%, transparent 51%);
+}
+
+.gate__hills {
+  position: absolute;
+  inset: auto 0 20%;
+  width: 100%;
+  height: 34%;
+}
+
+.g-hill--far {
+  fill: #0f2430;
+}
+
+.g-hill--near {
+  fill: #0b1c20;
+}
+
+/* The photo stays a 3:4 window on wide screens and fills the phone screen. It
+   ends a little above the bottom and sits on its lower edge, so the house stands
+   just above the grass; the top of the photo is under the canopy anyway. */
+.gate__window {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  width: min(100vw, 75vh);
+  width: min(100cqw, 75cqh);
+  height: calc(100% - 9rem);
+  margin: 0 auto;
+}
+
+.gate__window picture,
+.gate__window img {
+  width: 100%;
+  height: 100%;
+}
+
+.gate__window img {
+  object-fit: cover;
+  object-position: 42% 100%;
+}
+
+.gate__window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #0a1a22, transparent 9%, transparent 91%, #0a1a22),
+    radial-gradient(ellipse 80% 70% at 50% 55%, transparent 55%, rgb(3 9 18 / 0.5));
+}
+
+.gate__motes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mote {
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: radial-gradient(circle, #fff3cf 0 14%, rgb(255 217 142 / 0.55) 32%, transparent 68%);
+  border-radius: 50%;
+}
+
+.mote:nth-child(1) { top: 46%; left: 16%; }
+.mote:nth-child(2) { top: 58%; left: 34%; }
+.mote:nth-child(3) { top: 41%; left: 62%; }
+.mote:nth-child(4) { top: 63%; left: 78%; }
+.mote:nth-child(5) { top: 52%; left: 88%; }
+.mote:nth-child(6) { top: 70%; left: 22%; }
+.mote:nth-child(7) { top: 36%; left: 44%; }
+.mote:nth-child(8) { top: 66%; left: 55%; }
+.mote:nth-child(9) { top: 48%; left: 7%; }
+.mote:nth-child(10) { top: 56%; left: 69%; }
+
+.gate__trunk {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: 33vh;
+  width: 33cqh;
+  height: 100%;
+}
+
+.gate__trunk--left {
+  left: calc(50% - min(50%, 37.5vh) - 13vh);
+  left: calc(50% - min(50%, 37.5cqh) - 13cqh);
+  transform-origin: 0 100%;
+}
+
+.gate__trunk--right {
+  right: calc(50% - min(50%, 37.5vh) - 13vh);
+  right: calc(50% - min(50%, 37.5cqh) - 13cqh);
+  transform-origin: 100% 100%;
+}
+
+.g-trunk {
+  fill: #050c0a;
+}
+
+.g-bark {
+  fill: none;
+  stroke: #16241c;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+/* The canopy and the grass take the height their text needs; the drawings are
+   sized from the stage and pinned to their inner edge (the arch, the grass tips),
+   and keep painting beyond their boxes behind the text. So the title and the lead
+   stay on the dark leaves and grass on any screen, never over the photo. */
+.gate__canopy {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  padding-bottom: calc(max(100vw, 170vh) * 0.06 + 1rem);
+  padding-bottom: calc(max(100cqw, 170cqh) * 0.06 + 1rem);
+  transform-origin: 50% 0;
+}
+
+.gate__leaves {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: max(100vw, 170vh);
+  width: max(100cqw, 170cqh);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1600 / 340;
+  overflow: visible;
+  transform: translateX(-50%);
+  --petal: #f6dfe4;
+}
+
+.g-crown {
+  fill: #06110c;
+}
+
+.g-crown-tex {
+  fill: #0d2116;
+}
+
+.gate__title {
+  position: relative;
+  padding: 3.5rem var(--gutter) 0;
+  text-align: center;
+}
+
+.gate__kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+}
+
+.gate__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 0.95;
+}
+
+.gate__heading-small {
+  display: block;
+  font-size: clamp(1.15rem, 0.5rem + 3.6vw, 2.1rem);
+  color: var(--cream-2);
+}
+
+/* "Makowskiego Sadu" stays on one line down to 320 px. */
+.gate__heading-big {
+  display: block;
+  margin-top: 0.1em;
+  font-size: clamp(2rem, 0.4rem + 8.2vw, 5.75rem);
+  color: var(--cream);
+  text-shadow: 0 0 1.75rem rgb(243 182 75 / 0.35);
+}
+
+.gate__ground {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 3;
+  padding-top: calc(max(100vw, 220vh) * 0.044);
+  padding-top: calc(max(100cqw, 220cqh) * 0.044);
+  transform-origin: 50% 100%;
+}
+
+.gate__grass {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max(100vw, 220vh);
+  width: max(100cqw, 220cqh);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 2000 / 240;
+  overflow: visible;
+  transform: translateX(-50%);
+  --petal: #f2c4cc;
+}
+
+.g-grass {
+  fill: #08130f;
+}
+
+/* The bottom padding keeps the cue clear of the magic switch on narrow screens. */
+.gate__lead {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem var(--gutter) 4.5rem;
+  text-align: center;
+}
+
+.gate__lead p {
+  max-width: 30rem;
+  margin: 0;
+  font-size: clamp(0.95rem, 3.7vw, 1.15rem);
+  line-height: 1.5;
+}
+
+.gate__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold-2);
+  border: 1px solid rgb(255 217 142 / 0.5);
+  border-radius: 999px;
+}
+
+.gate__cue:hover {
+  color: var(--night);
+  background: var(--gold-2);
+}
+
+.gate__cue-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.gate__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(transparent 35%, #08130f 92%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 40rem) {
+  .gate__window {
+    height: calc(100% - 7rem);
+  }
+
+  .gate__lead {
+    padding-bottom: 2.25rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .gate__title {
+    padding-top: 4.5rem;
+  }
+
+  .gate__kicker {
+    font-size: 0.75rem;
+  }
+}
+
+/* Short screens (landscape phones, small laptops): a smaller title leaves more
+   of the photo between the leaves and the grass. */
+@container (max-height: 40rem) {
+  .gate__title {
+    padding-top: 3.25rem;
+  }
+
+  .gate__heading-small {
+    font-size: clamp(1.1rem, min(0.5rem + 3.6cqw, 0.4rem + 3.4cqh), 1.6rem);
+  }
+
+  .gate__heading-big {
+    font-size: clamp(2rem, min(0.4rem + 8.2cqw, 0.5rem + 7cqh), 3.5rem);
+  }
+
+  .gate__lead p {
+    line-height: 1.4;
+  }
+}
+
+/* Chapters ================================================================= */
+
+.chapter {
+  position: relative;
+  overflow-x: clip;
+  padding: clamp(5.5rem, 15vw, 10rem) 0 clamp(5rem, 13vw, 9rem);
+  background: var(--pool, none), linear-gradient(var(--top), var(--mid) 45%, var(--bottom));
+}
+
+/* Everything readable sits above the magic layer; the backgrounds and the
+   boughs stay below it. */
+.chapter__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.chapter--prolog {
+  --top: #08130f;
+  --mid: #0d1c23;
+  --bottom: #142234;
+  --accent: var(--gold-2);
+  --pool: radial-gradient(ellipse 60% 30% at 50% 38%, rgb(243 182 75 / 0.1), transparent 70%);
+  --foliage: #2c4f2c;
+  --bark: #2f2217;
+}
+
+.chapter--kwiat {
+  --top: #142234;
+  --mid: #2a1f36;
+  --bottom: #1f2430;
+  --accent: var(--rose);
+  --pool: radial-gradient(ellipse 55% 35% at 85% 12%, rgb(242 196 204 / 0.2), transparent 70%);
+  --foliage: #3d5a35;
+  --bark: #3b2a1f;
+  --glow: rgb(242 196 204 / 0.28);
+}
+
+.chapter--jablko {
+  --top: #1f2430;
+  --mid: #102a24;
+  --bottom: #0f2a1d;
+  --accent: #cfe89a;
+  --pool:
+    repeating-linear-gradient(
+      118deg,
+      transparent 0 7rem,
+      rgb(255 236 170 / 0.035) 7rem 10rem,
+      transparent 10rem 16rem
+    );
+  --foliage: #36602f;
+  --bark: #3a2a1c;
+  --glow: rgb(207 232 154 / 0.22);
+}
+
+.chapter--zbior {
+  --top: #0f2a1d;
+  --mid: #2a2912;
+  --bottom: #33240e;
+  --accent: var(--gold);
+  --pool: radial-gradient(ellipse 60% 40% at 10% 85%, rgb(243 182 75 / 0.16), transparent 70%);
+  --foliage: #5a6a2a;
+  --bark: #3f2b18;
+  --fruit: #d24a2c;
+}
+
+.chapter--transport {
+  --top: #33240e;
+  --mid: #3a1f12;
+  --bottom: #2b1630;
+  --accent: #ffc58a;
+  --pool: radial-gradient(ellipse 70% 30% at 50% 30%, rgb(224 138 46 / 0.16), transparent 70%);
+}
+
+.chapter--tloczenie {
+  --top: #2b1630;
+  --mid: #1c1430;
+  --bottom: #151127;
+  --accent: var(--gold-2);
+  --pool: radial-gradient(ellipse 55% 35% at 50% 62%, rgb(243 182 75 / 0.17), transparent 72%);
+  --glow: rgb(243 182 75 / 0.4);
+}
+
+.chapter--pakowanie {
+  --top: #151127;
+  --mid: #22170f;
+  --bottom: #1d130d;
+  --accent: #f6c98a;
+  --pool: radial-gradient(ellipse 50% 28% at 50% 16%, rgb(255 200 120 / 0.14), transparent 70%);
+}
+
+.chapter--sprzedaz {
+  --top: #1d130d;
+  --mid: #1a1431;
+  --bottom: #0f1228;
+  --accent: var(--rose);
+  --pool: radial-gradient(ellipse 70% 22% at 50% 4%, rgb(255 217 142 / 0.16), transparent 72%);
+  --glow: rgb(255 217 142 / 0.35);
+}
+
+.chapter__head {
+  max-width: 48rem;
+  margin: 0 auto clamp(2.5rem, 7vw, 4.5rem);
+  text-align: center;
+}
+
+.chapter__kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.chapter__kicker::before,
+.chapter__kicker::after {
+  content: '';
+  width: clamp(1.5rem, 7vw, 4rem);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.chapter__num {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.chapter__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 16vw, 8.5rem);
+  line-height: 0.92;
+  color: var(--cream);
+  text-shadow: 0 0 2.5rem var(--glow);
+}
+
+.chapter__title--small {
+  font-size: clamp(2.6rem, 11vw, 5.5rem);
+}
+
+.chapter__tagline {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4.6vw, 2rem);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--cream-2);
+}
+
+.chapter__subhead {
+  margin: 0 auto 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 2.75rem);
+  line-height: 1.1;
+  text-align: center;
+  color: var(--accent);
+}
+
+.prose {
+  max-width: var(--measure);
+  margin: 0 auto 3rem;
+}
+
+.prose p {
+  margin: 0 0 1.1em;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose--center {
+  text-align: center;
+}
+
+.lede {
+  font-size: clamp(1.125rem, 3.6vw, 1.3rem);
+  line-height: 1.6;
+}
+
+.lede::first-letter {
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  font-family: var(--font-display);
+  font-size: 3.5em;
+  line-height: 0.8;
+  color: var(--accent);
+  text-shadow: 0 0 1.25rem var(--glow);
+}
+
+.prose--center .lede::first-letter {
+  float: none;
+  margin: 0;
+  font-size: 1.7em;
+  line-height: 1;
+}
+
+.saying {
+  max-width: 32rem;
+  margin: 0 auto 3.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5.2vw, 2.4rem);
+  font-style: italic;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Boughs reach in from the edges of each chapter. */
+.bough {
+  position: absolute;
+  top: -1.5rem;
+  z-index: 0;
+  width: clamp(13rem, 46vw, 34rem);
+  height: auto;
+  pointer-events: none;
+}
+
+.bough--left {
+  left: -2.5rem;
+}
+
+.bough--right {
+  right: -2.5rem;
+  scale: -1 1;
+}
+
+/* Photo frames: lit windows. Each frame has its own aspect ratio, so a held
+   photo never collapses its frame (see the photo hold at the end). */
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--cream-2);
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.05);
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 0 3rem -0.75rem var(--glow),
+    var(--shadow-deep);
+}
+
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 2.5rem rgb(4 7 14 / 0.42);
+  pointer-events: none;
+}
+
+.frame picture,
+.frame img,
+.frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.frame--landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.frame--panorama {
+  aspect-ratio: 3 / 2;
+}
+
+.frame--portrait,
+.frame--tag {
+  aspect-ratio: 3 / 4;
+}
+
+.frame--tall {
+  aspect-ratio: 2 / 3;
+}
+
+.frame--arch {
+  aspect-ratio: 3 / 4;
+  border-radius: 50% 50% var(--radius) var(--radius) / 37.5% 37.5% var(--radius) var(--radius);
+}
+
+.frame--round {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.frame--film {
+  aspect-ratio: 16 / 9;
+}
+
+.frame--folk {
+  aspect-ratio: 914 / 1024;
+}
+
+.frame--carton {
+  aspect-ratio: 279 / 365;
+}
+
+/* Prolog =================================================================== */
+
+.once {
+  max-width: 34rem;
+  margin: 0 auto 3.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4.8vw, 2rem);
+  font-style: italic;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--cream-2);
+}
+
+.once__turn {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--gold-2);
+}
+
+.window {
+  max-width: 52rem;
+  margin: 0 auto 3.5rem;
+}
+
+.windows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem 1.1rem;
+  max-width: 66rem;
+  margin: 0 auto 4.5rem;
+}
+
+.windows .window {
+  margin: 0;
+}
+
+.window--hammock {
+  grid-column: 1 / -1;
+  width: min(100%, 21rem);
+  justify-self: center;
+}
+
+@media (min-width: 48rem) {
+  .windows {
+    grid-template-columns: 1fr 1.05fr 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .window--hammock {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+  }
+}
+
+/* The signpost: wooden boards pointing to the chapters. The board shape is
+   clipped on a pseudo-element, so the focus ring is never cut off. */
+.signpost {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding-bottom: 2.5rem;
+}
+
+.signpost::before {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  bottom: 0;
+  left: 50%;
+  width: 0.85rem;
+  margin-left: -0.425rem;
+  background: linear-gradient(90deg, #2e1e12, #6a4629 45%, #2e1e12);
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.signpost::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  width: 7rem;
+  height: 1rem;
+  margin-left: -3.5rem;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.5), transparent);
+}
+
+.signpost__title {
+  position: relative;
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--gold-2);
+}
+
+.signpost__boards {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signpost__boards li {
+  display: flex;
+}
+
+.signpost__boards li:nth-child(odd) {
+  padding-left: calc(50% - 1.2rem);
+}
+
+.signpost__boards li:nth-child(even) {
+  justify-content: flex-end;
+  padding-right: calc(50% - 1.2rem);
+}
+
+.signpost__board {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.9rem;
+  padding: 0.35rem 1.9rem 0.35rem 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.1;
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.signpost__boards li:nth-child(even) .signpost__board {
+  padding: 0.35rem 1.1rem 0.35rem 1.9rem;
+}
+
+.signpost__board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(176deg, rgb(0 0 0 / 0.1) 0 2px, transparent 2px 9px),
+    linear-gradient(#7c5331, #61401f 55%, #4f331a);
+  clip-path: polygon(0 0, calc(100% - 1.1rem) 0, 100% 50%, calc(100% - 1.1rem) 100%, 0 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.15);
+}
+
+.signpost__boards li:nth-child(even) .signpost__board::before {
+  clip-path: polygon(1.1rem 0, 100% 0, 100% 100%, 1.1rem 100%, 0 50%);
+}
+
+.signpost__num {
+  font-family: var(--font-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold-2);
+}
+
+.signpost__board:hover {
+  color: var(--gold-2);
+}
+
+/* I · Kwiat ================================================================ */
+
+.bloomtime {
+  display: grid;
+  justify-items: center;
+  gap: 2.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.bloomtime .prose {
+  margin: 0;
+}
+
+.lens {
+  width: min(80vw, 23rem);
+}
+
+.lens__glass {
+  position: relative;
+  padding: 10%;
+}
+
+.lens__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: #6f8f55;
+  --petal: #f7e3e6;
+}
+
+.lens__line {
+  fill: none;
+  stroke: rgb(242 196 204 / 0.5);
+  stroke-width: 1;
+}
+
+.film {
+  max-width: 56rem;
+  margin: 0 auto 4.5rem;
+}
+
+.film__video {
+  position: absolute;
+  inset: 0;
+}
+
+.film__toggle {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0 1rem 0 0.8rem;
+  font: 600 0.875rem/1 var(--font-text);
+  color: var(--night);
+  background: var(--gold-2);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 0.4rem 1rem rgb(0 0 0 / 0.45);
+  cursor: pointer;
+}
+
+.film__toggle[hidden] {
+  display: none;
+}
+
+.film__toggle:hover {
+  background: var(--cream);
+}
+
+.film__toggle:focus-visible {
+  outline-color: var(--cream);
+}
+
+.film__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+}
+
+.film__icon--pause,
+.is-playing .film__icon--play {
+  display: none;
+}
+
+.is-playing .film__icon--pause {
+  display: block;
+}
+
+.petals {
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  max-width: 66rem;
+  margin: 0 auto;
+}
+
+.petals__item--tall {
+  width: min(66vw, 18rem);
+  justify-self: center;
+}
+
+@media (min-width: 40rem) {
+  .petals {
+    grid-template-columns: 1.6fr 1fr;
+    align-items: end;
+  }
+
+  .petals__item--tall {
+    width: 100%;
+  }
+
+  .petals__item--sun {
+    grid-column: 1 / -1;
+    width: min(100%, 38rem);
+    justify-self: center;
+  }
+}
+
+@media (min-width: 56rem) {
+  .bloomtime {
+    grid-template-columns: minmax(0, 23rem) minmax(0, var(--measure));
+    justify-content: center;
+    align-items: center;
+    gap: 4.5rem;
+  }
+}
+
+/* II · Jabłko ============================================================== */
+
+.ripening {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem 1.25rem;
+  max-width: 68rem;
+  margin: 0 auto 4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.fruit {
+  width: 40%;
+}
+
+.fruit:nth-child(1) { width: 32%; }
+.fruit:nth-child(2) { width: 38%; }
+.fruit:nth-child(3) { width: 42%; }
+.fruit:nth-child(4) { width: 44%; }
+.fruit:nth-child(5) { width: 54%; }
+
+.fruit__sway {
+  transform-origin: 50% 0;
+}
+
+.fruit__twig {
+  width: 2.5rem;
+  height: 4rem;
+  margin: 0 auto -0.4rem;
+  overflow: visible;
+  fill: var(--foliage);
+}
+
+.fruit__stalk {
+  fill: none;
+  stroke: #5b3b22;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.fruit__figure {
+  transform-origin: 50% 0;
+}
+
+.fruit__figure figcaption {
+  font-size: 0.8125rem;
+}
+
+.guests {
+  display: grid;
+  gap: 3.5rem 2rem;
+  max-width: 64rem;
+  margin: 2.75rem auto 4.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.guest__figure {
+  width: min(68vw, 17rem);
+  margin: 0 auto;
+}
+
+.guest__hideout {
+  position: relative;
+}
+
+/* The wreath reaches about a tenth of the photo's width below it. */
+.guest__figure figcaption {
+  margin-top: calc(10% + 0.75rem);
+}
+
+.thicket {
+  position: absolute;
+  inset: -14%;
+  width: 128%;
+  max-width: none;
+  height: 128%;
+  overflow: visible;
+  fill: #2c5426;
+  pointer-events: none;
+}
+
+.thicket > g:nth-child(even) {
+  fill: #3e6b34;
+}
+
+/* At rest the leaves lie along the rim like a wreath; with motion they start
+   leaning over the photo and swing aside, each about its own root. */
+.thicket__leaf {
+  rotate: 58deg;
+}
+
+.promise {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 42rem;
+  margin: 0 auto 4.5rem;
+  padding: 1.4rem 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4.4vw, 1.9rem);
+  line-height: 1.3;
+  text-align: center;
+  border-block: 1px solid rgb(207 232 154 / 0.4);
+}
+
+.promise__leaf {
+  flex: none;
+  width: 2.6rem;
+  fill: var(--leaf-light);
+}
+
+.ripe {
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  max-width: 66rem;
+  margin: 0 auto;
+}
+
+.ripe__item--tall {
+  width: min(70vw, 20rem);
+  justify-self: center;
+}
+
+@media (min-width: 40rem) {
+  .ripening {
+    gap: 1.5rem 2rem;
+  }
+
+  .fruit:nth-child(n) {
+    width: 30%;
+  }
+
+  .guests {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .guest__figure {
+    width: 100%;
+    max-width: 17rem;
+  }
+
+  .ripe {
+    grid-template-columns: 1.7fr 1fr;
+    align-items: center;
+  }
+
+  .ripe__item--tall {
+    width: 100%;
+  }
+}
+
+@media (min-width: 64rem) {
+  .ripening {
+    position: relative;
+    flex-wrap: nowrap;
+    gap: 1.75rem;
+    padding-top: 0.6rem;
+  }
+
+  /* one long branch that all the fruit hangs from */
+  .ripening::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2rem;
+    left: -2rem;
+    height: 0.7rem;
+    background: linear-gradient(#6b4a2c, #3e2a19);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.8rem rgb(0 0 0 / 0.35);
+    rotate: -1.2deg;
+  }
+
+  .fruit:nth-child(1) { width: 9rem; }
+  .fruit:nth-child(2) { width: 11rem; margin-top: 2.5rem; }
+  .fruit:nth-child(3) { width: 12rem; margin-top: 0.75rem; }
+  .fruit:nth-child(4) { width: 13rem; margin-top: 3.25rem; }
+  .fruit:nth-child(5) { width: 15rem; margin-top: 1.25rem; }
+}
+
+/* III · Zbiór ============================================================== */
+
+.harvest {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1.5rem 0 0;
+  list-style: none;
+}
+
+/* the green nets spread under the trees */
+.harvest::before {
+  content: '';
+  position: absolute;
+  inset: -1rem -1.5rem;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(45deg, rgb(110 170 96 / 0.24) 0 2px, transparent 2px 24px),
+    repeating-linear-gradient(-45deg, rgb(110 170 96 / 0.24) 0 2px, transparent 2px 24px);
+  border-radius: 2rem;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent);
+  mask-image: radial-gradient(closest-side, #000 55%, transparent);
+}
+
+.harvest__item:nth-child(1) { rotate: -2.5deg; }
+.harvest__item:nth-child(2) { margin-top: 2.5rem; rotate: 2deg; }
+.harvest__item:nth-child(3) { rotate: 1.5deg; }
+.harvest__item:nth-child(4) { margin-top: 1.5rem; rotate: -2deg; }
+.harvest__item:nth-child(5) { rotate: -1.5deg; }
+.harvest__item:nth-child(6) { margin-top: 1.25rem; rotate: 2.5deg; }
+
+.snapshot {
+  padding: 0.5rem 0.5rem 0;
+  background: var(--paper);
+  border-radius: 0.3rem;
+  box-shadow: 0 1.25rem 2.5rem -1rem rgb(0 0 0 / 0.75);
+}
+
+.snapshot .frame {
+  border-radius: 0.15rem;
+  box-shadow: none;
+}
+
+.snapshot .frame::after {
+  box-shadow: inset 0 0 1.5rem rgb(40 25 10 / 0.3);
+}
+
+.snapshot figcaption {
+  margin: 0;
+  padding: 0.45rem 0.2rem 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.2;
+  color: #3b2a1a;
+}
+
+@media (min-width: 48rem) {
+  .harvest {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
+    padding-top: 2rem;
+  }
+
+  .harvest__item:nth-child(2),
+  .harvest__item:nth-child(5) {
+    margin-top: 3.5rem;
+  }
+
+  .harvest__item:nth-child(4),
+  .harvest__item:nth-child(6) {
+    margin-top: 0;
+  }
+
+  .snapshot {
+    padding: 0.7rem 0.7rem 0;
+  }
+
+  .snapshot figcaption {
+    padding: 0.6rem 0.2rem 0.85rem;
+    font-size: 1.15rem;
+  }
+}
+
+/* IV · Transport =========================================================== */
+
+.journey {
+  display: grid;
+  grid-template-areas:
+    'lede'
+    'photo'
+    'road'
+    'partners';
+  gap: 2.75rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.journey__lede {
+  grid-area: lede;
+  margin: 0 auto;
+}
+
+.journey__photo {
+  grid-area: photo;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.road {
+  grid-area: road;
+  width: min(100%, 24rem);
+  margin: 0 auto;
+}
+
+.road__map {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.road__stars {
+  fill: #fff1d6;
+  opacity: 0.75;
+}
+
+.road__hills {
+  fill: rgb(18 8 22 / 0.55);
+}
+
+.road__forest {
+  fill: #213626;
+}
+
+.road__verge,
+.road__bed,
+.road__dash,
+.road__glow,
+.road__trail {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.road__verge {
+  stroke: rgb(255 217 142 / 0.13);
+  stroke-width: 42;
+}
+
+.road__bed {
+  stroke: #1d1219;
+  stroke-width: 30;
+}
+
+.road__dash {
+  stroke: rgb(248 239 220 / 0.45);
+  stroke-width: 2.5;
+  stroke-dasharray: 9 13;
+}
+
+/* script.js inks these two with stroke-dashoffset (1 = empty, 0 = whole). */
+.road__glow {
+  stroke: rgb(243 182 75 / 0.3);
+  stroke-width: 18;
+  stroke-dasharray: 1 2;
+}
+
+.road__trail {
+  stroke: var(--gold);
+  stroke-width: 4;
+  stroke-dasharray: 1 2;
+}
+
+.road__pin circle {
+  fill: #1d1219;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+}
+
+.road__pin {
+  --petal: #f7e3e6;
+}
+
+.road__press {
+  fill: var(--gold-2);
+}
+
+.road__label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  fill: var(--cream);
+}
+
+.road__sub {
+  font-family: var(--font-text);
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  fill: var(--cream-2);
+}
+
+.car__body {
+  fill: var(--apple);
+}
+
+.car__roof {
+  fill: #8f2620;
+}
+
+.car__glass {
+  fill: #a9c8db;
+}
+
+.car__apple {
+  fill: #f05a44;
+}
+
+.car__apple--green {
+  fill: var(--leaf-light);
+}
+
+.car__lamp {
+  fill: #fff0c2;
+}
+
+.journey__partners {
+  grid-area: partners;
+}
+
+.partners {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.partner {
+  padding: 1.1rem 1.1rem 1.4rem;
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+}
+
+.partner__photo {
+  margin-bottom: 1.1rem;
+  border-radius: 0.9rem;
+}
+
+.partner__name {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  line-height: 1.15;
+  color: var(--accent);
+}
+
+.partner p {
+  margin: 0 0 0.75rem;
+}
+
+.partner p:last-child {
+  margin-bottom: 0;
+}
+
+.partner__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+
+.partner--forest {
+  display: flex;
+  flex-direction: column;
+}
+
+.partner__emblem {
+  width: 8rem;
+  margin: 0.5rem 0 1rem;
+  fill: #5b8a52;
+}
+
+.journey__closing {
+  max-width: var(--measure);
+  margin: 0;
+  padding-left: 1rem;
+  font-style: normal;
+  color: var(--cream-2);
+  border-left: 2px solid var(--accent);
+}
+
+@media (min-width: 40rem) {
+  .partners {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 60rem) {
+  .journey {
+    grid-template-columns: 21rem minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      'road lede'
+      'road photo'
+      'road partners';
+    align-items: start;
+    gap: 2.75rem 4rem;
+  }
+
+  .journey__lede {
+    margin: 0;
+  }
+
+  .journey__photo {
+    margin: 0;
+  }
+
+  .road {
+    width: 100%;
+  }
+}
+
+/* V · Tłoczenie ============================================================ */
+
+.pressroom {
+  display: grid;
+  justify-items: center;
+  gap: 2.75rem;
+  max-width: 64rem;
+  margin: 0 auto 4rem;
+}
+
+.pressroom .prose {
+  margin: 0;
+}
+
+.pressroom__photo {
+  width: min(74vw, 20rem);
+  margin: 0;
+}
+
+.press {
+  max-width: 48rem;
+  margin: 0 auto 4rem;
+}
+
+.press__art {
+  width: 100%;
+  height: auto;
+}
+
+.press__floor {
+  stroke: rgb(255 217 142 / 0.25);
+  stroke-width: 2;
+}
+
+.press__shadow {
+  fill: rgb(0 0 0 / 0.45);
+}
+
+.press__belt-legs {
+  stroke: #4a5361;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.press__belt {
+  fill: #252a33;
+  stroke: #5f6b78;
+  stroke-width: 2;
+}
+
+.press__belt-ridges {
+  fill: none;
+  stroke: #4b5562;
+  stroke-width: 3;
+  stroke-dasharray: 4 12;
+}
+
+.press__crate rect {
+  fill: #7a5634;
+}
+
+.press__crate path {
+  stroke: #573a22;
+  stroke-width: 2;
+}
+
+.press__rim,
+.press__cap {
+  fill: #8995a1;
+}
+
+.press__glass {
+  fill: #0c141e;
+}
+
+.press__glass-rim {
+  fill: none;
+  stroke: #dfe7ee;
+  stroke-width: 3;
+}
+
+.press__wave {
+  fill: #fff0c2;
+  opacity: 0.75;
+}
+
+.press__roller circle {
+  fill: #384250;
+  stroke: #a3b0bc;
+  stroke-width: 3;
+}
+
+.press__roller path {
+  fill: none;
+  stroke: #7d8a96;
+  stroke-width: 3;
+}
+
+.press__panel {
+  fill: #1c2531;
+}
+
+.press__screen {
+  fill: #11301f;
+}
+
+.press__graph {
+  fill: none;
+  stroke: #9fe0a8;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.press__light--1 {
+  fill: #7ee08a;
+}
+
+.press__light--2,
+.press__light--3 {
+  fill: var(--gold);
+}
+
+.press__bolts {
+  fill: #7d8a96;
+}
+
+.press__leg {
+  fill: #66737f;
+}
+
+.press__spout,
+.press__nozzle {
+  fill: #a3b0bc;
+}
+
+.press__flow {
+  fill: #fff4d2;
+  opacity: 0.55;
+}
+
+.press__spark {
+  fill: var(--gold-2);
+}
+
+.press__ride--1 { translate: 70px 0; }
+.press__ride--2 { translate: 190px 0; }
+.press__ride--3 { translate: 310px 0; }
+
+.press__roller {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.seals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seal {
+  display: grid;
+  place-content: center;
+  width: 10.5rem;
+  aspect-ratio: 1;
+  padding: 1.4rem;
+  text-align: center;
+  background: radial-gradient(circle, #241a3c 58%, #1a1430);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 2px var(--gold),
+    inset 0 0 0 7px #1a1430,
+    inset 0 0 0 8px rgb(243 182 75 / 0.55),
+    0 0 2.5rem rgb(243 182 75 / 0.3);
+}
+
+.seal__big {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--gold-2);
+}
+
+.seal__small {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cream);
+}
+
+@media (min-width: 56rem) {
+  .pressroom {
+    grid-template-columns: minmax(0, var(--measure)) 20rem;
+    justify-content: center;
+    align-items: center;
+    gap: 4.5rem;
+  }
+
+  .pressroom__photo {
+    width: 100%;
+  }
+}
+
+/* VI · Pakowanie =========================================================== */
+
+.juicebox {
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  max-width: 60rem;
+  margin: 0 auto 4rem;
+}
+
+.juicebox__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 16rem;
+  aspect-ratio: 1;
+}
+
+.juicebox__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(closest-side, rgb(243 182 75 / 0.5), rgb(243 182 75 / 0.14) 58%, transparent);
+  border-radius: 50%;
+}
+
+.juicebox__carton {
+  width: 9.5rem;
+  overflow: visible;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.juicebox__carton::after {
+  content: none;
+}
+
+.juicebox__carton img {
+  object-fit: contain;
+}
+
+.juicebox__text {
+  max-width: 28rem;
+}
+
+.juicebox__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  line-height: 1;
+  color: var(--accent);
+}
+
+.juicebox__sub {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--cream-2);
+}
+
+.benefits {
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefits li {
+  position: relative;
+  margin: 0 0 0.75rem;
+  padding-left: 2rem;
+}
+
+/* a drop of juice */
+.benefits li::before {
+  content: '';
+  position: absolute;
+  top: 0.45em;
+  left: 0.3rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  background: var(--gold);
+  border-radius: 50% 0 50% 50%;
+  box-shadow: 0 0 0.8rem rgb(243 182 75 / 0.6);
+  rotate: -45deg;
+}
+
+.pantry {
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto 4rem;
+}
+
+.pantry__item--tall {
+  width: min(70vw, 19rem);
+  justify-self: center;
+}
+
+.labels {
+  display: grid;
+  justify-items: center;
+  gap: 2.75rem;
+  max-width: 62rem;
+  margin: 0 auto 4.5rem;
+}
+
+.labels .prose {
+  margin: 0;
+}
+
+/* a kraft label, punched and tied, with the stamp */
+.tag {
+  position: relative;
+  width: min(84vw, 21rem);
+  padding: 2.75rem 1.4rem 1.6rem;
+  color: var(--ink);
+  background: linear-gradient(162deg, #d6aa74, #c3925a 58%, #b5844f);
+  border-radius: 1.2rem 1.2rem 0.6rem 0.6rem;
+  box-shadow: var(--shadow-deep);
+  rotate: -2deg;
+}
+
+.tag::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-left: -0.475rem;
+  background: #1d130d;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.6);
+}
+
+.tag::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 1.5rem);
+  left: 50%;
+  width: 2px;
+  height: 4.5rem;
+  background: #eadcbf;
+  rotate: 16deg;
+  transform-origin: 50% 100%;
+}
+
+.tag__photo {
+  width: 64%;
+  margin: 0 auto 1.1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.6rem 1.2rem rgb(60 35 15 / 0.45);
+  rotate: 3deg;
+}
+
+.tag__text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.tag__stamp {
+  position: absolute;
+  top: 2.2rem;
+  right: 0.7rem;
+  width: 4.6rem;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  rotate: -12deg;
+}
+
+.sorting {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px dashed rgb(255 217 142 / 0.45);
+  border-radius: 1.4rem;
+}
+
+.sorting__title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.sorting p {
+  margin: 0;
+}
+
+@media (min-width: 40rem) {
+  .pantry {
+    grid-template-columns: 1.7fr 1fr;
+    align-items: center;
+  }
+
+  .pantry__item--tall {
+    width: 100%;
+  }
+
+  .pantry__item--shelf {
+    grid-column: 1 / -1;
+    width: min(100%, 44rem);
+    justify-self: center;
+  }
+}
+
+@media (min-width: 48rem) {
+  .juicebox {
+    grid-template-columns: auto minmax(0, 28rem);
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .juicebox__stage {
+    width: 18rem;
+  }
+
+  .juicebox__carton {
+    width: 10.5rem;
+  }
+}
+
+@media (min-width: 56rem) {
+  .labels {
+    grid-template-columns: 22rem minmax(0, var(--measure));
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+/* VII · Sprzedaż =========================================================== */
+
+.lanterns {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(7rem, 14vw, 11rem);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.lanterns__wire {
+  fill: none;
+  stroke: rgb(248 239 220 / 0.4);
+  stroke-width: 1.5;
+}
+
+.lantern {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.lantern__string {
+  stroke: rgb(248 239 220 / 0.45);
+  stroke-width: 1.2;
+}
+
+.lantern__cap {
+  fill: #4e3c2e;
+}
+
+.lantern__body {
+  fill: var(--gold);
+}
+
+.lanterns > g:nth-of-type(3n + 2) .lantern__body {
+  fill: #e8684a;
+}
+
+.lanterns > g:nth-of-type(3n) .lantern__body {
+  fill: var(--rose);
+}
+
+.lantern__rib {
+  stroke: rgb(0 0 0 / 0.18);
+  stroke-width: 1.4;
+}
+
+.yield {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.yield__line {
+  font-size: clamp(1.1rem, 3.6vw, 1.35rem);
+  color: var(--cream-2);
+}
+
+.yield__amount {
+  font-family: var(--font-display);
+  font-size: clamp(3.75rem, 18vw, 8.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--gold-2);
+  text-shadow: 0 0 2.5rem rgb(243 182 75 / 0.5);
+}
+
+.market {
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  max-width: 64rem;
+  margin: 1rem auto 0;
+}
+
+.market__item--tent,
+.market__item--table,
+.market__item--folk {
+  width: min(78vw, 21rem);
+  justify-self: center;
+}
+
+@media (min-width: 40rem) {
+  .market {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .market__item--tent,
+  .market__item--table,
+  .market__item--folk {
+    width: 100%;
+    max-width: 21rem;
+  }
+
+  .market__item--stall {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .market__item--folk {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+  }
+}
+
+/* Epilog =================================================================== */
+
+.finale {
+  position: relative;
+  overflow-x: clip;
+  padding: clamp(5rem, 14vw, 8.5rem) var(--gutter) 4.5rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgb(243 182 75 / 0.14), transparent 70%),
+    linear-gradient(#0f1228, #080b16);
+  --accent: var(--gold-2);
+}
+
+.finale__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.moral {
+  max-width: 34rem;
+  margin: 0 auto 4.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.75rem);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.moral__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-text);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+}
+
+.finale__card {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  padding: 2.25rem 1.25rem;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+}
+
+.finale__logo {
+  width: 8.5rem;
+}
+
+.finale__address {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 1.1rem;
+  font-style: normal;
+}
+
+.finale__mail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+
+.finale__social-title {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  color: var(--cream);
+  text-decoration: none;
+  border: 1px solid rgb(255 217 142 / 0.45);
+  border-radius: 999px;
+}
+
+.social__link:hover {
+  color: var(--night);
+  background: var(--gold-2);
+}
+
+.social__link:hover .social__handle {
+  color: var(--night);
+}
+
+.social__icon {
+  flex: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.social__handle {
+  color: var(--cream-2);
+}
+
+.colophon {
+  position: relative;
+  z-index: 2;
+  padding: 2.25rem var(--gutter) 5rem;
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--cream-2);
+  background: #080b16;
+}
+
+.colophon__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 1.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.colophon__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+.colophon p {
+  margin: 0.25rem 0;
+}
+
+/* Motion =====================================================================
+   Everything below runs only when the reader allows motion. Without it the
+   page is the same story, fully drawn and still. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ambient loops. script.js pauses them off screen and when the reader
+     stops the magic; without it there is no switch, so they stay still. */
+  .mote {
+    animation:
+      mote-drift 13s var(--ease-sway) infinite alternate,
+      mote-glow 4.6s ease-in-out infinite alternate;
+  }
+
+  .mote:nth-child(2n) {
+    animation-duration: 17s, 3.8s;
+    animation-delay: -6s, -1.2s;
+  }
+
+  .mote:nth-child(3n) {
+    animation-name: mote-drift-2, mote-glow;
+    animation-duration: 15s, 5.4s;
+    animation-delay: -3s, -2.6s;
+  }
+
+  .mote:nth-child(5n) {
+    animation-delay: -9s, -0.6s;
+  }
+
+  .gate__cue-icon {
+    animation: cue-bob 2.4s ease-in-out infinite;
+  }
+
+  .fruit__sway {
+    animation: sway 5.2s var(--ease-sway) infinite alternate;
+  }
+
+  .fruit:nth-child(2n) .fruit__sway {
+    animation-duration: 6.1s;
+    animation-delay: -2s;
+  }
+
+  .fruit:nth-child(3n) .fruit__sway {
+    animation-delay: -3.4s;
+  }
+
+  .press__ride {
+    animation: press-ride 4.8s linear infinite;
+  }
+
+  .press__ride--2 {
+    animation-delay: -1.6s;
+  }
+
+  .press__ride--3 {
+    animation-delay: -3.2s;
+  }
+
+  .press__roller {
+    animation: spin 6s linear infinite;
+  }
+
+  .press__roller--2 {
+    animation-direction: reverse;
+  }
+
+  .press__wave {
+    animation: wave 1.8s linear infinite;
+  }
+
+  .press__flow {
+    animation: flow 0.9s linear infinite;
+  }
+
+  .press__level {
+    animation: level 5s var(--ease-sway) infinite alternate;
+  }
+
+  .press__light {
+    animation: glow-pulse 2.6s ease-in-out infinite alternate;
+  }
+
+  .press__light--2 {
+    animation-delay: -0.9s;
+  }
+
+  .press__light--3 {
+    animation-delay: -1.8s;
+  }
+
+  .press__spark {
+    animation: twinkle 3.4s ease-in-out infinite;
+  }
+
+  .press__spark--2 { animation-delay: -0.7s; }
+  .press__spark--3 { animation-delay: -1.5s; }
+  .press__spark--4 { animation-delay: -2.2s; }
+  .press__spark--5 { animation-delay: -2.9s; }
+
+  .juicebox__carton {
+    animation: float 6s var(--ease-sway) infinite alternate;
+  }
+
+  .lantern {
+    animation: lantern-sway 5.6s var(--ease-sway) infinite alternate;
+  }
+
+  .lantern__glow {
+    animation: glow-pulse 3.4s ease-in-out infinite alternate;
+  }
+
+  .lanterns > g:nth-of-type(2n) .lantern {
+    animation-duration: 6.4s;
+    animation-delay: -2.4s;
+  }
+
+  .lanterns > g:nth-of-type(3n) .lantern__glow {
+    animation-delay: -1.7s;
+  }
+
+  .js [data-loop]:not(.is-playing) :is(.mote, .gate__cue-icon, .fruit__sway, .press__ride, .press__roller, .press__wave, .press__flow, .press__level, .press__light, .press__spark, .juicebox__carton, .lantern, .lantern__glow),
+  :is(.is-still, :root:not(.js)) :is(.mote, .gate__cue-icon, .fruit__sway, .press__ride, .press__roller, .press__wave, .press__flow, .press__level, .press__light, .press__spark, .juicebox__carton, .lantern, .lantern__glow) {
+    animation-play-state: paused;
+  }
+
+  .signpost__board {
+    transition: rotate 0.35s var(--ease-out);
+  }
+
+  .signpost__board:hover {
+    rotate: -2deg;
+  }
+
+  .signpost__boards li:nth-child(even) .signpost__board:hover {
+    rotate: 2deg;
+  }
+
+  /* Browsers without scroll-driven animations: script.js arms what starts
+     below the fold and lets it rise into place when it is reached. */
+  .is-armed {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+
+  .is-armed.is-inview {
+    opacity: 1;
+    translate: none;
+    transition:
+      opacity 0.9s var(--ease-out),
+      translate 0.9s var(--ease-out);
+  }
+
+  .fruit.is-armed .fruit__figure {
+    scale: 0.6;
+  }
+
+  .fruit.is-armed.is-inview .fruit__figure {
+    scale: 1;
+    transition: scale 1.3s var(--ease-out) 0.15s;
+  }
+
+  .guest.is-armed:not(.is-inview) .thicket__leaf {
+    rotate: 0deg;
+  }
+
+  .guest.is-armed.is-inview .thicket__leaf {
+    transition: rotate 1.5s var(--ease-out) 0.35s;
+  }
+
+  .tag.is-inview .tag__stamp {
+    animation: stamp 0.9s var(--ease-out) 0.5s both;
+  }
+
+  /* The same gate, driven by --p from script.js (0 at the top, 1 once the
+     reader is through). */
+  .has-gate-fallback .gate {
+    height: 185vh;
+    height: 185svh;
+  }
+
+  .has-gate-fallback .gate__stage {
+    position: sticky;
+    top: 0;
+  }
+
+  .has-gate-fallback .gate__window {
+    scale: calc(1 + 0.12 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__canopy {
+    translate: 0 calc(-64% * var(--p, 0));
+    scale: calc(1 + 0.28 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__trunk--left {
+    translate: calc(-58% * var(--p, 0)) 0;
+    scale: calc(1 + 0.45 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__trunk--right {
+    translate: calc(58% * var(--p, 0)) 0;
+    scale: calc(1 + 0.45 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__ground {
+    translate: 0 calc(72% * var(--p, 0));
+    scale: calc(1 + 0.25 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__hills {
+    translate: 0 calc(10% * var(--p, 0));
+  }
+
+  .has-gate-fallback :is(.gate__title, .gate__lead) {
+    opacity: calc(1 - 2.4 * var(--p, 0));
+  }
+
+  .has-gate-fallback .gate__veil {
+    opacity: calc(2.2 * var(--p, 0) - 1.2);
+  }
+
+  @supports (animation-timeline: view()) {
+    /* The gate: the stage holds still while the reader walks in. Trees and
+       grass grow and pass by, the house comes closer. */
+    .gate {
+      height: 185vh;
+      height: 185svh;
+      view-timeline: --gate block;
+    }
+
+    .gate__stage {
+      position: sticky;
+      top: 0;
+    }
+
+    .gate__window,
+    .gate__canopy,
+    .gate__trunk,
+    .gate__ground,
+    .gate__hills,
+    .gate__title,
+    .gate__lead,
+    .gate__veil {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --gate;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .gate__window {
+      animation-name: gate-window;
+    }
+
+    .gate__canopy {
+      animation-name: gate-canopy;
+    }
+
+    .gate__trunk--left {
+      animation-name: gate-trunk-left;
+    }
+
+    .gate__trunk--right {
+      animation-name: gate-trunk-right;
+    }
+
+    .gate__ground {
+      animation-name: gate-ground;
+    }
+
+    .gate__hills {
+      animation-name: gate-hills;
+    }
+
+    .gate__title,
+    .gate__lead {
+      animation-name: fade-out;
+      animation-range: contain 0% contain 42%;
+    }
+
+    .gate__veil {
+      animation-name: fade-in;
+      animation-range: contain 55% contain 100%;
+    }
+
+    /* Reveals tied to each element's own way through the screen. */
+    [data-reveal] {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+
+    .harvest__item[data-reveal] {
+      animation-name: drop-in;
+      animation-range: entry 0% cover 40%;
+    }
+
+    .bough {
+      animation: bough-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    .lens__ring {
+      animation: ring-turn linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    .fruit__figure {
+      animation: grow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+
+    .guest {
+      view-timeline: --guest block;
+    }
+
+    .guest .thicket__leaf {
+      animation: thicket-part linear both;
+      animation-timeline: --guest;
+      animation-range: entry 40% cover 50%;
+    }
+
+    .tag__stamp {
+      animation: stamp linear both;
+      animation-timeline: view();
+      animation-range: entry 70% cover 55%;
+    }
+
+    .yield__amount {
+      animation: glow-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 50%;
+    }
+  }
+}
+
+@keyframes mote-drift {
+  from {
+    translate: -1.5rem 1rem;
+  }
+
+  to {
+    translate: 2rem -2.5rem;
+  }
+}
+
+@keyframes mote-drift-2 {
+  from {
+    translate: 1.5rem 1.5rem;
+  }
+
+  to {
+    translate: -2.25rem -1.5rem;
+  }
+}
+
+@keyframes mote-glow {
+  from {
+    opacity: 0.25;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cue-bob {
+  0%,
+  100% {
+    translate: 0 -0.12rem;
+  }
+
+  50% {
+    translate: 0 0.22rem;
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-1.6deg);
+  }
+
+  to {
+    transform: rotate(1.6deg);
+  }
+}
+
+@keyframes press-ride {
+  0% {
+    translate: 20px 0;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  86% {
+    opacity: 1;
+  }
+
+  100% {
+    translate: 372px 0;
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes wave {
+  from {
+    translate: -20px 0;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes flow {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 26px;
+  }
+}
+
+@keyframes level {
+  from {
+    translate: 0 4px;
+  }
+
+  to {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes glow-pulse {
+  from {
+    opacity: 0.45;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  from {
+    translate: 0 0.3rem;
+  }
+
+  to {
+    translate: 0 -0.6rem;
+  }
+}
+
+@keyframes lantern-sway {
+  from {
+    rotate: -4deg;
+  }
+
+  to {
+    rotate: 4deg;
+  }
+}
+
+@keyframes gate-window {
+  to {
+    scale: 1.12;
+  }
+}
+
+@keyframes gate-canopy {
+  to {
+    translate: 0 -64%;
+    scale: 1.28;
+  }
+}
+
+@keyframes gate-trunk-left {
+  to {
+    translate: -58% 0;
+    scale: 1.45;
+  }
+}
+
+@keyframes gate-trunk-right {
+  to {
+    translate: 58% 0;
+    scale: 1.45;
+  }
+}
+
+@keyframes gate-ground {
+  to {
+    translate: 0 72%;
+    scale: 1.25;
+  }
+}
+
+@keyframes gate-hills {
+  to {
+    translate: 0 10%;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    translate: 0 2.5rem;
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    translate: 0 -3rem;
+  }
+
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes bough-drift {
+  from {
+    translate: 0 -1.5rem;
+  }
+
+  to {
+    translate: 0 3rem;
+  }
+}
+
+@keyframes ring-turn {
+  from {
+    rotate: -30deg;
+  }
+
+  to {
+    rotate: 30deg;
+  }
+}
+
+@keyframes grow {
+  from {
+    scale: 0.55;
+  }
+}
+
+@keyframes thicket-part {
+  from {
+    rotate: 0deg;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    scale: 1.9;
+  }
+
+  70% {
+    opacity: 0.7;
+    scale: 0.94;
+  }
+
+  100% {
+    opacity: 0.6;
+    scale: 1;
+  }
+}
+
+@keyframes glow-rise {
+  from {
+    opacity: 0.35;
+    scale: 0.92;
+  }
+}
+
+/* Photo hold =================================================================
+   While <html> has is-holding-photos (head of index.html), photos below the
+   opening screen stay out of the layout, so the lazy loader leaves them alone
+   until the page has loaded and been painted. Their frames keep their size. */
+@media screen {
+  .is-holding-photos .frame:not(.is-released) img[loading='lazy'] {
+    display: none;
+  }
+}
+
+/* Print ==================================================================== */
+
+@media print {
+  body,
+  .chapter,
+  .finale,
+  .colophon,
+  .gate__stage {
+    color: #000;
+    background: #fff;
+  }
+
+  .masthead,
+  .magic,
+  .magic-toggle,
+  .gate__motes,
+  .gate__trunk,
+  .gate__hills,
+  .gate__sky,
+  .gate__veil,
+  .gate__cue,
+  .bough,
+  .thicket,
+  .lanterns,
+  .film__toggle {
+    display: none;
+  }
+
+  .gate__stage {
+    height: auto;
+    min-height: 0;
+    container-type: normal;
+  }
+
+  .gate__window {
+    position: relative;
+    width: 60%;
+    height: auto;
+  }
+
+  .gate__canopy,
+  .gate__ground,
+  .gate__lead {
+    position: static;
+    height: auto;
+  }
+
+  .gate__leaves,
+  .gate__grass {
+    display: none;
+  }
+
+  .gate__heading-small,
+  .gate__heading-big,
+  .chapter__title,
+  .chapter__tagline,
+  figcaption,
+  .yield__line,
+  .yield__amount,
+  .once,
+  .once__turn {
+    color: #000;
+    text-shadow: none;
+  }
+
+  .frame {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000;
+  }
+}

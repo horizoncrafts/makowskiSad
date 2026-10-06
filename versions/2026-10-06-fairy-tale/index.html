@@ -1,0 +1,1765 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Wejdź do sadu – Makowski Sad</title>
+    <meta
+      name="description"
+      content="Naturalne, tłoczone soki jabłkowe z rodzinnego, ekologicznego sadu w Makowie Podhalańskim."
+    />
+    <meta name="theme-color" content="#06100f" />
+    <link rel="icon" href="../../assets/icons/vertical_color.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="fonts/im-fell-french-canon.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="fonts/maksad-text.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Holds back the photos below the opening screen until the page has loaded and
+         been painted (see styles.css); the load event can come before the first paint.
+         It must run before the first layout, so it stays inline and ahead of the
+         stylesheet. Without JavaScript nothing is held. -->
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const loaded = new Promise((resolve) => window.addEventListener('load', resolve));
+        const painted = new Promise((resolve) => {
+          if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {
+            resolve();
+            return;
+          }
+          new PerformanceObserver((list, observer) => {
+            if (!list.getEntriesByName('first-contentful-paint').length) return;
+            observer.disconnect();
+            resolve();
+          }).observe({ type: 'paint', buffered: true });
+        });
+
+        root.classList.add('js', 'is-holding-photos');
+        Promise.all([loaded, painted]).then(() => root.classList.remove('is-holding-photos'));
+      })();
+    </script>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+    <!-- Shapes the opening screen needs; the rest of the sprite closes the page. -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <defs>
+        <path id="petal" d="M0 0C-4.8-2.2-6-8.2-3-10.6-1.2-12 1.2-12 3-10.6 6-8.2 4.8-2.2 0 0Z" />
+        <g id="bloom">
+          <g class="bloom__petals">
+            <use href="#petal" />
+            <use href="#petal" transform="rotate(72)" />
+            <use href="#petal" transform="rotate(144)" />
+            <use href="#petal" transform="rotate(216)" />
+            <use href="#petal" transform="rotate(288)" />
+          </g>
+          <circle class="bloom__heart" r="2.6" />
+        </g>
+        <path id="leaf" d="M0 0C9-8 27-9 38 0 27 9 9 8 0 0Z" />
+        <symbol id="trunk" viewBox="0 0 330 1000">
+          <path class="g-trunk" d="M200 246Q197 258 183 325Q170 392 166 408Q161 424 157 437Q153 450 121 405Q90 361 78 346Q66 330 52 314Q39 298 27 286Q16 274 5 264Q-5 254 -7 253Q-9 252 -11 252Q-12 252 -14 254Q-16 255 -17 257Q-18 259 -17 262Q-16 265 -10 272Q-3 280 8 292Q18 305 38 333Q57 360 73 386Q90 412 114 454Q138 495 137 500Q135 505 135 509Q135 513 133 519Q130 525 130 530Q130 534 129 540Q127 545 127 550Q127 556 125 560Q124 565 124 568Q124 570 124 574Q124 577 123 581Q122 585 122 592Q123 599 121 605Q120 611 121 616Q121 620 120 626Q119 632 120 637Q121 642 120 647Q119 652 120 658Q121 663 120 668Q119 673 120 677Q120 681 108 674Q97 667 92 663Q87 659 86 659Q85 659 84 661Q83 662 88 669Q93 675 107 688Q120 701 121 703Q122 706 121 711Q120 715 121 721Q122 727 122 732Q121 736 122 742Q123 748 122 753Q122 757 123 763Q124 769 123 774Q123 778 124 784Q125 790 124 795Q123 800 124 805Q125 811 125 816Q124 821 125 826Q125 832 125 837Q124 842 125 847Q125 852 125 858Q124 863 124 868Q125 872 124 878Q123 884 124 888Q124 892 123 899Q122 905 122 909Q122 912 121 916Q121 920 120 926Q120 932 119 936Q118 940 118 946Q118 951 116 958Q114 965 96 972Q78 979 56 990Q35 1000 150 1000Q266 1000 248 991Q230 982 216 977Q203 971 203 966Q203 962 204 958Q205 954 205 947Q205 940 206 933Q207 926 206 922Q206 917 206 911Q207 905 207 900Q206 895 207 889Q207 884 206 878Q206 872 206 868Q207 863 206 857Q205 850 205 843Q205 836 204 832Q203 828 203 821Q204 814 203 811Q202 807 202 800Q202 793 201 789Q200 785 200 779Q200 772 199 768Q197 764 198 758Q198 751 196 747Q195 743 195 737Q196 730 194 726Q193 722 194 719Q194 715 192 708Q191 701 191 695Q191 689 190 685Q189 681 190 677Q190 673 189 667Q188 661 188 657Q189 652 188 646Q187 640 187 636Q188 632 187 626Q186 621 187 616Q187 611 186 606Q186 601 186 596Q187 591 187 586Q186 581 187 576Q188 570 187 566Q187 562 188 558Q189 555 189 549Q189 543 190 539Q192 534 191 529Q191 524 193 519Q195 514 195 510Q195 505 197 500Q199 494 199 491Q199 487 201 483Q204 479 205 475Q206 470 211 447Q217 423 220 401Q224 379 227 344Q231 309 254 288Q277 267 286 259Q296 252 305 246Q314 239 315 238Q316 237 315 235Q315 233 313 233Q311 232 305 235Q299 238 284 248Q268 258 252 271Q235 284 236 276Q236 269 239 256Q241 243 241 241Q241 238 242 235Q243 232 243 230Q243 227 245 219Q247 210 247 208Q247 205 248 202Q250 199 250 196Q250 194 251 190Q252 187 252 185Q252 182 254 179Q255 175 255 173Q255 171 256 168Q257 166 258 162Q258 159 259 156Q261 154 261 150Q261 146 263 144Q264 141 265 137Q265 134 266 131Q268 128 268 125Q269 121 270 118Q272 115 272 112Q273 108 275 105Q277 102 277 98Q277 95 279 92Q281 88 282 85Q282 81 284 79Q285 77 286 75Q287 72 287 70Q287 68 285 64Q284 61 282 60Q281 58 279 57Q277 56 274 55Q272 55 270 55Q267 56 265 57Q263 58 262 60Q260 61 259 63Q258 65 257 69Q257 72 255 74Q253 77 252 81Q251 85 249 88Q248 90 247 94Q246 99 244 101Q243 103 242 107Q241 112 239 115Q237 118 236 121Q236 124 235 126Q233 128 232 133Q232 137 230 140Q228 143 228 146Q227 149 226 152Q224 155 224 158Q223 162 222 164Q220 167 220 170Q220 173 218 176Q217 179 216 182Q216 185 215 188Q214 190 213 193Q213 197 212 199Q210 201 210 205Q210 208 209 210Q208 212 207 216Q207 219 206 221Q205 223 204 227Q204 230 203 232Q202 234 200 246Z"/>
+          <path class="g-bark" d="M137 988L142 960L146 931L148 903L149 874L149 845L148 816L147 788L145 759L144 730L142 702L141 673L140 645L141 617M175 945L177 912L178 879L177 846L176 813L173 780L171 747L168 714L166 682L164 649L164 617L164 585L167 553L171 522M162 824L161 811L160 797L159 784L158 770L158 756L157 743L156 730L155 716L154 703L153 689L152 676L152 662L152 649"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="masthead">
+      <nav class="masthead__nav" aria-label="Nawigacja">
+        <a class="masthead__home" href="../../index.html">
+          <svg class="masthead__icon" viewBox="-12 -12 24 24" aria-hidden="true" focusable="false">
+            <use href="#bloom" />
+          </svg>
+          <span class="masthead__label">Strona główna</span>
+        </a>
+        <ul class="masthead__links">
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="../index.html">Wszystkie wersje</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="tresc" tabindex="-1">
+      <!-- The gate: the reader walks in between the trees ################################ -->
+      <section class="gate" id="brama" aria-labelledby="tytul">
+        <div class="gate__stage">
+          <div class="gate__sky" aria-hidden="true"></div>
+          <svg
+            class="gate__hills"
+            viewBox="0 0 2000 400"
+            preserveAspectRatio="xMidYMax slice"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path class="g-hill g-hill--far" d="M0 400L0 149L25 140L50 129L75 116L100 102L125 90L150 81L175 74L200 72L225 73L250 76L275 82L300 88L325 93L350 98L375 101L400 104L425 106L450 109L475 113L500 121L525 130L550 143L575 157L600 172L625 185L650 197L675 205L700 209L725 209L750 206L775 200L800 193L825 187L850 182L875 179L900 179L925 180L950 183L975 185L1000 187L1025 187L1050 185L1075 181L1100 175L1125 170L1150 165L1175 163L1200 163L1225 166L1250 171L1275 178L1300 185L1325 191L1350 194L1375 195L1400 191L1425 184L1450 173L1475 161L1500 149L1525 137L1550 127L1575 120L1600 114L1625 111L1650 108L1675 106L1700 102L1725 97L1750 91L1775 84L1800 76L1825 70L1850 66L1875 66L1900 69L1925 77L1950 88L1975 101L2000 116L2000 400Z"/>
+            <path class="g-hill g-hill--near" d="M0 400L0 244L25 232L50 222L75 213L100 207L125 203L150 201L175 200L200 199L225 198L250 195L275 192L300 188L325 184L350 181L375 179L400 180L425 184L450 189L475 197L500 205L525 213L550 220L575 225L600 227L625 226L650 223L675 219L700 214L725 210L750 207L775 207L800 208L825 212L850 216L875 220L900 224L925 227L950 229L975 229L1000 228L1025 228L1050 229L1075 231L1100 236L1125 243L1150 252L1175 262L1200 273L1225 282L1250 290L1275 295L1300 297L1325 295L1350 291L1375 285L1400 279L1425 272L1450 267L1475 262L1500 259L1525 257L1550 254L1575 251L1600 246L1625 240L1650 232L1675 222L1700 212L1725 203L1750 195L1775 190L1800 188L1825 189L1850 192L1875 197L1900 203L1925 209L1950 213L1975 216L2000 216L2000 400Z"/>
+          </svg>
+
+          <div class="gate__window">
+            <picture>
+              <source
+                media="(max-width: 29.99rem)"
+                srcset="../shared/photos/0-miejsce-jablon-przed-domem-640.jpg 640w"
+                sizes="100vw"
+              />
+              <img
+                src="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg"
+                srcset="
+                  ../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg 1000w,
+                  ../shared/photos/0-miejsce-jablon-przed-domem-2000.jpg 2000w
+                "
+                sizes="min(100vw, 75vh)"
+                width="1000"
+                height="1333"
+                fetchpriority="high"
+                alt="Kwitnąca jabłoń przed naszym domem w sadzie"
+              />
+            </picture>
+          </div>
+
+          <div class="gate__motes" aria-hidden="true" data-loop>
+            <span class="mote"></span><span class="mote"></span><span class="mote"></span>
+            <span class="mote"></span><span class="mote"></span><span class="mote"></span>
+            <span class="mote"></span><span class="mote"></span><span class="mote"></span>
+            <span class="mote"></span>
+          </div>
+
+          <svg
+            class="gate__trunk gate__trunk--left"
+            viewBox="0 0 330 1000"
+            preserveAspectRatio="xMidYMax meet"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <use href="#trunk" />
+          </svg>
+          <svg
+            class="gate__trunk gate__trunk--right"
+            viewBox="0 0 330 1000"
+            preserveAspectRatio="xMidYMax meet"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <use href="#trunk" transform="matrix(-1 0 0 1 330 0)" />
+          </svg>
+
+          <div class="gate__canopy">
+            <svg
+              class="gate__leaves"
+              viewBox="0 0 1600 340"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <rect class="g-crown" x="-100" y="-1600" width="1800" height="1610" />
+              <path class="g-crown" d="M-70 -7Q-80 -2 -80 67Q-80 136 -77 138Q-74 141 -73 144Q-73 147 -76 151Q-80 154 -80 181Q-80 208 -77 210Q-75 213 -70 216Q-65 218 -57 220Q-49 221 -43 224Q-37 227 -32 226Q-27 224 -24 219Q-21 215 -17 214Q-13 213 -4 217Q6 221 11 221Q16 221 23 218Q29 216 42 221Q54 226 61 224Q68 221 79 221Q90 221 106 224Q123 226 136 224Q149 222 156 225Q163 228 168 229Q173 230 177 234Q181 238 186 239Q191 240 196 239Q200 238 205 234Q209 231 212 236Q215 241 223 248Q232 255 236 255Q240 255 244 254Q248 252 257 257Q266 261 274 262Q282 263 290 266Q298 269 304 268Q310 268 315 276Q321 283 325 285Q328 287 335 289Q341 290 340 295Q338 300 339 304Q340 307 341 311Q343 314 347 317Q351 321 358 322Q366 323 371 321Q376 318 381 321Q385 324 394 327Q403 330 411 335Q419 340 502 340Q585 340 587 335Q589 330 595 328Q601 326 605 323Q608 320 617 320Q625 319 630 317Q636 314 642 309Q648 304 655 302Q661 301 666 298Q671 295 677 288Q683 281 693 277Q704 273 708 268Q713 263 718 263Q724 263 732 260Q740 257 757 255Q774 254 781 251Q789 249 799 250Q810 252 819 249Q827 246 839 253Q850 259 856 260Q862 261 869 259Q876 258 881 261Q886 263 891 264Q896 264 899 268Q903 272 917 282Q931 293 941 295Q952 297 958 296Q965 295 970 302Q975 309 983 312Q992 315 998 321Q1005 326 1012 328Q1020 330 1025 335Q1031 340 1090 340Q1150 340 1152 338Q1153 336 1164 338Q1175 339 1183 336Q1190 334 1197 327Q1205 319 1214 317Q1223 315 1227 312Q1230 309 1234 304Q1238 299 1244 299Q1250 299 1255 298Q1260 297 1264 294Q1269 292 1273 286Q1278 280 1285 280Q1291 279 1295 275Q1299 270 1306 270Q1313 270 1323 263Q1334 255 1346 253Q1359 251 1367 245Q1375 239 1381 240Q1386 240 1392 237Q1398 233 1406 233Q1415 233 1423 228Q1431 224 1437 225Q1442 226 1446 224Q1450 221 1457 224Q1464 226 1472 225Q1481 224 1485 229Q1489 233 1496 234Q1502 235 1508 232Q1514 229 1517 222Q1520 216 1522 214Q1524 213 1526 214Q1528 215 1531 221Q1534 227 1539 228Q1544 230 1549 228Q1554 227 1558 223Q1562 219 1570 218Q1578 216 1584 218Q1590 219 1597 217Q1605 215 1611 218Q1617 220 1625 221Q1633 221 1643 217Q1653 213 1658 207Q1664 201 1666 195Q1668 189 1674 185Q1680 181 1680 93Q1680 5 1670 2Q1660 -1 1660 -30Q1660 -60 800 -60Q-60 -60 -60 -36Q-60 -12 -70 -7Z"/>
+              <path class="g-crown-tex" d="M72 37Q66 33 58 32Q51 31 44 34Q37 37 33 41Q30 44 27 51Q24 58 24 66Q25 73 29 80Q33 86 39 90Q46 94 52 95Q58 96 51 100Q44 104 40 101Q36 98 32 96Q28 95 20 96Q12 98 6 104Q0 109 -1 118Q-3 126 1 133Q5 141 10 144Q15 147 22 148Q28 148 35 145Q42 141 45 144Q48 147 46 152Q45 157 47 162Q49 168 53 170Q56 172 60 172Q64 173 66 177Q68 181 72 184Q76 187 82 188Q89 189 95 186Q101 183 104 177Q107 171 106 166Q106 161 103 157Q101 153 96 150Q92 147 88 147Q84 146 88 142Q92 137 95 128Q99 120 99 113Q99 107 97 102Q94 98 90 96Q85 93 75 94Q64 95 70 92Q75 90 79 85Q83 81 86 84Q88 87 94 89Q99 91 101 96Q103 100 108 104Q113 109 118 110Q122 111 129 111Q135 110 139 108Q144 106 148 101Q152 96 155 82Q158 68 155 61Q151 54 145 51Q138 48 133 48Q127 48 122 52Q117 55 114 52Q111 50 106 49Q101 48 94 51Q87 53 83 47Q79 41 72 37ZM206 60Q201 58 193 57Q186 57 181 58Q176 60 171 63Q167 66 163 73Q159 80 159 89Q158 98 153 104Q147 110 146 116Q144 123 146 130Q147 137 152 142Q156 148 163 150Q169 153 176 152Q184 152 179 157Q175 163 175 169Q175 175 179 180Q182 185 188 187Q194 189 201 186Q208 183 210 179Q213 175 213 170Q213 166 210 159Q206 153 201 151Q197 149 193 149Q188 150 195 143Q201 137 202 129Q204 121 209 117Q214 114 217 109Q221 105 222 98Q224 90 223 85Q223 80 220 75Q218 70 214 67Q210 63 206 60ZM285 79Q280 74 272 73Q265 72 259 77Q253 82 253 90Q252 97 257 103Q262 109 269 109Q277 110 283 105Q288 100 289 93Q289 85 285 79ZM347 96Q340 89 333 88Q326 86 321 87Q316 88 310 91Q303 95 300 100Q297 105 293 105Q289 105 285 107Q280 109 277 111Q275 114 273 118Q271 123 271 128Q272 133 273 136Q275 140 280 144Q286 148 293 147Q300 147 303 152Q305 157 309 159Q313 161 317 161Q322 162 326 160Q330 158 333 153Q337 148 344 142Q352 137 355 130Q358 123 356 113Q354 103 347 96ZM406 155Q402 151 397 151Q391 150 387 154Q383 157 382 163Q382 169 385 173Q389 177 395 178Q400 178 404 174Q409 171 409 165Q410 160 406 155ZM273 152Q269 150 264 149Q258 149 255 150Q252 151 247 157Q242 162 238 163Q234 165 229 168Q225 172 223 176Q221 179 221 185Q220 191 222 197Q225 202 227 205Q230 208 238 211Q245 213 251 212Q257 210 261 206Q266 202 268 197Q271 191 275 187Q280 184 282 179Q284 174 283 169Q283 164 280 159Q278 155 273 152ZM341 194Q337 190 331 189Q325 188 322 188Q318 189 314 191Q311 192 307 197Q303 201 302 207Q300 213 301 216Q302 220 303 224Q305 227 310 231Q314 235 320 236Q325 237 329 237Q333 236 337 234Q340 233 344 228Q348 224 349 218Q350 213 350 209Q349 205 347 201Q346 198 341 194ZM474 193Q468 188 463 187Q458 185 451 186Q443 186 436 190Q430 194 425 203Q421 211 412 209Q404 208 390 213Q377 217 373 221Q369 224 367 231Q364 238 364 246Q365 253 367 257Q369 262 381 271Q392 280 399 283Q406 285 416 284Q426 282 432 277Q438 272 443 274Q448 276 456 275Q463 274 468 272Q472 270 476 266Q480 262 485 269Q490 275 498 275Q506 276 512 272Q517 267 525 267Q533 266 537 264Q542 261 548 254Q554 246 561 240Q569 234 572 227Q575 219 577 225Q578 230 581 233Q583 236 588 238Q593 240 598 238Q603 236 606 233Q608 230 609 226Q610 221 615 218Q620 215 623 211Q625 207 626 204Q626 200 632 196Q637 192 639 186Q641 179 639 173Q637 166 631 162Q625 158 618 158Q611 158 606 162Q600 166 596 164Q593 163 585 163Q578 163 570 167Q562 171 558 178Q554 184 543 180Q532 176 527 176Q522 176 517 177Q512 179 506 184Q500 189 497 198Q494 207 490 210Q486 213 483 206Q480 198 474 193ZM832 91Q825 84 819 83Q812 81 805 83Q798 84 793 89Q787 93 784 102Q782 111 783 118Q785 125 789 130Q794 136 798 138Q802 140 809 140Q816 141 818 143Q821 146 825 147Q829 148 834 145Q840 143 843 137Q845 131 843 125Q841 120 841 113Q842 106 840 102Q839 97 832 91ZM899 109Q895 107 889 106Q884 105 877 107Q869 109 863 114Q857 119 854 126Q851 134 851 139Q851 144 853 149Q854 154 860 161Q866 167 865 171Q864 175 865 179Q866 182 869 185Q871 188 874 189Q878 191 883 190Q887 189 891 185Q895 180 901 182Q907 183 914 181Q920 180 925 176Q930 171 933 165Q935 159 935 152Q934 145 932 141Q930 137 923 132Q915 127 910 119Q904 112 899 109ZM775 160Q769 156 762 155Q755 155 750 156Q746 158 740 163Q735 167 732 174Q729 180 728 191Q727 202 729 209Q731 217 736 223Q741 228 748 231Q755 234 763 234Q771 233 775 231Q780 228 786 220Q792 212 797 210Q802 207 805 202Q807 197 807 193Q806 189 804 186Q802 182 796 180Q789 177 785 170Q781 164 775 160ZM697 179Q692 174 677 172Q663 170 659 171Q654 172 650 177Q645 181 642 187Q640 193 640 199Q641 205 633 209Q626 213 621 222Q617 230 618 237Q618 244 624 252Q629 259 636 262Q642 265 647 265Q652 265 667 261Q682 257 688 252Q694 246 697 239Q700 232 699 220Q699 209 702 201Q704 194 703 189Q702 184 697 179ZM931 213Q926 214 920 219Q914 224 913 233Q913 241 918 247Q923 253 932 254Q940 255 946 249Q952 244 953 236Q954 229 963 228Q971 226 975 224Q978 221 981 217Q984 212 990 211Q996 211 1002 207Q1007 204 1011 196Q1015 188 1014 179Q1012 171 1008 166Q1004 161 1000 159Q996 157 992 156Q987 155 981 157Q974 158 969 163Q964 167 962 172Q960 176 955 177Q951 177 946 181Q940 184 937 191Q933 199 934 206Q935 213 931 213ZM572 279Q567 275 561 275Q555 276 551 281Q547 285 547 292Q548 298 552 302Q557 306 564 306Q570 305 574 300Q578 296 578 289Q577 283 572 279ZM1520 47Q1515 42 1509 42Q1503 42 1499 46Q1494 49 1492 54Q1491 60 1492 65Q1494 71 1497 74Q1501 77 1505 78Q1509 79 1513 78Q1518 77 1521 74Q1524 71 1523 78Q1522 84 1525 90Q1528 96 1535 99Q1543 102 1549 100Q1555 98 1559 91Q1564 84 1562 76Q1560 68 1556 65Q1552 62 1548 61Q1543 60 1538 61Q1533 62 1530 65Q1526 68 1527 64Q1528 60 1527 56Q1526 51 1520 47ZM1476 50Q1472 47 1464 46Q1456 45 1451 46Q1445 47 1440 46Q1435 44 1430 46Q1425 47 1421 50Q1417 54 1416 57Q1414 60 1414 63Q1413 67 1414 72Q1415 77 1419 81Q1422 85 1429 87Q1436 89 1442 93Q1447 96 1452 97Q1456 98 1462 101Q1468 103 1474 102Q1481 101 1486 97Q1490 92 1491 86Q1492 79 1490 74Q1488 70 1486 67Q1483 65 1481 59Q1479 53 1476 50ZM1421 109Q1415 105 1410 106Q1405 107 1402 109Q1399 112 1392 109Q1386 107 1380 109Q1375 111 1371 117Q1367 123 1369 130Q1370 137 1374 140Q1377 143 1381 144Q1386 145 1390 144Q1395 143 1398 140Q1402 136 1409 137Q1416 139 1418 144Q1420 150 1422 154Q1425 158 1434 162Q1442 166 1449 166Q1456 165 1462 161Q1468 158 1471 154Q1474 150 1476 143Q1477 136 1476 129Q1474 122 1471 118Q1468 114 1464 112Q1461 109 1454 107Q1447 106 1442 106Q1437 107 1432 110Q1427 113 1421 109ZM1208 143Q1203 139 1196 139Q1190 138 1186 140Q1182 141 1178 144Q1175 146 1171 152Q1168 157 1168 163Q1167 170 1168 174Q1170 178 1172 181Q1175 185 1180 188Q1186 191 1192 192Q1198 192 1202 191Q1206 190 1211 186Q1216 181 1218 178Q1220 174 1221 168Q1221 161 1220 157Q1218 153 1216 150Q1213 146 1208 143ZM1524 157Q1520 153 1514 152Q1509 150 1505 151Q1502 152 1497 154Q1492 157 1490 160Q1488 163 1487 169Q1485 174 1486 178Q1486 181 1488 185Q1490 188 1494 192Q1498 195 1504 196Q1509 198 1513 197Q1516 197 1521 194Q1526 191 1528 188Q1530 185 1531 179Q1533 174 1532 170Q1531 167 1530 163Q1528 160 1524 157ZM1427 173Q1422 168 1415 167Q1408 167 1402 171Q1396 176 1396 184Q1395 191 1400 197Q1405 202 1412 203Q1420 203 1425 198Q1431 194 1431 186Q1432 179 1427 173ZM1327 178Q1322 174 1316 174Q1311 173 1307 175Q1303 177 1298 174Q1294 172 1289 171Q1284 170 1277 172Q1270 173 1265 178Q1259 183 1257 191Q1254 200 1251 197Q1249 195 1244 193Q1240 191 1235 191Q1230 192 1226 194Q1222 197 1219 202Q1216 208 1217 214Q1218 221 1223 225Q1227 230 1233 231Q1240 232 1245 229Q1251 226 1254 220Q1257 214 1262 220Q1266 225 1275 228Q1284 231 1291 229Q1298 228 1304 223Q1309 218 1317 217Q1325 216 1329 212Q1333 209 1335 202Q1337 196 1335 189Q1333 182 1327 178ZM1097 195Q1092 190 1084 191Q1076 191 1071 197Q1066 203 1067 211Q1067 219 1073 224Q1079 229 1087 228Q1095 228 1100 222Q1105 216 1104 208Q1103 200 1097 195ZM1149 226Q1144 221 1137 220Q1130 220 1124 224Q1119 229 1118 236Q1118 243 1123 249Q1127 254 1134 255Q1141 255 1147 251Q1152 246 1153 239Q1153 232 1149 226ZM1256 238Q1252 233 1248 232Q1244 231 1241 232Q1237 233 1234 236Q1231 238 1230 242Q1228 246 1223 242Q1217 238 1209 237Q1201 235 1193 236Q1184 238 1181 240Q1177 243 1174 248Q1171 253 1170 258Q1169 262 1171 268Q1172 274 1177 279Q1181 284 1185 286Q1188 288 1199 289Q1209 290 1215 289Q1221 288 1227 282Q1233 276 1234 268Q1235 261 1239 262Q1242 263 1246 263Q1249 263 1254 259Q1259 255 1259 249Q1260 242 1256 238ZM1055 286Q1050 282 1044 283Q1038 283 1034 288Q1030 292 1031 299Q1031 305 1036 309Q1040 313 1046 312Q1053 312 1057 307Q1061 302 1060 296Q1060 290 1055 286Z"/>
+              <use href="#bloom" transform="translate(382 281) rotate(13) scale(1.00)"/>
+              <use href="#bloom" transform="translate(179 174) rotate(32) scale(0.76)"/>
+              <use href="#bloom" transform="translate(74 184) rotate(56) scale(1.18)"/>
+              <use href="#bloom" transform="translate(96 156) rotate(10) scale(1.32)"/>
+              <use href="#bloom" transform="translate(1364 215) rotate(53) scale(1.35)"/>
+              <use href="#bloom" transform="translate(1298 204) rotate(69) scale(1.02)"/>
+              <use href="#bloom" transform="translate(1457 92) rotate(57) scale(0.81)"/>
+              <use href="#bloom" transform="translate(1480 162) rotate(11) scale(1.19)"/>
+              <use href="#bloom" transform="translate(1427 187) rotate(59) scale(0.88)"/>
+              <use href="#bloom" transform="translate(237 127) rotate(19) scale(0.84)"/>
+              <use href="#bloom" transform="translate(298 191) rotate(64) scale(1.14)"/>
+              <use href="#bloom" transform="translate(277 152) rotate(8) scale(1.21)"/>
+              <use href="#bloom" transform="translate(1389 181) rotate(42) scale(1.06)"/>
+              <use href="#bloom" transform="translate(1404 106) rotate(28) scale(1.11)"/>
+              <use href="#bloom" transform="translate(1270 180) rotate(71) scale(0.87)"/>
+              <use href="#bloom" transform="translate(289 236) rotate(18) scale(1.23)"/>
+              <use href="#bloom" transform="translate(1565 143) rotate(0) scale(0.90)"/>
+              <use href="#bloom" transform="translate(63 164) rotate(44) scale(0.80)"/>
+              <use href="#bloom" transform="translate(219 205) rotate(47) scale(0.85)"/>
+              <use href="#bloom" transform="translate(45 156) rotate(26) scale(0.77)"/>
+              <use href="#bloom" transform="translate(246 172) rotate(56) scale(1.27)"/>
+              <use href="#bloom" transform="translate(1169 310) rotate(38) scale(0.73)"/>
+              <use href="#bloom" transform="translate(30 169) rotate(68) scale(1.06)"/>
+              <use href="#bloom" transform="translate(1247 245) rotate(0) scale(1.17)"/>
+              <use href="#bloom" transform="translate(1344 222) rotate(33) scale(1.18)"/>
+              <use href="#bloom" transform="translate(367 234) rotate(17) scale(0.77)"/>
+              <use href="#bloom" transform="translate(1400 201) rotate(19) scale(0.71)"/>
+              <use href="#bloom" transform="translate(1444 158) rotate(70) scale(1.13)"/>
+              <use href="#bloom" transform="translate(1337 200) rotate(52) scale(0.98)"/>
+              <use href="#bloom" transform="translate(496 313) rotate(66) scale(0.75)"/>
+              <use href="#bloom" transform="translate(53 122) rotate(10) scale(0.92)"/>
+              <use href="#bloom" transform="translate(114 120) rotate(66) scale(1.26)"/>
+              <use href="#bloom" transform="translate(1502 174) rotate(2) scale(0.77)"/>
+              <use href="#bloom" transform="translate(464 307) rotate(15) scale(1.19)"/>
+              <use href="#bloom" transform="translate(514 315) rotate(2) scale(0.98)"/>
+              <use href="#bloom" transform="translate(416 291) rotate(23) scale(0.94)"/>
+              <use href="#bloom" transform="translate(1533 132) rotate(61) scale(1.03)"/>
+              <use href="#bloom" transform="translate(352 259) rotate(12) scale(1.23)"/>
+              <use href="#bloom" transform="translate(12 180) rotate(55) scale(0.83)"/>
+              <use href="#bloom" transform="translate(138 162) rotate(50) scale(1.21)"/>
+              <use href="#bloom" transform="translate(50 185) rotate(36) scale(1.29)"/>
+              <use href="#bloom" transform="translate(1202 294) rotate(24) scale(0.93)"/>
+              <use href="#bloom" transform="translate(278 176) rotate(56) scale(0.99)"/>
+              <use href="#bloom" transform="translate(1408 174) rotate(14) scale(0.85)"/>
+              <use href="#bloom" transform="translate(254 149) rotate(18) scale(0.80)"/>
+              <use href="#bloom" transform="translate(171 192) rotate(7) scale(1.33)"/>
+              <use href="#bloom" transform="translate(179 149) rotate(28) scale(0.83)"/>
+              <use href="#bloom" transform="translate(64 137) rotate(36) scale(1.15)"/>
+              <use href="#bloom" transform="translate(1151 304) rotate(56) scale(1.27)"/>
+              <use href="#bloom" transform="translate(299 159) rotate(56) scale(1.13)"/>
+              <use href="#bloom" transform="translate(1496 137) rotate(7) scale(1.04)"/>
+              <use href="#bloom" transform="translate(99 189) rotate(30) scale(0.71)"/>
+              <use href="#bloom" transform="translate(1113 307) rotate(53) scale(0.85)"/>
+              <use href="#bloom" transform="translate(345 218) rotate(46) scale(1.23)"/>
+              <use href="#bloom" transform="translate(1318 175) rotate(60) scale(0.79)"/>
+              <use href="#bloom" transform="translate(34 95) rotate(18) scale(1.13)"/>
+              <use href="#bloom" transform="translate(1418 149) rotate(64) scale(1.13)"/>
+              <use href="#bloom" transform="translate(1255 222) rotate(14) scale(1.25)"/>
+              <use href="#bloom" transform="translate(1338 175) rotate(61) scale(1.13)"/>
+              <use href="#bloom" transform="translate(1017 301) rotate(2) scale(1.11)"/>
+              <use href="#bloom" transform="translate(1371 184) rotate(55) scale(1.04)"/>
+            </svg>
+            <div class="gate__title">
+              <p class="gate__kicker">Baśń, do której się wchodzi</p>
+              <h1 class="gate__heading" id="tytul">
+                <span class="gate__heading-small">Naturalne soki z</span>
+                <span class="gate__heading-big">Makowskiego Sadu</span>
+              </h1>
+            </div>
+          </div>
+
+          <div class="gate__ground">
+            <svg
+              class="gate__grass"
+              viewBox="0 0 2000 240"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path class="g-grass" d="M0 240L0 78L13 46L11 79L17 60L22 80L19 55L30 82L42 29L37 81L42 65L46 75L49 64L55 78L60 40L66 81L79 25L75 82L76 55L85 75L88 28L95 84L106 55L102 79L109 60L112 82L124 48L120 82L116 58L129 82L129 41L140 81L145 56L152 76L156 20L167 83L175 15L177 75L186 47L186 77L191 55L193 76L207 35L203 79L204 50L217 83L226 49L226 83L235 11L241 78L240 7L248 81L251 27L262 76L267 48L269 83L269 12L279 74L278 58L289 78L300 43L297 84L297 32L310 74L307 15L322 80L338 48L335 75L346 22L348 81L359 49L362 83L374 32L373 80L380 41L383 75L394 31L398 78L410 49L409 75L413 44L417 76L430 43L428 77L428 59L440 83L442 34L451 81L463 37L461 83L460 54L473 79L488 39L486 77L487 55L497 78L509 53L508 84L519 64L516 74L527 52L527 74L538 63L538 76L541 36L545 80L555 20L559 76L562 62L567 81L575 46L576 79L588 42L589 83L590 24L604 79L612 41L618 83L628 35L633 76L643 25L646 76L654 6L661 82L665 12L675 75L681 17L687 74L685 16L694 77L699 52L702 81L708 9L715 83L715 33L724 81L730 17L735 77L736 16L749 83L749 34L760 79L774 61L772 79L778 37L785 81L799 46L796 83L801 59L807 82L807 52L818 80L813 34L826 76L830 53L838 80L845 61L851 77L855 50L863 78L869 59L871 80L884 44L885 76L888 33L898 77L909 30L907 75L906 56L920 82L925 61L933 81L948 30L945 75L955 45L959 76L963 63L966 79L965 56L975 82L974 60L989 84L995 48L1002 79L1012 62L1014 82L1017 25L1024 76L1037 61L1036 82L1041 28L1049 80L1053 18L1064 83L1069 16L1078 83L1089 18L1090 78L1093 41L1098 74L1099 25L1110 83L1116 23L1120 79L1131 24L1135 82L1142 27L1142 77L1143 50L1149 75L1156 31L1163 84L1176 28L1178 75L1193 60L1191 76L1198 38L1200 75L1207 38L1210 78L1212 37L1222 81L1218 53L1229 76L1239 25L1240 75L1254 61L1254 78L1262 55L1269 83L1280 27L1280 80L1280 49L1292 75L1299 50L1300 79L1310 51L1311 79L1314 40L1326 75L1330 44L1339 77L1347 44L1351 82L1363 29L1360 83L1362 56L1367 80L1365 63L1379 81L1384 50L1391 76L1389 30L1404 75L1404 31L1416 78L1425 47L1429 84L1442 29L1440 78L1437 21L1448 75L1450 29L1459 82L1456 29L1468 77L1468 47L1480 78L1489 55L1490 80L1496 12L1505 82L1517 38L1514 83L1517 40L1524 78L1534 29L1533 79L1543 50L1544 83L1549 31L1551 80L1550 15L1564 79L1572 56L1571 83L1582 52L1583 80L1588 19L1592 82L1600 9L1602 79L1616 24L1615 78L1626 18L1627 82L1635 31L1642 81L1640 43L1652 81L1652 56L1662 78L1666 61L1677 75L1675 57L1690 79L1690 63L1704 76L1710 37L1713 76L1722 59L1722 77L1725 48L1736 83L1749 46L1746 79L1755 32L1753 78L1767 56L1764 81L1765 49L1771 82L1771 61L1783 77L1793 47L1797 84L1808 60L1808 74L1808 34L1822 77L1825 46L1830 84L1842 52L1844 78L1842 29L1851 79L1852 28L1860 77L1868 43L1869 78L1872 45L1877 84L1881 62L1889 81L1886 40L1901 84L1901 31L1909 78L1912 44L1919 81L1920 23L1927 83L1940 43L1940 75L1948 24L1948 76L1947 28L1962 76L1958 37L1970 83L1980 24L1981 82L1977 37L1990 78L2001 16L2005 80L2000 78L2000 240Z"/>
+              <use href="#bloom" transform="translate(297 30) scale(0.77)"/>
+              <use href="#bloom" transform="translate(430 41) scale(0.56)"/>
+              <use href="#bloom" transform="translate(925 59) scale(0.52)"/>
+              <use href="#bloom" transform="translate(2001 14) scale(0.57)"/>
+              <rect class="g-grass" x="-100" y="230" width="2200" height="1600" />
+            </svg>
+            <div class="gate__lead">
+              <p>
+                Odkryj wyjątkowe walory tłoczonych soków jabłkowych z&nbsp;ekologicznego sadu
+                w&nbsp;Małopolsce.
+              </p>
+              <a class="gate__cue" href="#miejsce" data-loop>
+                Przewiń i&nbsp;wejdź do sadu
+                <svg class="gate__cue-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="gate__veil" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Prolog: the house in the orchard ################################################ -->
+      <section class="chapter chapter--prolog" id="miejsce" aria-labelledby="miejsce-tytul" data-magic="fireflies">
+        <svg class="bough bough--right" viewBox="-40 -60 720 420" aria-hidden="true" focusable="false">
+          <use href="#bough" /><use href="#bough-blooms" />
+        </svg>
+        <div class="chapter__inner">
+          <p class="once" data-reveal>
+            Za siedmioma górami, za siedmioma lasami…
+            <span class="once__turn">a&nbsp;dokładnie w&nbsp;Makowie Podhalańskim.</span>
+          </p>
+
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker">Prolog</p>
+            <h2 class="chapter__title" id="miejsce-tytul">Dom w&nbsp;sadzie</h2>
+            <p class="chapter__tagline">Tradycja i&nbsp;pasja</p>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p class="lede">
+              Jesteśmy niewielkim, rodzinnym przedsięwzięciem z&nbsp;urokliwego Makowa Podhalańskiego.
+              Zajmujemy się tworzeniem naturalnych soków jabłkowych, z&nbsp;pasją oraz troską
+              o&nbsp;środowisko.
+            </p>
+          </div>
+
+          <figure class="window window--panorama" data-reveal>
+            <div class="frame frame--panorama">
+              <picture>
+                <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-korona-nad-domem-640.jpg 640w" sizes="92vw" />
+                <img
+                  src="../shared/photos/0-miejsce-korona-nad-domem-1000.jpg"
+                  srcset="../shared/photos/0-miejsce-korona-nad-domem-1000.jpg 1000w, ../shared/photos/0-miejsce-korona-nad-domem-1440.jpg 1440w"
+                  sizes="(min-width: 64rem) 52rem, 92vw"
+                  width="1000"
+                  height="674"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Biała od kwiatów korona jabłoni na tle nieba, w dole nasz dom"
+                />
+              </picture>
+            </div>
+            <figcaption>Biała korona nad domem</figcaption>
+          </figure>
+
+          <div class="prose prose--center" data-reveal>
+            <p class="saying">Z&nbsp;dala od ruchliwych dróg w&nbsp;sadzie znajduje się nasz dom.</p>
+          </div>
+
+          <div class="windows">
+            <figure class="window window--hammock" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-hamak-w-sloncu-640.jpg 640w" sizes="88vw" />
+                  <img
+                    src="../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg"
+                    srcset="../shared/photos/0-miejsce-hamak-w-sloncu-1000.jpg 1000w, ../shared/photos/0-miejsce-hamak-w-sloncu-1440.jpg 1440w"
+                    sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 44vw, 88vw"
+                    width="1000"
+                    height="1160"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Hamak pod plandeką w promieniach słońca, w tle dolina"
+                  />
+                </picture>
+              </div>
+              <figcaption>Hamak w&nbsp;słońcu</figcaption>
+            </figure>
+            <figure class="window window--terrace" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-taras-ze-stolem-640.jpg 640w" sizes="88vw" />
+                  <img
+                    src="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg"
+                    srcset="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg 1000w, ../shared/photos/0-miejsce-taras-ze-stolem-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 44vw, 88vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Drewniany taras z nakrytym stołem wśród kwitnących jabłoni, w oddali wzgórza"
+                  />
+                </picture>
+              </div>
+              <figcaption>Taras wśród kwitnących jabłoni</figcaption>
+            </figure>
+            <figure class="window window--balcony" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-widok-z-balkonu-640.jpg 640w" sizes="88vw" />
+                  <img
+                    src="../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg"
+                    srcset="../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg 1000w, ../shared/photos/0-miejsce-widok-z-balkonu-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 44vw, 88vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Kwitnąca jabłoń widziana z drewnianego balkonu, w oddali wzgórza"
+                  />
+                </picture>
+              </div>
+              <figcaption>Widok z&nbsp;balkonu</figcaption>
+            </figure>
+          </div>
+
+          <nav class="signpost" aria-labelledby="drogowskaz">
+            <p class="signpost__title" id="drogowskaz">Drogowskaz</p>
+            <ol class="signpost__boards">
+              <li><a class="signpost__board" href="#kwiat"><span class="signpost__num" aria-hidden="true">I</span> Kwiat</a></li>
+              <li><a class="signpost__board" href="#jablko"><span class="signpost__num" aria-hidden="true">II</span> Jabłko</a></li>
+              <li><a class="signpost__board" href="#zbior"><span class="signpost__num" aria-hidden="true">III</span> Zbiór</a></li>
+              <li><a class="signpost__board" href="#transport"><span class="signpost__num" aria-hidden="true">IV</span> Transport</a></li>
+              <li><a class="signpost__board" href="#tloczenie"><span class="signpost__num" aria-hidden="true">V</span> Tłoczenie</a></li>
+              <li><a class="signpost__board" href="#pakowanie"><span class="signpost__num" aria-hidden="true">VI</span> Pakowanie</a></li>
+              <li><a class="signpost__board" href="#sprzedaz"><span class="signpost__num" aria-hidden="true">VII</span> Sprzedaż</a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <!-- I. Kwiat ######################################################################### -->
+      <section class="chapter chapter--kwiat" id="kwiat" aria-labelledby="kwiat-tytul" data-magic="petals">
+        <svg class="bough bough--left" viewBox="-40 -60 720 420" aria-hidden="true" focusable="false">
+          <use href="#bough" /><use href="#bough-blooms" />
+        </svg>
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">I</span> Rozdział pierwszy</p>
+            <h2 class="chapter__title" id="kwiat-tytul">Kwiat</h2>
+            <p class="chapter__tagline">Gdy sad budzi się w&nbsp;bieli i&nbsp;różu</p>
+          </header>
+
+          <div class="bloomtime">
+            <figure class="lens" data-reveal>
+              <div class="lens__glass">
+                <svg class="lens__ring" viewBox="-130 -130 260 260" aria-hidden="true" focusable="false">
+                  <circle class="lens__line" r="108" />
+                  <use href="#bloom" transform="rotate(0.0) translate(0 -108) rotate(0) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(25.7) translate(0 -108) rotate(37) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(51.4) translate(0 -108) rotate(2) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(77.1) translate(0 -108) rotate(39) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(102.9) translate(0 -108) rotate(4) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(128.6) translate(0 -108) rotate(41) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(154.3) translate(0 -108) rotate(6) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(180.0) translate(0 -108) rotate(43) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(205.7) translate(0 -108) rotate(8) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(231.4) translate(0 -108) rotate(45) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(257.1) translate(0 -108) rotate(10) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(282.9) translate(0 -108) rotate(47) scale(0.9)" />
+                  <use href="#bloom" transform="rotate(308.6) translate(0 -108) rotate(12) scale(1.25)" />
+                  <use href="#bloom" transform="rotate(334.3) translate(0 -108) rotate(49) scale(0.9)" />
+                  <use href="#leaf" transform="rotate(12.9) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(38.6) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(64.3) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(90.0) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(115.7) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(141.4) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(167.1) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(192.9) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(218.6) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(244.3) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(270.0) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(295.7) translate(0 -104) rotate(-60) scale(.42)" />
+                  <use href="#leaf" transform="rotate(321.4) translate(0 -104) rotate(-120) scale(.42)" />
+                  <use href="#leaf" transform="rotate(347.1) translate(0 -104) rotate(-60) scale(.42)" />
+                </svg>
+                <div class="frame frame--round">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-640.jpg 640w" sizes="70vw" />
+                    <img
+                      src="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg"
+                      srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg 1000w, ../shared/photos/1-kwiat-kwiaty-zblizenie-1440.jpg 1440w"
+                      sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 40vw, 70vw"
+                      width="1000"
+                      height="1167"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami z bliska"
+                    />
+                  </picture>
+                </div>
+              </div>
+              <figcaption>Kwiaty jabłoni z&nbsp;bliska</figcaption>
+            </figure>
+
+            <div class="prose" data-reveal>
+              <p class="lede">
+                Nasze kilkudziesięcioletnie jabłonie rosną w&nbsp;naturalny sposób bez przyspieszaczy
+                wzrostu i&nbsp;są organicznie odporne.
+              </p>
+              <p>
+                Mieszkając pośród drzew, nie chcemy obcować ze środkami chemicznymi służącymi do
+                usprawniania uprawy&nbsp;– stosujemy permakulturę.
+              </p>
+              <p>Jabłonie przycinamy jesienią, usuwamy pasożyty, wszystko ręcznie.</p>
+            </div>
+          </div>
+
+          <figure class="film" data-film data-reveal>
+            <div class="frame frame--film">
+              <picture>
+                <source
+                  media="(max-width: 29.99rem)"
+                  srcset="../shared/photos/1-kwiat-kwitnaca-jablon-film-640.jpg 640w"
+                  sizes="92vw"
+                />
+                <img
+                  class="film__poster"
+                  src="../shared/photos/1-kwiat-kwitnaca-jablon-film-1000.jpg"
+                  width="1000"
+                  height="562"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                />
+              </picture>
+              <video
+                class="film__video"
+                id="film-kwiat"
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+                width="1000"
+                height="562"
+                aria-label="Film: kwitnąca jabłoń w sadzie pod pochmurnym niebem"
+              >
+                <source src="../shared/photos/1-kwiat-kwitnaca-jablon-film.mp4" type="video/mp4" />
+              </video>
+              <button class="film__toggle" type="button" aria-controls="film-kwiat" hidden>
+                <svg class="film__icon film__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M8 5.5v13l10.5-6.5z" />
+                </svg>
+                <svg class="film__icon film__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" />
+                </svg>
+                <span class="film__label">Odtwórz film</span>
+              </button>
+            </div>
+            <figcaption>Kwitnąca jabłoń pod pochmurnym niebem</figcaption>
+          </figure>
+
+          <div class="petals">
+            <figure class="petals__item petals__item--wide" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-kwiat-i-paki-640.jpg 640w" sizes="88vw" />
+                  <img
+                    src="../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg"
+                    srcset="../shared/photos/1-kwiat-kwiat-i-paki-1000.jpg 1000w, ../shared/photos/1-kwiat-kwiat-i-paki-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 30rem, (min-width: 40rem) 58vw, 88vw"
+                    width="1000"
+                    height="712"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Kwiat jabłoni i różowe pąki na gałęzi"
+                  />
+                </picture>
+              </div>
+              <figcaption>Kwiat i&nbsp;różowe pąki</figcaption>
+            </figure>
+            <figure class="petals__item petals__item--tall" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-rozowe-paki-640.jpg 640w" sizes="60vw" />
+                  <img
+                    src="../shared/photos/1-kwiat-rozowe-paki-1000.jpg"
+                    srcset="../shared/photos/1-kwiat-rozowe-paki-1000.jpg 1000w, ../shared/photos/1-kwiat-rozowe-paki-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 34vw, 60vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Różowe pąki jabłoni tuż przed rozkwitnięciem"
+                  />
+                </picture>
+              </div>
+              <figcaption>Pąki tuż przed rozkwitnięciem</figcaption>
+            </figure>
+            <figure class="petals__item petals__item--sun" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-slonce-w-koronie-640.jpg 640w" sizes="88vw" />
+                  <img
+                    src="../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg"
+                    srcset="../shared/photos/1-kwiat-slonce-w-koronie-1000.jpg 1000w, ../shared/photos/1-kwiat-slonce-w-koronie-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 36rem, (min-width: 40rem) 70vw, 88vw"
+                    width="1000"
+                    height="671"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Słońce prześwitujące przez kwitnącą koronę jabłoni"
+                  />
+                </picture>
+              </div>
+              <figcaption>Słońce w&nbsp;kwitnącej koronie</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- II. Jabłko ######################################################################## -->
+      <section class="chapter chapter--jablko" id="jablko" aria-labelledby="jablko-tytul" data-magic="pollen">
+        <svg class="bough bough--right" viewBox="-40 -60 720 420" aria-hidden="true" focusable="false">
+          <use href="#bough" /><use href="#bough-apples" />
+        </svg>
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">II</span> Rozdział drugi</p>
+            <h2 class="chapter__title" id="jablko-tytul">Jabłko</h2>
+            <p class="chapter__tagline">Każdy ma tu swoją rolę</p>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p class="lede">
+              Nasz sad to mikroekosystem, gdzie każde drzewo i&nbsp;owad ma swoją rolę. Nie chcemy tego
+              zaburzać, stosując „chemię”.
+            </p>
+          </div>
+
+          <ol class="ripening" aria-label="Od zawiązka do dojrzałego jabłka" data-loop>
+            <li class="fruit" data-reveal>
+              <div class="fruit__sway">
+                <svg class="fruit__twig" viewBox="0 0 40 64" aria-hidden="true" focusable="false">
+                  <path class="fruit__stalk" d="M20 0C18 22 23 42 20 64" />
+                  <use href="#leaf" transform="translate(20 24) rotate(-28) scale(.5)" />
+                </svg>
+                <figure class="fruit__figure">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-zawiazek-640.jpg 640w" sizes="40vw" />
+                      <img
+                        src="../shared/photos/2-jablko-zawiazek-1000.jpg"
+                        srcset="../shared/photos/2-jablko-zawiazek-1000.jpg 1000w, ../shared/photos/2-jablko-zawiazek-2000.jpg 2000w"
+                        sizes="(min-width: 64rem) 9rem, 30vw"
+                        width="1000"
+                        height="1030"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Maleńki zawiązek jabłka wśród liści"
+                      />
+                    </picture>
+                  </div>
+                  <figcaption>Zawiązek</figcaption>
+                </figure>
+              </div>
+            </li>
+            <li class="fruit" data-reveal>
+              <div class="fruit__sway">
+                <svg class="fruit__twig" viewBox="0 0 40 64" aria-hidden="true" focusable="false">
+                  <path class="fruit__stalk" d="M20 0C22 22 17 42 20 64" />
+                  <use href="#leaf" transform="translate(20 30) rotate(-152) scale(.5)" />
+                </svg>
+                <figure class="fruit__figure">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-zielone-w-smugach-slonca-640.jpg 640w" sizes="40vw" />
+                      <img
+                        src="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg"
+                        srcset="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg 1000w, ../shared/photos/2-jablko-zielone-w-smugach-slonca-2000.jpg 2000w"
+                        sizes="(min-width: 64rem) 11rem, 34vw"
+                        width="1000"
+                        height="1333"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Zielone jabłko na gałęzi, w tle sad w smugach słońca"
+                      />
+                    </picture>
+                  </div>
+                  <figcaption>Zielone jabłko w&nbsp;smugach słońca</figcaption>
+                </figure>
+              </div>
+            </li>
+            <li class="fruit" data-reveal>
+              <div class="fruit__sway">
+                <svg class="fruit__twig" viewBox="0 0 40 64" aria-hidden="true" focusable="false">
+                  <path class="fruit__stalk" d="M20 0C18 22 23 42 20 64" />
+                  <use href="#leaf" transform="translate(20 20) rotate(-34) scale(.5)" />
+                </svg>
+                <figure class="fruit__figure">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-kisc-pod-slonce-640.jpg 640w" sizes="44vw" />
+                      <img
+                        src="../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg"
+                        srcset="../shared/photos/2-jablko-kisc-pod-slonce-1000.jpg 1000w, ../shared/photos/2-jablko-kisc-pod-slonce-2000.jpg 2000w"
+                        sizes="(min-width: 64rem) 12rem, 38vw"
+                        width="1000"
+                        height="1205"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Kiść jasnozielonych jabłek pod słońce"
+                      />
+                    </picture>
+                  </div>
+                  <figcaption>Kiść pod słońce</figcaption>
+                </figure>
+              </div>
+            </li>
+            <li class="fruit" data-reveal>
+              <div class="fruit__sway">
+                <svg class="fruit__twig" viewBox="0 0 40 64" aria-hidden="true" focusable="false">
+                  <path class="fruit__stalk" d="M20 0C22 22 17 42 20 64" />
+                  <use href="#leaf" transform="translate(20 28) rotate(-148) scale(.5)" />
+                </svg>
+                <figure class="fruit__figure">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-czerwone-pod-slonce-640.jpg 640w" sizes="44vw" />
+                      <img
+                        src="../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg"
+                        srcset="../shared/photos/2-jablko-czerwone-pod-slonce-1000.jpg 1000w, ../shared/photos/2-jablko-czerwone-pod-slonce-2000.jpg 2000w"
+                        sizes="(min-width: 64rem) 13rem, 40vw"
+                        width="1000"
+                        height="750"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Czerwone jabłka na gałęzi pod słońce"
+                      />
+                    </picture>
+                  </div>
+                  <figcaption>Czerwone jabłka pod słońce</figcaption>
+                </figure>
+              </div>
+            </li>
+            <li class="fruit" data-reveal>
+              <div class="fruit__sway">
+                <svg class="fruit__twig" viewBox="0 0 40 64" aria-hidden="true" focusable="false">
+                  <path class="fruit__stalk" d="M20 0C18 22 23 42 20 64" />
+                  <use href="#leaf" transform="translate(20 22) rotate(-30) scale(.5)" />
+                </svg>
+                <figure class="fruit__figure">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-w-dloni-640.jpg 640w" sizes="48vw" />
+                      <img
+                        src="../shared/photos/2-jablko-w-dloni-1000.jpg"
+                        srcset="../shared/photos/2-jablko-w-dloni-1000.jpg 1000w, ../shared/photos/2-jablko-w-dloni-2000.jpg 2000w"
+                        sizes="(min-width: 64rem) 15rem, 44vw"
+                        width="1000"
+                        height="1333"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Czerwone jabłko w dłoni"
+                      />
+                    </picture>
+                  </div>
+                  <figcaption>Jabłko w&nbsp;dłoni</figcaption>
+                </figure>
+              </div>
+            </li>
+          </ol>
+
+          <div class="prose" data-reveal>
+            <p>
+              Dbamy o&nbsp;różnorodność sadu, tworząc środowisko, w&nbsp;którym różni goście są mile
+              widziani.
+            </p>
+          </div>
+
+          <h3 class="chapter__subhead" data-reveal>Mile widziani goście</h3>
+          <ul class="guests" role="list">
+            <li class="guest" data-reveal>
+              <figure class="guest__figure">
+                <div class="guest__hideout">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-jaszczurka-640.jpg 640w" sizes="70vw" />
+                      <img
+                        src="../shared/photos/2-jablko-jaszczurka-1000.jpg"
+                        width="1000"
+                        height="751"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Jaszczurka na ziemi wśród liści"
+                      />
+                    </picture>
+                  </div>
+                  <svg class="thicket" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <g transform="translate(181.2 120.5) rotate(217) scale(1.53)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(157.6 156.5) rotate(248) scale(1.57)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(118.8 178.2) rotate(278) scale(1.38)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(76.3 179.3) rotate(307) scale(1.69)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(38.4 155.0) rotate(342) scale(1.41)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(23.5 129.8) rotate(359) scale(1.42)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(21.3 84.7) rotate(34) scale(1.50)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(44.0 40.0) rotate(71) scale(1.52)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(79.1 20.9) rotate(97) scale(1.70)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(126.5 21.0) rotate(133) scale(1.46)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(153.1 38.6) rotate(151) scale(1.62)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(179.6 75.0) rotate(185) scale(1.69)"><use class="thicket__leaf" href="#leaf" /></g>
+                  </svg>
+                </div>
+                <figcaption>Jaszczurka wśród liści</figcaption>
+              </figure>
+            </li>
+            <li class="guest" data-reveal>
+              <figure class="guest__figure">
+                <div class="guest__hideout">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-piskleta-w-gniezdzie-640.jpg 640w" sizes="70vw" />
+                      <img
+                        src="../shared/photos/2-jablko-piskleta-w-gniezdzie-888.jpg"
+                        width="888"
+                        height="1024"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Pisklęta w gnieździe uwitym z traw"
+                      />
+                    </picture>
+                  </div>
+                  <svg class="thicket" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <g transform="translate(179.5 122.5) rotate(217) scale(1.35)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(159.3 155.3) rotate(248) scale(1.59)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(120.9 179.5) rotate(279) scale(1.40)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(81.0 178.4) rotate(309) scale(1.37)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(40.9 154.3) rotate(342) scale(1.47)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(20.2 124.0) rotate(3) scale(1.37)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(22.2 74.1) rotate(39) scale(1.70)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(46.9 39.6) rotate(71) scale(1.40)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(75.0 21.4) rotate(93) scale(1.59)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(113.7 20.5) rotate(125) scale(1.49)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(156.6 40.2) rotate(156) scale(1.48)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(177.7 71.0) rotate(185) scale(1.69)"><use class="thicket__leaf" href="#leaf" /></g>
+                  </svg>
+                </div>
+                <figcaption>Pisklęta w&nbsp;gnieździe z&nbsp;traw</figcaption>
+              </figure>
+            </li>
+            <li class="guest" data-reveal>
+              <figure class="guest__figure">
+                <div class="guest__hideout">
+                  <div class="frame frame--round">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-piskle-mucholowki-640.jpg 640w" sizes="70vw" />
+                      <img
+                        src="../shared/photos/2-jablko-piskle-mucholowki-1000.jpg"
+                        width="1000"
+                        height="921"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Pisklę muchołówki szarej z szeroko otwartym dziobem"
+                      />
+                    </picture>
+                  </div>
+                  <svg class="thicket" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <g transform="translate(181.6 113.8) rotate(215) scale(1.42)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(166.0 146.3) rotate(236) scale(1.61)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(135.9 173.9) rotate(265) scale(1.45)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(89.7 182.7) rotate(301) scale(1.36)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(53.2 165.6) rotate(331) scale(1.63)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(21.3 127.4) rotate(5) scale(1.68)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(20.4 84.9) rotate(36) scale(1.52)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(37.3 46.8) rotate(63) scale(1.48)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(68.3 25.2) rotate(88) scale(1.64)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(115.7 17.5) rotate(125) scale(1.54)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(152.0 38.5) rotate(154) scale(1.51)"><use class="thicket__leaf" href="#leaf" /></g>
+                    <g transform="translate(173.0 65.3) rotate(178) scale(1.44)"><use class="thicket__leaf" href="#leaf" /></g>
+                  </svg>
+                </div>
+                <figcaption>Pisklę muchołówki szarej</figcaption>
+              </figure>
+            </li>
+          </ul>
+
+          <p class="promise" data-reveal>
+            <svg class="promise__leaf" viewBox="-4 -12 46 24" aria-hidden="true" focusable="false">
+              <use href="#leaf" />
+            </svg>
+            Nie stosujemy oprysków, środków ochronnych ani sztucznych nawozów.
+          </p>
+
+          <div class="ripe">
+            <figure class="ripe__item ripe__item--wide" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-czerwone-na-drzewie-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/2-jablko-czerwone-na-drzewie-1000.jpg"
+                    srcset="../shared/photos/2-jablko-czerwone-na-drzewie-1000.jpg 1000w, ../shared/photos/2-jablko-czerwone-na-drzewie-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 40rem, (min-width: 40rem) 62vw, 92vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Jabłoń obsypana czerwonymi jabłkami w promieniach słońca"
+                  />
+                </picture>
+              </div>
+              <figcaption>Jabłoń obsypana czerwonymi jabłkami</figcaption>
+            </figure>
+            <figure class="ripe__item ripe__item--tall" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-slonce-w-lisciach-640.jpg 640w" sizes="70vw" />
+                  <img
+                    src="../shared/photos/2-jablko-slonce-w-lisciach-1000.jpg"
+                    srcset="../shared/photos/2-jablko-slonce-w-lisciach-1000.jpg 1000w, ../shared/photos/2-jablko-slonce-w-lisciach-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 32vw, 70vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Słońce przebijające się przez liście jabłoni z zielonymi owocami, w dole drewniane schody"
+                  />
+                </picture>
+              </div>
+              <figcaption>Słońce w&nbsp;liściach jabłoni</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- III. Zbiór ######################################################################## -->
+      <section class="chapter chapter--zbior" id="zbior" aria-labelledby="zbior-tytul" data-magic="leaves">
+        <svg class="bough bough--left" viewBox="-40 -60 720 420" aria-hidden="true" focusable="false">
+          <use href="#bough" /><use href="#bough-apples" />
+        </svg>
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">III</span> Rozdział trzeci</p>
+            <h2 class="chapter__title" id="zbior-tytul">Zbiór</h2>
+            <p class="chapter__tagline">Tylko najlepsze</p>
+          </header>
+
+          <div class="prose prose--center" data-reveal>
+            <p class="lede">
+              Starannie zbieramy i&nbsp;selekcjonujemy jabłka, tylko najlepsze trafiają do naszych
+              soków.
+            </p>
+          </div>
+
+          <ul class="harvest" role="list">
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--tall">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-zrywanie-z-drzewa-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg"
+                      srcset="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg 1000w, ../shared/photos/3-zbior-zrywanie-z-drzewa-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 40vw, 80vw"
+                      width="1000"
+                      height="1484"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Zrywanie jabłek prosto z drzewa"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Prosto z&nbsp;drzewa</figcaption>
+              </figure>
+            </li>
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--landscape">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-siatki-pod-jabloniami-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg"
+                      srcset="../shared/photos/3-zbior-siatki-pod-jabloniami-1000.jpg 1000w, ../shared/photos/3-zbior-siatki-pod-jabloniami-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 46vw, 80vw"
+                      width="1000"
+                      height="750"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Zielone siatki rozłożone pod jabłoniami"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Siatki pod jabłoniami</figcaption>
+              </figure>
+            </li>
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--portrait">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-jablka-na-siatce-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-jablka-na-siatce-1000.jpg"
+                      srcset="../shared/photos/3-zbior-jablka-na-siatce-1000.jpg 1000w, ../shared/photos/3-zbior-jablka-na-siatce-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 38vw, 80vw"
+                      width="1000"
+                      height="1334"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Jabłka leżące na zielonej siatce pod drzewami"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Jabłka na siatce</figcaption>
+              </figure>
+            </li>
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--landscape">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-jesienna-jablon-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-jesienna-jablon-1000.jpg"
+                      srcset="../shared/photos/3-zbior-jesienna-jablon-1000.jpg 1000w, ../shared/photos/3-zbior-jesienna-jablon-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 46vw, 80vw"
+                      width="1000"
+                      height="775"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Jesienna jabłoń z owocami w promieniach słońca"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Jesienna jabłoń</figcaption>
+              </figure>
+            </li>
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--portrait">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-skrzynki-jablek-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg"
+                      srcset="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg 1000w, ../shared/photos/3-zbior-skrzynki-jablek-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 38vw, 80vw"
+                      width="1000"
+                      height="1308"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Drewniane skrzynki pełne czerwonych jabłek na trawie"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Skrzynki pełne jabłek</figcaption>
+              </figure>
+            </li>
+            <li class="harvest__item" data-reveal>
+              <figure class="snapshot">
+                <div class="frame frame--tall">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-pojemnik-na-jablka-640.jpg 640w" sizes="80vw" />
+                    <img
+                      src="../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg"
+                      srcset="../shared/photos/3-zbior-pojemnik-na-jablka-1000.jpg 1000w, ../shared/photos/3-zbior-pojemnik-na-jablka-2000.jpg 2000w"
+                      sizes="(min-width: 64rem) 16rem, (min-width: 40rem) 36vw, 80vw"
+                      width="1000"
+                      height="1599"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Zielony pojemnik na jabłka zawieszony na metalowym stojaku"
+                    />
+                  </picture>
+                </div>
+                <figcaption>Pojemnik na jabłka</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- IV. Transport ##################################################################### -->
+      <section class="chapter chapter--transport" id="transport" aria-labelledby="transport-tytul" data-magic="dust">
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">IV</span> Rozdział czwarty</p>
+            <h2 class="chapter__title" id="transport-tytul">Transport</h2>
+            <p class="chapter__tagline">Droga do Choczni</p>
+          </header>
+
+          <div class="journey">
+            <div class="journey__lede prose" data-reveal>
+              <p class="lede">
+                Wyselekcjonowane jabłka transportujemy do „Tłoczni Choczni” pod Wadowicami.
+              </p>
+            </div>
+
+            <figure class="journey__photo window" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/4-transport-bagaznik-pelen-workow-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg"
+                    srcset="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg 1000w, ../shared/photos/4-transport-bagaznik-pelen-workow-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 34rem, 92vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Bagażnik samochodu pełen worków z jabłkami"
+                  />
+                </picture>
+              </div>
+              <figcaption>Bagażnik pełen worków z&nbsp;jabłkami</figcaption>
+            </figure>
+
+            <figure class="road" data-road>
+              <svg
+                class="road__map"
+                viewBox="0 0 400 900"
+                role="img"
+                aria-label="Ilustracja: droga jabłek z Makowskiego Sadu w Makowie Podhalańskim do Tłoczni Chocznia pod Wadowicami"
+              >
+                <defs>
+                  <linearGradient id="road-beam" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#ffd98e" stop-opacity=".7" />
+                    <stop offset="1" stop-color="#ffd98e" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <g class="road__stars">
+                  <circle cx="34" cy="128" r="1.6" /><circle cx="92" cy="176" r="1.1" />
+                  <circle cx="346" cy="40" r="1.4" /><circle cx="372" cy="118" r="1" />
+                  <circle cx="300" cy="74" r="1.2" /><circle cx="58" cy="232" r="1.2" />
+                  <circle cx="370" cy="260" r="1.5" /><circle cx="24" cy="300" r="1" />
+                </g>
+                <g class="road__hills">
+                  <path d="M0 520C40 470 86 452 124 470 98 500 70 548 0 566Z" />
+                  <path d="M400 300C352 318 330 352 334 396 356 420 382 424 400 420Z" />
+                  <path d="M400 760C360 742 316 752 300 790 330 812 372 818 400 812Z" />
+                </g>
+                <g class="road__forest">
+                  <use href="#pine" transform="translate(48 172) scale(1.1)" />
+                  <use href="#pine" transform="translate(84 214) scale(.9)" />
+                  <use href="#pine" transform="translate(36 250) scale(1.25)" />
+                  <use href="#pine" transform="translate(338 372) scale(1.1)" />
+                  <use href="#pine" transform="translate(366 410) scale(.85)" />
+                  <use href="#pine" transform="translate(312 424) scale(.95)" />
+                  <use href="#pine" transform="translate(54 606) scale(1.2)" />
+                  <use href="#pine" transform="translate(98 642) scale(.9)" />
+                  <use href="#pine" transform="translate(44 690) scale(1)" />
+                  <use href="#pine" transform="translate(84 724) scale(.8)" />
+                  <use href="#pine" transform="translate(332 770) scale(1)" />
+                  <use href="#pine" transform="translate(364 808) scale(1.2)" />
+                </g>
+                <path class="road__verge" d="M200 92C330 140 340 230 220 290S60 400 150 480S350 600 260 680S120 770 200 800" />
+                <path class="road__bed" d="M200 92C330 140 340 230 220 290S60 400 150 480S350 600 260 680S120 770 200 800" />
+                <path class="road__dash" d="M200 92C330 140 340 230 220 290S60 400 150 480S350 600 260 680S120 770 200 800" />
+                <path class="road__glow" pathLength="1" d="M200 92C330 140 340 230 220 290S60 400 150 480S350 600 260 680S120 770 200 800" />
+                <path class="road__trail" pathLength="1" d="M200 92C330 140 340 230 220 290S60 400 150 480S350 600 260 680S120 770 200 800" />
+
+                <g class="road__pin" transform="translate(200 92)">
+                  <circle r="13" />
+                  <use href="#bloom" transform="scale(.85)" />
+                </g>
+                <text class="road__label" x="182" y="60" text-anchor="end">Makowski Sad</text>
+                <text class="road__sub" x="182" y="80" text-anchor="end">Maków Podhalański</text>
+
+                <g class="road__pin road__pin--end" transform="translate(200 800)">
+                  <circle r="13" />
+                  <path class="road__press" d="M-7 6V-2l4-3v3l4-3v3l4-3V6Z" />
+                </g>
+                <text class="road__label" x="200" y="846" text-anchor="middle">Tłocznia Chocznia</text>
+                <text class="road__sub" x="200" y="866" text-anchor="middle">pod Wadowicami</text>
+
+                <g class="road__car" transform="translate(200 800) rotate(21)"><use href="#car" /></g>
+              </svg>
+              <figcaption>Ilustracja: droga jabłek do tłoczni</figcaption>
+            </figure>
+
+            <div class="journey__partners">
+              <h3 class="chapter__subhead" data-reveal>Współpracujemy z&nbsp;lokalnymi biznesami</h3>
+              <ul class="partners" role="list">
+                <li class="partner" data-reveal>
+                  <div class="partner__photo frame frame--landscape">
+                    <picture>
+                      <source media="(max-width: 29.99rem)" srcset="../shared/photos/4-transport-koniki-640.jpg 640w" sizes="88vw" />
+                      <img
+                        src="../shared/photos/4-transport-koniki-1000.jpg"
+                        width="1000"
+                        height="760"
+                        loading="lazy"
+                        decoding="async"
+                        alt="Dwa konie na pastwisku, w tle zalesione wzgórza i słońce"
+                      />
+                    </picture>
+                  </div>
+                  <h4 class="partner__name">Stadnina koni</h4>
+                  <p>Nadmiarowe jabłka zawozimy dla koników pana Andrzeja.</p>
+                  <p><a class="partner__link" href="http://www.makowskagora.pl">Jazda konna</a></p>
+                </li>
+                <li class="partner partner--forest" data-reveal>
+                  <svg class="partner__emblem" viewBox="0 0 120 60" aria-hidden="true" focusable="false">
+                    <use href="#pine" transform="translate(30 44) scale(1.2)" />
+                    <use href="#pine" transform="translate(60 40) scale(1.5)" />
+                    <use href="#pine" transform="translate(90 46) scale(1.1)" />
+                  </svg>
+                  <h4 class="partner__name">Leśnicy i&nbsp;myśliwi</h4>
+                  <p>
+                    Nasze jabłka też idealnie nadają się do karmienia zwierząt leśnych. Dzikie zwierzątka
+                    zostają w&nbsp;lesie i&nbsp;nie wchodzą w&nbsp;szkodę :)
+                  </p>
+                </li>
+              </ul>
+              <p class="journey__closing" data-reveal>
+                Pozostałe odpady oddajemy do lokalnego Punktu Selektywnej Zbiórki Odpadów Komunalnych.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- V. Tłoczenie ###################################################################### -->
+      <section class="chapter chapter--tloczenie" id="tloczenie" aria-labelledby="tloczenie-tytul" data-magic="sparks">
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">V</span> Rozdział piąty</p>
+            <h2 class="chapter__title" id="tloczenie-tytul">Tłoczenie</h2>
+            <p class="chapter__tagline">Tu dzieje się magia</p>
+          </header>
+
+          <div class="pressroom">
+            <div class="prose" data-reveal>
+              <p class="lede">
+                „Tłocznia Chocznia” to profesjonalna tłocznia, wyposażona w&nbsp;nowoczesne urządzenia,
+                które zapewniają precyzję, skuteczność procesu tłoczenia i&nbsp;dbałość o&nbsp;środowisko
+                naturalne.
+              </p>
+              <p>Cały proces jest zoptymalizowany przez tłocznię.</p>
+            </div>
+
+            <figure class="pressroom__photo window" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/5-tloczenie-worki-w-tloczni-640.jpg 640w" sizes="76vw" />
+                  <img
+                    src="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg"
+                    srcset="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg 1000w, ../shared/photos/5-tloczenie-worki-w-tloczni-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 40vw, 76vw"
+                    width="1000"
+                    height="1411"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Worki z jabłkami w tłoczni, obok waga"
+                  />
+                </picture>
+              </div>
+              <figcaption>Worki z&nbsp;jabłkami w&nbsp;tłoczni</figcaption>
+            </figure>
+          </div>
+
+          <figure class="press" data-loop data-reveal>
+            <svg
+              class="press__art"
+              viewBox="0 0 560 500"
+              role="img"
+              aria-label="Ilustracja: nowoczesna prasa wyciska sok z jabłek"
+            >
+              <defs>
+                <linearGradient id="press-steel" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#55626f" />
+                  <stop offset=".22" stop-color="#c3ced8" />
+                  <stop offset=".5" stop-color="#eef3f7" />
+                  <stop offset=".78" stop-color="#a3b0bc" />
+                  <stop offset="1" stop-color="#55626f" />
+                </linearGradient>
+                <linearGradient id="press-juice" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffe7a8" />
+                  <stop offset=".55" stop-color="#f3b64b" />
+                  <stop offset="1" stop-color="#e08a2e" />
+                </linearGradient>
+                <radialGradient id="press-halo">
+                  <stop offset="0" stop-color="#f3b64b" stop-opacity=".42" />
+                  <stop offset="1" stop-color="#f3b64b" stop-opacity="0" />
+                </radialGradient>
+                <clipPath id="press-window-clip"><rect x="266" y="196" width="150" height="110" rx="14" /></clipPath>
+                <clipPath id="press-stream-clip"><path d="M414 354q-2 25 1 52h10q3-27 1-52z" /></clipPath>
+                <clipPath id="press-tank-clip"><rect x="386" y="412" width="68" height="46" rx="8" /></clipPath>
+              </defs>
+
+              <ellipse cx="330" cy="330" rx="270" ry="200" fill="url(#press-halo)" />
+              <path class="press__floor" d="M20 471H540" />
+              <ellipse class="press__shadow" cx="300" cy="474" rx="250" ry="9" />
+
+              <!-- crate and conveyor -->
+              <g class="press__belt-legs">
+                <path d="M128 360V470M196 238V470" />
+              </g>
+              <g transform="translate(96 420) rotate(-60.8)">
+                <rect class="press__belt" x="0" y="-8" width="390" height="16" rx="8" />
+                <path class="press__belt-ridges" d="M12 0H378" />
+                <g class="press__ride press__ride--1"><use href="#apple" transform="translate(0 -17) rotate(60.8) scale(1.5)" /></g>
+                <g class="press__ride press__ride--2"><use href="#apple" transform="translate(0 -17) rotate(60.8) scale(1.5)" /></g>
+                <g class="press__ride press__ride--3"><use href="#apple" transform="translate(0 -17) rotate(60.8) scale(1.5)" /></g>
+              </g>
+              <g class="press__crate">
+                <rect x="34" y="420" width="116" height="50" rx="5" />
+                <path d="M34 437H150M34 454H150" />
+                <use href="#apple" transform="translate(56 414) scale(1.5)" />
+                <use href="#apple" transform="translate(80 411) scale(1.6)" />
+                <use href="#apple" transform="translate(106 414) scale(1.5)" />
+                <use href="#apple" transform="translate(130 412) scale(1.4)" />
+              </g>
+
+              <!-- hopper -->
+              <path class="press__hopper" d="M262 98H362L340 160H284Z" fill="url(#press-steel)" />
+              <rect class="press__rim" x="256" y="90" width="112" height="10" rx="4" />
+              <rect class="press__neck" x="298" y="158" width="28" height="14" fill="url(#press-steel)" />
+
+              <!-- press cabinet -->
+              <rect class="press__cap" x="232" y="168" width="256" height="14" rx="6" />
+              <rect class="press__cabinet" x="240" y="178" width="240" height="156" rx="18" fill="url(#press-steel)" />
+              <rect class="press__glass" x="266" y="196" width="150" height="110" rx="14" />
+              <g clip-path="url(#press-window-clip)">
+                <rect x="262" y="276" width="160" height="34" fill="url(#press-juice)" />
+                <path class="press__wave" d="M240 278q10-6 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0V284H240Z" />
+                <g class="press__roller press__roller--1">
+                  <circle cx="310" cy="246" r="30" />
+                  <path d="M310 218V274M282 246H338M290 226 330 266M330 226 290 266" />
+                </g>
+                <g class="press__roller press__roller--2">
+                  <circle cx="372" cy="246" r="30" />
+                  <path d="M372 218V274M344 246H400M352 226 392 266M392 226 352 266" />
+                </g>
+              </g>
+              <rect class="press__glass-rim" x="266" y="196" width="150" height="110" rx="14" />
+              <rect class="press__panel" x="428" y="196" width="38" height="98" rx="8" />
+              <rect class="press__screen" x="434" y="204" width="26" height="18" rx="3" />
+              <path class="press__graph" d="M437 216l4-5 4 3 4-6 5 4" />
+              <circle class="press__light press__light--1" cx="447" cy="238" r="4.5" />
+              <circle class="press__light press__light--2" cx="447" cy="256" r="4.5" />
+              <circle class="press__light press__light--3" cx="447" cy="274" r="4.5" />
+              <g class="press__bolts">
+                <circle cx="252" cy="190" r="3" /><circle cx="468" cy="190" r="3" />
+                <circle cx="252" cy="322" r="3" /><circle cx="468" cy="322" r="3" />
+              </g>
+
+              <!-- stand -->
+              <rect class="press__leg" x="258" y="334" width="16" height="136" rx="4" />
+              <rect class="press__leg" x="446" y="334" width="16" height="136" rx="4" />
+              <rect class="press__leg" x="266" y="426" width="96" height="8" rx="3" />
+
+              <!-- spout, stream and tank -->
+              <rect class="press__spout" x="408" y="334" width="24" height="12" rx="3" />
+              <path class="press__nozzle" d="M412 346h16l-3 8h-10z" />
+              <path class="press__stream" d="M414 354q-2 25 1 52h10q3-27 1-52z" fill="url(#press-juice)" />
+              <g clip-path="url(#press-stream-clip)">
+                <g class="press__flow">
+                  <rect x="410" y="300" width="20" height="6" rx="3" />
+                  <rect x="410" y="326" width="20" height="4" rx="2" />
+                  <rect x="410" y="352" width="20" height="6" rx="3" />
+                  <rect x="410" y="378" width="20" height="4" rx="2" />
+                  <rect x="410" y="404" width="20" height="6" rx="3" />
+                </g>
+              </g>
+              <rect class="press__tank" x="370" y="400" width="100" height="70" rx="12" fill="url(#press-steel)" />
+              <rect class="press__cap" x="364" y="394" width="112" height="10" rx="5" />
+              <rect class="press__glass" x="386" y="412" width="68" height="46" rx="8" />
+              <g clip-path="url(#press-tank-clip)">
+                <g class="press__level">
+                  <rect x="380" y="430" width="80" height="40" fill="url(#press-juice)" />
+                  <path class="press__wave" d="M356 432q8-5 16 0t16 0 16 0 16 0 16 0 16 0 16 0 16 0V438H356Z" />
+                </g>
+              </g>
+              <rect class="press__glass-rim" x="386" y="412" width="68" height="46" rx="8" />
+
+              <g class="press__sparks">
+                <use class="press__spark press__spark--1" href="#spark" transform="translate(452 372)" />
+                <use class="press__spark press__spark--2" href="#spark" transform="translate(392 378) scale(.7)" />
+                <use class="press__spark press__spark--3" href="#spark" transform="translate(488 420) scale(.8)" />
+                <use class="press__spark press__spark--4" href="#spark" transform="translate(352 436) scale(.6)" />
+                <use class="press__spark press__spark--5" href="#spark" transform="translate(420 300) scale(.9)" />
+              </g>
+            </svg>
+            <figcaption>Ilustracja: nowoczesna tłocznia przy pracy</figcaption>
+          </figure>
+
+          <ul class="seals" role="list">
+            <li class="seal" data-reveal>
+              <span class="seal__big">100%</span>
+              <span class="seal__small">naturalne składniki</span>
+            </li>
+            <li class="seal" data-reveal>
+              <span class="seal__small">Bez dodatku cukru i&nbsp;konserwantów</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- VI. Pakowanie ##################################################################### -->
+      <section class="chapter chapter--pakowanie" id="pakowanie" aria-labelledby="pakowanie-tytul" data-magic="glow">
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">VI</span> Rozdział szósty</p>
+            <h2 class="chapter__title" id="pakowanie-tytul">Pakowanie</h2>
+            <p class="chapter__tagline">Sok zaklęty w&nbsp;kartonie</p>
+          </header>
+
+          <div class="juicebox">
+            <div class="juicebox__stage" data-loop data-reveal>
+              <div class="juicebox__carton frame frame--carton">
+                <img
+                  src="../shared/photos/6-pakowanie-karton-wizualizacja-279.png"
+                  width="279"
+                  height="365"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Karton soku jabłkowego Makowski Sad"
+                />
+              </div>
+            </div>
+            <div class="juicebox__text" data-reveal>
+              <h3 class="juicebox__title">Soki jabłkowe</h3>
+              <p class="juicebox__sub">W&nbsp;pudełku lub same worki 3&nbsp;l.</p>
+              <ul class="benefits" role="list">
+                <li>Przydatność do spożycia przez co najmniej 5&nbsp;dni po otwarciu</li>
+                <li>Mniej materiałów na opakowanie</li>
+                <li>Łatwe przechowywanie i&nbsp;nalewanie</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="prose" data-reveal>
+            <p class="lede">Soki są dystrybuowane w&nbsp;workach PET z&nbsp;kranikiem.</p>
+            <p>
+              Opcjonalnie soki są dodatkowo opakowane w&nbsp;prosty karton, umożliwiający łatwe
+              nalewanie oraz zabezpieczający bukłak przed przypadkowym uszkodzeniem.
+            </p>
+          </div>
+
+          <div class="pantry">
+            <figure class="pantry__item pantry__item--wide" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-worki-z-zawieszkami-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg"
+                    srcset="../shared/photos/6-pakowanie-worki-z-zawieszkami-1000.jpg 1000w, ../shared/photos/6-pakowanie-worki-z-zawieszkami-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 34rem, (min-width: 40rem) 60vw, 92vw"
+                    width="1000"
+                    height="782"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Worki soku z kranikami i ręcznie wyciętymi zawieszkami na sznurku"
+                  />
+                </picture>
+              </div>
+              <figcaption>Worki soku z&nbsp;kranikami i&nbsp;zawieszkami</figcaption>
+            </figure>
+            <figure class="pantry__item pantry__item--tall" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-640.jpg 640w" sizes="70vw" />
+                  <img
+                    src="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg"
+                    srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg 1000w, ../shared/photos/6-pakowanie-stempel-i-etykiety-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 19rem, (min-width: 40rem) 34vw, 70vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Stempel z logo, ręcznie wycięte kartonowe etykiety i szpulka sznurka"
+                  />
+                </picture>
+              </div>
+              <figcaption>Stempel, etykiety i&nbsp;sznurek</figcaption>
+            </figure>
+          </div>
+
+          <div class="labels">
+            <div class="tag" data-reveal>
+              <div class="tag__photo frame frame--tag">
+                <img
+                  src="../shared/photos/6-pakowanie-etykiety-na-sznurku-480.jpg"
+                  width="480"
+                  height="640"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Ostemplowane etykiety z kartonu przywiązane sznurkiem"
+                />
+              </div>
+              <p class="tag__text">
+                Etykiety robimy własnoręcznie, wycinając z&nbsp;kartonów po pizzy lub zużytych pudeł.
+                Przywiązujemy je najprostszym sznurkiem.
+              </p>
+              <img
+                class="tag__stamp"
+                src="../../assets/icons/vertical_black.svg"
+                width="1105"
+                height="870"
+                loading="lazy"
+                decoding="async"
+                alt=""
+              />
+            </div>
+            <div class="prose" data-reveal>
+              <p>
+                Wszystkie napisy i&nbsp;logo są umieszczane poprzez ostemplowanie&nbsp;– w&nbsp;ten
+                sposób nie tworzymy dodatkowych etykiet, nie używamy naklejek. W&nbsp;ten sposób kartony
+                mogą być wielokrotnie używane&nbsp;– wystarczy uzupełniać „wkład”, do czego gorąco
+                zachęcamy.
+              </p>
+            </div>
+          </div>
+
+          <div class="pantry pantry--second">
+            <figure class="pantry__item pantry__item--wide" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-karton-i-worek-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg"
+                    srcset="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg 1000w, ../shared/photos/6-pakowanie-karton-i-worek-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 34rem, (min-width: 40rem) 60vw, 92vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Kartony z ostemplowanym logo i worki soku z kranikami na stole pod jabłonią"
+                  />
+                </picture>
+              </div>
+              <figcaption>Kartony i&nbsp;worki pod jabłonią</figcaption>
+            </figure>
+            <figure class="pantry__item pantry__item--tall" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-kartony-na-jabloni-640.jpg 640w" sizes="70vw" />
+                  <img
+                    src="../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg"
+                    srcset="../shared/photos/6-pakowanie-kartony-na-jabloni-1000.jpg 1000w, ../shared/photos/6-pakowanie-kartony-na-jabloni-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 19rem, (min-width: 40rem) 34vw, 70vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Dwa kartony soku ustawione w rozwidleniu jabłoni"
+                  />
+                </picture>
+              </div>
+              <figcaption>Kartony w&nbsp;rozwidleniu jabłoni</figcaption>
+            </figure>
+            <figure class="pantry__item pantry__item--shelf" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-polki-z-sokami-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg"
+                    srcset="../shared/photos/6-pakowanie-polki-z-sokami-1000.jpg 1000w, ../shared/photos/6-pakowanie-polki-z-sokami-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 44rem, (min-width: 40rem) 80vw, 92vw"
+                    width="1000"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Drewniane półki pełne worków soku z zawieszkami"
+                  />
+                </picture>
+              </div>
+              <figcaption>Półki pełne soku</figcaption>
+            </figure>
+          </div>
+
+          <aside class="sorting" aria-labelledby="segregacja" data-reveal>
+            <h3 class="sorting__title" id="segregacja">Jak segregować</h3>
+            <p>
+              Etykietki można utylizować jako papier, podobnie jak samo pudełko, jak się już zużyje.
+              Worek PET, po całkowitym opróżnieniu, można wyrzucić do plastików. Zalecamy odciąć
+              wcześniej kranik&nbsp;– umożliwia to wykorzystanie całości soku i&nbsp;ułatwia sortowanie.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- VII. Sprzedaż ##################################################################### -->
+      <section class="chapter chapter--sprzedaz" id="sprzedaz" aria-labelledby="sprzedaz-tytul" data-magic="lanterns">
+        <svg class="lanterns" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false" data-loop>
+          <defs>
+            <radialGradient id="lantern-glow">
+              <stop offset="0" stop-color="#ffd98e" stop-opacity=".55" />
+              <stop offset="1" stop-color="#ffd98e" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <path class="lanterns__wire" d="M-20 14Q185 118 390 26Q600 130 810 18Q1015 118 1220 30" />
+          <g transform="translate(62 48)"><g class="lantern"><path class="lantern__string" d="M0 0V10" /><circle class="lantern__glow" cy="27" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="8" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="12" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 14V40M5 14V40" /></g></g>
+          <g transform="translate(185 69)"><g class="lantern"><path class="lantern__string" d="M0 0V17" /><circle class="lantern__glow" cy="34" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="15" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="19" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 21V47M5 21V47" /></g></g>
+          <g transform="translate(308 55)"><g class="lantern"><path class="lantern__string" d="M0 0V24" /><circle class="lantern__glow" cy="41" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="22" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="26" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 28V54M5 28V54" /></g></g>
+          <g transform="translate(474 59)"><g class="lantern"><path class="lantern__string" d="M0 0V15" /><circle class="lantern__glow" cy="32" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="13" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="17" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 19V45M5 19V45" /></g></g>
+          <g transform="translate(600 76)"><g class="lantern"><path class="lantern__string" d="M0 0V22" /><circle class="lantern__glow" cy="39" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="20" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="24" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 26V52M5 26V52" /></g></g>
+          <g transform="translate(726 54)"><g class="lantern"><path class="lantern__string" d="M0 0V13" /><circle class="lantern__glow" cy="30" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="11" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="15" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 17V43M5 17V43" /></g></g>
+          <g transform="translate(892 50)"><g class="lantern"><path class="lantern__string" d="M0 0V20" /><circle class="lantern__glow" cy="37" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="18" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="22" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 24V50M5 24V50" /></g></g>
+          <g transform="translate(1015 71)"><g class="lantern"><path class="lantern__string" d="M0 0V11" /><circle class="lantern__glow" cy="28" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="9" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="13" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 15V41M5 15V41" /></g></g>
+          <g transform="translate(1138 58)"><g class="lantern"><path class="lantern__string" d="M0 0V18" /><circle class="lantern__glow" cy="35" r="34" fill="url(#lantern-glow)" /><rect class="lantern__cap" x="-6" y="16" width="12" height="5" rx="1.5" /><rect class="lantern__body" x="-11" y="20" width="22" height="30" rx="10" /><path class="lantern__rib" d="M-5 22V48M5 22V48" /></g></g>
+        </svg>
+        <div class="chapter__inner">
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker"><span class="chapter__num" aria-hidden="true">VII</span> Rozdział siódmy</p>
+            <h2 class="chapter__title" id="sprzedaz-tytul">Sprzedaż</h2>
+            <p class="chapter__tagline">Gdy sad wychodzi do ludzi</p>
+          </header>
+
+          <p class="yield" data-reveal>
+            <span class="yield__line">Produkujemy rocznie około</span>
+            <strong class="yield__amount">300&nbsp;litrów</strong>
+            <span class="yield__line">wysokiej jakości soków jabłkowych.</span>
+          </p>
+          <p class="saying" data-reveal>Chętnie obsługujemy imprezy lokalne.</p>
+
+          <div class="market">
+            <figure class="market__item market__item--tent" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-640.jpg 640w" sizes="80vw" />
+                  <img
+                    src="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg"
+                    srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg 1000w, ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 40vw, 80vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Stoisko z sokami pod białym namiotem, za stołem dwie osoby"
+                  />
+                </picture>
+              </div>
+              <figcaption>Stoisko pod białym namiotem</figcaption>
+            </figure>
+            <figure class="market__item market__item--stall" data-reveal>
+              <div class="frame frame--landscape">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-drewniane-stoisko-640.jpg 640w" sizes="92vw" />
+                  <img
+                    src="../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg"
+                    srcset="../shared/photos/7-sprzedaz-drewniane-stoisko-1000.jpg 1000w, ../shared/photos/7-sprzedaz-drewniane-stoisko-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 30rem, (min-width: 40rem) 52vw, 92vw"
+                    width="1000"
+                    height="748"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Drewniane stoisko z sokami"
+                  />
+                </picture>
+              </div>
+              <figcaption>Drewniane stoisko</figcaption>
+            </figure>
+            <figure class="market__item market__item--folk" data-reveal>
+              <div class="frame frame--folk">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-impreza-ludowa-640.jpg 640w" sizes="80vw" />
+                  <img
+                    src="../shared/photos/7-sprzedaz-impreza-ludowa-914.jpg"
+                    width="914"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Karton z logo i worek soku, w tle występ zespołu w strojach ludowych"
+                  />
+                </picture>
+              </div>
+              <figcaption>Karton z&nbsp;logo, w&nbsp;tle zespół w&nbsp;strojach ludowych</figcaption>
+            </figure>
+            <figure class="market__item market__item--table" data-reveal>
+              <div class="frame frame--arch">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-stol-w-sadzie-640.jpg 640w" sizes="80vw" />
+                  <img
+                    src="../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg"
+                    srcset="../shared/photos/7-sprzedaz-stol-w-sadzie-1000.jpg 1000w, ../shared/photos/7-sprzedaz-stol-w-sadzie-2000.jpg 2000w"
+                    sizes="(min-width: 64rem) 20rem, (min-width: 40rem) 40vw, 80vw"
+                    width="1000"
+                    height="1333"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Biały drewniany stół w sadzie z kartonami soku"
+                  />
+                </picture>
+              </div>
+              <figcaption>Stół w&nbsp;sadzie z&nbsp;kartonami soku</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Epilog: contact ################################################################### -->
+      <section class="finale" id="kontakt" aria-labelledby="kontakt-tytul" data-magic="fireflies">
+        <div class="finale__inner">
+          <p class="moral" data-reveal>
+            <span class="moral__label">Morał</span>
+            Najlepsze soki powstają w&nbsp;harmonii z&nbsp;naturą.
+          </p>
+
+          <header class="chapter__head" data-reveal>
+            <p class="chapter__kicker">Epilog</p>
+            <h2 class="chapter__title chapter__title--small" id="kontakt-tytul">Gdzie nas znaleźć</h2>
+          </header>
+
+          <div class="finale__card" data-reveal>
+            <img
+              class="finale__logo"
+              src="../../assets/icons/vertical_white.svg"
+              width="1105"
+              height="870"
+              loading="lazy"
+              decoding="async"
+              alt="Makowski Sad"
+            />
+            <address class="finale__address">
+              <span>ul. Sosnowa 7</span>
+              <span>34-220 Maków Podhalański</span>
+              <a class="finale__mail" href="mailto:info@makowskisad.pl">info@makowskisad.pl</a>
+            </address>
+            <h3 class="finale__social-title">Znajdź nas na socialach</h3>
+            <ul class="social" role="list">
+              <li>
+                <a class="social__link" href="https://instagram.com/makowskisad">
+                  <svg class="social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 2.16c3.2 0 3.58 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s0-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33 0 7.05.07c-4.35.2-6.78 2.62-7 7C0 8.33 0 8.74 0 12s0 3.67.07 4.95c.2 4.36 2.62 6.78 7 7C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c4.35-.2 6.78-2.62 7-7C24 15.67 24 15.26 24 12s0-3.67-.07-4.95c-.2-4.35-2.62-6.78-7-7C15.67 0 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84ZM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4ZM18.41 4.15a1.44 1.44 0 1 0 1.43 1.44 1.44 1.44 0 0 0-1.43-1.44Z" />
+                  </svg>
+                  Instagram <span class="social__handle">@makowskisad</span>
+                </a>
+              </li>
+              <li>
+                <a class="social__link" href="https://facebook.com/makowskisad">
+                  <svg class="social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4Z" />
+                  </svg>
+                  Facebook <span class="social__handle">@makowskisad</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <nav class="colophon__nav" aria-label="Stopka">
+        <ul>
+          <li><a href="../../index.html">Strona główna</a></li>
+          <li><a href="../index.html">Wszystkie wersje</a></li>
+          <li><a href="#brama">Wróć do bramy sadu</a></li>
+        </ul>
+      </nav>
+      <p class="colophon__note">Wersja robocza „Wejdź do sadu” z&nbsp;6&nbsp;października 2026.</p>
+      <p class="colophon__copy">© 2026 HorizonCrafts.</p>
+    </footer>
+
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <defs>
+        <g id="bough" class="bough__art">
+          <path class="br-wood" d="M194 26Q181 33 172 39Q164 45 155 53Q146 60 128 57Q110 54 93 53Q77 51 61 51Q45 50 29 51Q14 51 -1 53Q-16 54 -21 55Q-27 57 -29 58Q-31 59 -32 61Q-33 63 -34 65Q-35 68 -35 70Q-35 72 -33 76Q-32 79 -30 80Q-29 82 -27 83Q-25 84 -22 85Q-20 85 1 82Q23 79 44 78Q64 77 86 78Q108 79 131 82Q154 85 172 88Q191 92 212 97Q232 102 255 109Q278 116 302 124Q325 132 326 133Q327 134 330 138Q333 143 354 176Q375 210 381 219Q388 228 394 234Q399 240 400 240Q402 240 402 238Q402 237 397 230Q391 222 386 214Q380 205 361 172Q343 139 368 148Q393 158 424 170Q456 183 460 185Q465 187 466 189Q468 190 471 191Q474 191 542 220Q610 249 610 250Q611 250 612 251Q613 251 614 251Q615 252 616 252Q617 252 618 253Q619 254 620 254Q621 254 622 253Q624 252 624 250Q624 249 623 248Q622 246 621 246Q620 246 619 245Q618 245 617 245Q616 244 615 244Q615 243 614 243Q613 243 612 242Q611 241 546 211Q480 181 489 173Q497 164 506 157Q516 150 521 147Q527 144 533 141Q539 138 546 136Q553 133 560 131Q567 130 567 129Q568 128 567 127Q567 126 561 127Q554 128 547 130Q541 132 534 134Q527 137 521 140Q515 142 510 146Q504 149 498 153Q493 157 487 162Q482 166 477 172Q471 177 421 155Q371 133 332 118Q292 102 274 96Q257 89 239 84Q222 78 206 74Q191 70 176 66Q160 63 167 57Q174 51 181 46Q189 41 196 36Q203 32 210 28Q217 24 226 20Q235 16 245 13Q255 9 266 6Q278 3 289 1Q301 -2 302 -3Q302 -4 302 -5Q301 -6 296 -6Q290 -5 279 -3Q267 -1 251 4Q234 8 221 13Q207 19 194 26Z"/>
+          <use href="#leaf" transform="translate(18 65) rotate(-59) scale(1.14)"/>
+          <use href="#leaf" transform="translate(51 64) rotate(42) scale(1.21)"/>
+          <use href="#leaf" transform="translate(84 64) rotate(-47) scale(1.08)"/>
+          <use href="#leaf" transform="translate(103 66) rotate(43) scale(1.02)"/>
+          <use href="#leaf" transform="translate(137 70) rotate(-31) scale(1.21)"/>
+          <use href="#leaf" transform="translate(160 74) rotate(55) scale(0.87)"/>
+          <use href="#leaf" transform="translate(203 84) rotate(-41) scale(1.24)"/>
+          <use href="#leaf" transform="translate(226 90) rotate(55) scale(1.00)"/>
+          <use href="#leaf" transform="translate(255 99) rotate(-23) scale(1.28)"/>
+          <use href="#leaf" transform="translate(285 109) rotate(61) scale(1.22)"/>
+          <use href="#leaf" transform="translate(313 119) rotate(-40) scale(1.05)"/>
+          <use href="#leaf" transform="translate(355 135) rotate(68) scale(1.07)"/>
+          <use href="#leaf" transform="translate(382 146) rotate(-17) scale(1.24)"/>
+          <use href="#leaf" transform="translate(419 161) rotate(80) scale(0.94)"/>
+          <use href="#leaf" transform="translate(473 185) rotate(-36) scale(1.19)"/>
+          <use href="#leaf" transform="translate(508 200) rotate(76) scale(1.18)"/>
+          <use href="#leaf" transform="translate(534 211) rotate(-25) scale(1.22)"/>
+          <use href="#leaf" transform="translate(578 231) rotate(84) scale(1.25)"/>
+          <use href="#leaf" transform="translate(300 -4) rotate(-20) scale(0.92)"/>
+          <use href="#leaf" transform="translate(400 238) rotate(60) scale(0.91)"/>
+          <use href="#leaf" transform="translate(566 128) rotate(-10) scale(0.94)"/>
+          <use href="#leaf" transform="translate(244 8) rotate(40) scale(0.92)"/>
+          <use href="#leaf" transform="translate(372 206) rotate(110) scale(1.10)"/>
+        </g>
+        <g id="bough-blooms">
+          <use href="#bloom" transform="translate(97 70) rotate(12) scale(1.9)" />
+          <use href="#bloom" transform="translate(195 92) rotate(40) scale(1.5)" />
+          <use href="#bloom" transform="translate(302 122) rotate(5) scale(1.8)" />
+          <use href="#bloom" transform="translate(388 158) rotate(30) scale(1.4)" />
+          <use href="#bloom" transform="translate(508 206) rotate(60) scale(1.6)" />
+          <use href="#bloom" transform="translate(246 58) rotate(20) scale(1.2)" />
+          <use href="#bloom" transform="translate(452 160) rotate(50) scale(1.1)" />
+        </g>
+        <g id="bough-apples">
+          <use href="#apple" transform="translate(97 92) scale(2.3)" />
+          <use href="#apple" transform="translate(195 116) rotate(-8) scale(1.9)" />
+          <use href="#apple" transform="translate(302 146) rotate(6) scale(2.4)" />
+          <use href="#apple" transform="translate(388 182) scale(1.8)" />
+          <use href="#apple" transform="translate(508 230) rotate(-10) scale(2.1)" />
+        </g>
+        <g id="apple" class="apple">
+          <path class="apple__body" d="M0-5.2C-2.6-7.4-8-6.6-8-.8-8 4.8-4.2 8.6 0 7.6 4.2 8.6 8 4.8 8-.8 8-6.6 2.6-7.4 0-5.2Z" />
+          <path class="apple__stalk" d="M0-5.4Q.4-8.6 2.4-10.2" />
+          <ellipse class="apple__shine" cx="-3.6" cy="-1.4" rx="1.5" ry="2.4" transform="rotate(20 -3.6 -1.4)" />
+        </g>
+        <path id="pine" d="M0-30 10-10H5L13 4H4v8h-8V4h-9l8-14h-5Z" />
+        <path id="spark" d="M0-7 1.6-1.6 7 0 1.6 1.6 0 7-1.6 1.6-7 0-1.6-1.6Z" />
+        <g id="car">
+          <path class="car__beam" d="M22-6 74-24V24L22 6Z" fill="url(#road-beam)" />
+          <rect class="car__body" x="-23" y="-11.5" width="46" height="23" rx="8" />
+          <rect class="car__roof" x="-11" y="-9" width="19" height="18" rx="4" />
+          <path class="car__glass" d="M9-8h4q3 0 3 3V5q0 3-3 3H9Z" />
+          <path class="car__glass" d="M-12-7h-3q-2 0-2 2V5q0 2 2 2h3Z" />
+          <circle class="car__apple" cx="-19" cy="-5" r="2.4" />
+          <circle class="car__apple" cx="-19.5" cy="1" r="2.4" />
+          <circle class="car__apple car__apple--green" cx="-18.5" cy="6.5" r="2.2" />
+          <circle class="car__lamp" cx="21" cy="-6.5" r="2.2" />
+          <circle class="car__lamp" cx="21" cy="6.5" r="2.2" />
+        </g>
+      </defs>
+    </svg>
+  </body>
+</html>
