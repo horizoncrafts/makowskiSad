@@ -707,6 +707,8 @@ main:focus {
 
 /* Chapters ================================================================= */
 
+/* Each chapter's --top is the previous one's --bottom, and every pool fades
+   out before its section's top and bottom edges, so chapters meet without a seam. */
 .chapter {
   position: relative;
   overflow-x: clip;
@@ -739,7 +741,7 @@ main:focus {
   --mid: #2a1f36;
   --bottom: #1f2430;
   --accent: var(--rose);
-  --pool: radial-gradient(ellipse 55% 35% at 85% 12%, rgb(242 196 204 / 0.2), transparent 70%);
+  --pool: radial-gradient(ellipse 55% 30% at 85% 24%, rgb(242 196 204 / 0.2), transparent 70%);
   --foliage: #3d5a35;
   --bark: #3b2a1f;
   --glow: rgb(242 196 204 / 0.28);
@@ -750,16 +752,26 @@ main:focus {
   --mid: #102a24;
   --bottom: #0f2a1d;
   --accent: #cfe89a;
-  --pool:
-    repeating-linear-gradient(
-      118deg,
-      transparent 0 7rem,
-      rgb(255 236 170 / 0.035) 7rem 10rem,
-      transparent 10rem 16rem
-    );
   --foliage: #36602f;
   --bark: #3a2a1c;
   --glow: rgb(207 232 154 / 0.22);
+}
+
+/* Light falling through the leaves; it fades out before the chapter's edges. */
+.chapter--jablko::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    118deg,
+    transparent 0 7rem,
+    rgb(255 236 170 / 0.035) 7rem 10rem,
+    transparent 10rem 16rem
+  );
+  -webkit-mask-image: linear-gradient(transparent, #000 14rem, #000 calc(100% - 14rem), transparent);
+  mask-image: linear-gradient(transparent, #000 14rem, #000 calc(100% - 14rem), transparent);
+  pointer-events: none;
 }
 
 .chapter--zbior {
@@ -767,7 +779,7 @@ main:focus {
   --mid: #2a2912;
   --bottom: #33240e;
   --accent: var(--gold);
-  --pool: radial-gradient(ellipse 60% 40% at 10% 85%, rgb(243 182 75 / 0.16), transparent 70%);
+  --pool: radial-gradient(ellipse 60% 38% at 10% 70%, rgb(243 182 75 / 0.16), transparent 70%);
   --foliage: #5a6a2a;
   --bark: #3f2b18;
   --fruit: #d24a2c;
@@ -795,7 +807,7 @@ main:focus {
   --mid: #22170f;
   --bottom: #1d130d;
   --accent: #f6c98a;
-  --pool: radial-gradient(ellipse 50% 28% at 50% 16%, rgb(255 200 120 / 0.14), transparent 70%);
+  --pool: radial-gradient(ellipse 50% 24% at 50% 19%, rgb(255 200 120 / 0.14), transparent 70%);
 }
 
 .chapter--sprzedaz {
@@ -803,7 +815,7 @@ main:focus {
   --mid: #1a1431;
   --bottom: #0f1228;
   --accent: var(--rose);
-  --pool: radial-gradient(ellipse 70% 22% at 50% 4%, rgb(255 217 142 / 0.16), transparent 72%);
+  --pool: radial-gradient(ellipse 70% 22% at 50% 17%, rgb(255 217 142 / 0.16), transparent 72%);
   --glow: rgb(255 217 142 / 0.35);
 }
 
@@ -2397,7 +2409,7 @@ figcaption {
   padding: clamp(5rem, 14vw, 8.5rem) var(--gutter) 4.5rem;
   text-align: center;
   background:
-    radial-gradient(ellipse 70% 40% at 50% 0%, rgb(243 182 75 / 0.14), transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 30%, rgb(243 182 75 / 0.14), transparent 70%),
     linear-gradient(#0f1228, #080b16);
   --accent: var(--gold-2);
 }
@@ -3183,6 +3195,7 @@ figcaption {
   .masthead,
   .magic,
   .magic-toggle,
+  .chapter--jablko::before,
   .gate__motes,
   .gate__trunk,
   .gate__hills,
