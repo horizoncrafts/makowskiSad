@@ -577,9 +577,12 @@ body {
   height: 123.66%;
 }
 
+/* The star is centered on 0,0 and a parent group carries its place on the
+   wreath. Scaling the <use> itself — instead of one that also has x and y —
+   keeps the pulse on the star. Otherwise it slides across the drawing. */
 .medallion__glint {
   transform-box: fill-box;
-  transform-origin: 50% 50%;
+  transform-origin: center;
   opacity: 0.75;
 }
 
@@ -1534,7 +1537,7 @@ body {
 
 .press__glint {
   transform-box: fill-box;
-  transform-origin: 50% 50%;
+  transform-origin: center;
   opacity: 0.8;
 }
 
