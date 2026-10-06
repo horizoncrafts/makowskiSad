@@ -34,7 +34,7 @@ The copy is Polish and keeps the wording of the basic site (`index.html`, `ecolo
 - Instagram: @makowskisad (`https://instagram.com/makowskisad`)
 - Facebook: @makowskisad (`https://facebook.com/makowskisad`)
 - Heading above the social links: „Znajdź nas na socialach”
-- Footer line: „© 2024 HorizonCrafts.”
+- Footer line: „© 2026 HorizonCrafts.”
 - Every version links to the basic site (`../../index.html`, „Strona główna”) and to the list of versions (`../index.html`, „Wszystkie wersje”).
 
 ## Page-level copy
