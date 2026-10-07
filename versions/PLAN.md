@@ -4,16 +4,22 @@ This file is the brief for anyone building the next version. Read it, then build
 
 The basic site at the repo root stays as it is. Each version is a self-contained page: `index.html`, `styles.css`, `script.js`. No build step, no npm, no framework, no Tailwind.
 
+Each new version should also contain a name of the agent who built it: 'Claude', 'Cursor', 'Codex'.
+
 ## Already done
 
 Do not edit these.
 
-| Folder | What it is |
-|---|---|
-| `../index.html`, `../ecology.html`, `../styles.css`, `../script.js`, `../assets/` | The basic site |
-| `shared/story.md` and `shared/photos/` | The facts, alt texts, and resized photos |
-| `2026-10-05-fairy-tale/` | The book. Approved. Phone lab score 95 |
-| `2026-10-06-fairy-tale/` | The walk-in orchard. Captions rewritten in `e9ef811` |
+
+| Folder                                                                            | What it is                                           |
+| --------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `../index.html`, `../ecology.html`, `../styles.css`, `../script.js`, `../assets/` | The basic site                                       |
+| `shared/story.md` and `shared/photos/`                                            | The facts, alt texts, and resized photos             |
+| `2026-10-05-fairy-tale/`                                                          | The book. Approved. Phone lab score 95               |
+| `2026-10-06-fairy-tale/`                                                          | The walk-in orchard. Captions rewritten in `e9ef811` |
+
+
+
 
 ## Next versions, in order
 
@@ -53,14 +59,19 @@ Copy the technique from `2026-10-06-fairy-tale/`. Do not copy its look.
 - `prefers-reduced-motion` shows the complete story with no motion.
 - Lighthouse mobile, on a gzip static server: performance around 90 or better, accessibility 95 or better, 100 is the aim. No sideways scroll from 320 px to 1920 px. Keyboard focus is visible. Text contrast is at least 4.5:1. Video is muted and has a pause control.
 
+
+
 ## How to hand a version over
 
 1. Build only the next unchecked item above. Check it off in this file in the same commit.
 2. Commit straight to `main`. Do not open a pull request. Do not edit a finished folder.
 3. Say what the folder is, and the Lighthouse performance and accessibility scores.
 
+
+
 ## Not part of a version
 
 - Do not replace the basic site. That needs Piotr’s approval.
 - Do not add npm, a bundler, analytics, or anything server-side.
 - Hosting at makowskisad.pl is separate. The domain is on OVH and still points at Framer. Do not change DNS from a version task.
+
