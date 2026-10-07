@@ -75,7 +75,9 @@
   box-sizing: border-box;
 }
 
+/* Focused links and buttons scroll into view clear of the fixed magic switch. */
 html {
+  scroll-padding-bottom: 4.5rem;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
