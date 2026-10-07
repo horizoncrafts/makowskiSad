@@ -270,16 +270,24 @@
     if (!svg || !bed || !car || !inks.length || !hasObserver) return;
     if (typeof bed.getTotalLength !== 'function') return;
 
-    const length = bed.getTotalLength();
     const parked = car.getAttribute('transform');
     const mapHeight = (svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.height) || 900;
 
-    // The road only ever runs downhill, so each height on the map is one place on it.
+    // Reading the path's geometry forces a layout, so it waits for the first call
+    // from the observer below, which only comes once the page has been laid out.
+    let length = 0;
+    let measured = false;
     const samples = [];
-    for (let i = 0; i <= 120; i += 1) {
-      const at = (length * i) / 120;
-      samples.push([at, bed.getPointAtLength(at).y]);
-    }
+    const measure = () => {
+      if (measured) return;
+      measured = true;
+      length = bed.getTotalLength();
+      // The road only ever runs downhill, so each height on the map is one place on it.
+      for (let i = 0; i <= 120; i += 1) {
+        const at = (length * i) / 120;
+        samples.push([at, bed.getPointAtLength(at).y]);
+      }
+    };
 
     const distanceAt = (y) => {
       if (y <= samples[0][1]) return 0;
@@ -308,6 +316,7 @@
     const follow = () => {
       const rect = svg.getBoundingClientRect();
       if (!rect.height) return;
+      measure();
       drive(distanceAt(((viewHeight() * 0.55 - rect.top) / rect.height) * mapHeight));
     };
 
@@ -334,8 +343,6 @@
       { rootMargin: '25% 0px' }
     );
     observer.observe(svg);
-
-    if (motionAllowed()) follow();
 
     onMotionChange(() => {
       if (!motionAllowed()) {
