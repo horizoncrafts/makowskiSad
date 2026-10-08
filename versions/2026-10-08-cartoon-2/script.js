@@ -1,6 +1,5 @@
-// Plansze: springy landings, the drive to the press and the press itself, laid over
-// a page that already tells the whole story without them. Classic deferred script,
-// so it also runs from file://.
+// Film: drawings play while their scene is on screen. The page already tells the
+// whole story without this file. Classic deferred script, so it also runs from file://.
 (() => {
   'use strict';
 
@@ -131,7 +130,7 @@
           entry.target.classList.toggle('is-playing', entry.isIntersecting);
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0 }
     );
     loops.forEach((loop) => observer.observe(loop));
   }

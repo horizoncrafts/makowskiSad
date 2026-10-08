@@ -18,7 +18,7 @@ Do not edit these.
 | `2026-10-05-fairy-tale/`                                                          | The book. Approved. Phone lab score 95               |
 | `2026-10-06-fairy-tale/`                                                          | The walk-in orchard. Captions rewritten in `e9ef811` |
 | `2026-10-08-cartoon/`                                                             | The comic book. Built by Claude                      |
-| `2026-10-08-cartoon-2/`                                                           | The second comic, in ink plates. Built by Grok       |
+| `2026-10-08-cartoon-2/`                                                           | The second cartoon, an animated short. Built by Grok |
 
 
 
@@ -28,7 +28,7 @@ Do not edit these.
 Do the first unchecked one. Name the folder with the day you build it: `YYYY-MM-DD-style`. Add one line to `versions/index.html`.
 
 - [x] **Cartoon.** Done in `2026-10-08-cartoon/`. Thick outlines. A flat palette from the brand green `#2c5e2e` plus apple red. Springy motion with CSS `linear()` easing. Photos in comic panels. The real copy sits in speech bubbles. A drawn car full of sacks drives along a path to Tłocznia Chocznia with `offset-path`. Done when it is playful and not childish, and every fact is easy to read.
-- [x] **Cartoon, a second plate.** Done in `2026-10-08-cartoon-2/`. Built by Grok. Full-bleed ink plates, diagonal photo cuts, rectangular narrative boxes, printer’s marks and a wide drawn road to Tłocznia Chocznia. Flat brand green and apple red, springy `linear()` motion, photos in comic panels, a car of sacks on `offset-path`.
+- [x] **Cartoon, a second plate.** Done in `2026-10-08-cartoon-2/`. Built by Grok. An animated short: photographs stay as the painted backgrounds, and drawings made from them (swaying blossom, hopping apples, a bird, falling petals, a car of sacks on `offset-path`) play in front. Flat brand green and apple red, stepped cel motion, springy `linear()` landings.
 - [ ] **Anime.** Cel-shaded sky gradients and layered SVG silhouettes of the Beskidy hills behind the photos. Wind and petals. A lens-flare glow matched to the backlit photos. A title card for each chapter. Light moves from spring morning to autumn evening. Done when the golden-hour mood of the photos is there and the seasons read as time passing. Nothing flashes more than 3 times a second.
 - [ ] **Animated 3D, as a pop-up book.** CSS 3D only: `perspective` and `transform-style: preserve-3d`. A paper diorama of the orchard, real photos at different depths, a scroll-driven move through the seven chapters, and the juice carton as a six-faced box that turns. Particles, if any, are a short canvas or a few lines of WebGL with no library. No Three.js, Babylon, glTF, or physics. On a phone, fewer layers. With reduced motion, a still diorama. Done when the depth reads on a phone and the still version is complete.
 
