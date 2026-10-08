@@ -1,0 +1,2252 @@
+/* ==========================================================================
+   Komiks – Makowski Sad, wersja z 8 października 2026
+   The orchard as a comic book: real photographs in inked panels, the family's
+   own words in speech bubbles, a drawn car on its way to the press. Flat colour
+   from the brand green and apple red, thick outlines, springy motion.
+   Mobile first.
+   ========================================================================== */
+
+/* Bangers and Nunito (weights 500 to 900), cut down to A–Z, a–z, digits, the
+   Polish letters and the punctuation this page uses. Any other character falls
+   back to the system font, so add it to the subset first. index.html preloads
+   both files when the page is served. Licence: fonts/OFL.txt. */
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/bangers.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url('fonts/nunito.woff2') format('woff2');
+}
+
+:root {
+  --ink: #1c2116;
+  --paper: #fdf6e3;
+  --paper-2: #f5e9cc;
+  --white: #fffdf7;
+  --brand: #2c5e2e;
+  --brand-deep: #1e4320;
+  --brand-mid: #4d8a43;
+  --brand-soft: #b9d7a1;
+  --brand-pale: #e3eed4;
+  --apple: #c22f2a;
+  --apple-deep: #961f1b;
+  --apple-soft: #f3c1b6;
+  --juice: #e8a53a;
+  --steel: #d6dcd2;
+  --wood: #7a4b2c;
+
+  --font-display: 'Bangers', Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif;
+  --font-text: 'Nunito', 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+
+  --line: 3px;
+  --line-bold: 4px;
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-small: 4px 4px 0 var(--ink);
+  --dots: radial-gradient(rgb(28 33 22 / 0.13) 1.1px, transparent 1.6px);
+  --dots-light: radial-gradient(rgb(255 253 247 / 0.16) 1.3px, transparent 1.8px);
+
+  --wide: 72rem;
+  --measure: 34rem;
+  --gutter: clamp(1rem, 4.5vw, 2.5rem);
+
+  /* Springs: a damped oscillation sampled into linear(). --spring-pop overshoots
+     by about a third and settles in one second; --spring-soft by a tenth. The
+     cubic-bezier() values are the fallback for browsers without linear(). */
+  --spring-pop: cubic-bezier(0.34, 1.7, 0.5, 1);
+  --spring-soft: cubic-bezier(0.3, 1.35, 0.5, 1);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: light;
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --spring-pop: linear(
+      0, 0.068, 0.242, 0.474, 0.719, 0.942, 1.12, 1.24, 1.3, 1.306, 1.271, 1.209, 1.134, 1.06,
+      0.995, 0.947, 0.917, 0.905, 0.908, 0.923, 0.944, 0.967, 0.99, 1.008, 1.021, 1.028, 1.03,
+      1.027, 1.022, 1.015, 1.007, 1.001, 0.996, 0.993, 0.991, 0.991, 1
+    );
+    --spring-soft: linear(
+      0, 0.054, 0.185, 0.352, 0.527, 0.69, 0.827, 0.934, 1.011, 1.06, 1.086, 1.095, 1.091, 1.079,
+      1.063, 1.047, 1.031, 1.018, 1.007, 1, 0.995, 0.992, 0.991, 0.991, 0.992, 0.994, 0.995,
+      0.997, 1
+    );
+  }
+}
+
+/* Base ===================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: var(--dots);
+  background-size: 14px 14px;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--brand);
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--apple-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--apple);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 30;
+  padding: 0.7rem 1rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--brand);
+  border: var(--line) solid var(--ink);
+  transform: translateY(-250%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Masthead ================================================================= */
+
+.masthead {
+  position: relative;
+  z-index: 5;
+  background: var(--white);
+  border-bottom: var(--line-bold) solid var(--ink);
+}
+
+.masthead__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0.6rem var(--gutter);
+}
+
+.masthead__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.masthead__logo {
+  width: auto;
+  height: 2.1rem;
+}
+
+.masthead__label {
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.masthead__links {
+  display: flex;
+  gap: 0.5rem 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.masthead__links a {
+  display: inline-block;
+  padding: 0.35rem 0;
+}
+
+@media (max-width: 23.99rem) {
+  .masthead__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Shared comic pieces ====================================================== */
+
+/* A panel: an inked frame with a hard shadow, and a caption box that overlaps
+   its lower edge. The frame keeps its shape while a held photo is missing. */
+.panel {
+  position: relative;
+  margin: 0;
+}
+
+.panel__frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-pale);
+  border: var(--line) solid var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.panel__frame picture {
+  position: absolute;
+  inset: 0;
+}
+
+.panel__frame img,
+.panel__frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panel__frame--wide {
+  aspect-ratio: 3 / 2;
+}
+
+.panel__frame--landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.panel__frame--portrait,
+.panel__frame--cover {
+  aspect-ratio: 3 / 4;
+}
+
+.panel__frame--tall {
+  aspect-ratio: 2 / 3;
+}
+
+.panel__frame--square {
+  aspect-ratio: 1;
+}
+
+.panel__frame--film {
+  aspect-ratio: 16 / 9;
+}
+
+.caption {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  max-width: calc(100% - 1.25rem);
+  margin: -1.1rem 0 0 0.6rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-wrap: balance;
+  background: var(--brand-pale);
+  border: var(--line) solid var(--ink);
+  rotate: -0.6deg;
+}
+
+.caption--drawing {
+  margin-top: -0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0.05rem 0.4rem 0.1rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 0.1em;
+  color: var(--white);
+  background: var(--apple);
+}
+
+/* Speech bubbles carry the family's own words. The tail is two triangles: ink
+   behind, white in front, with the drop shadow drawn round both. On narrow
+   screens every tail points up at the panel above; from 56rem the side tails
+   point across at the panel beside them. */
+.bubble {
+  --tail-x: 2.25rem;
+  position: relative;
+  z-index: 2;
+  max-width: var(--measure);
+  margin: 0;
+  padding: 1rem 1.25rem 1.05rem;
+  font-size: 1.125rem;
+  font-weight: 650;
+  line-height: 1.5;
+  background: var(--white);
+  border: var(--line) solid var(--ink);
+  border-radius: 1.75rem;
+  filter: drop-shadow(4px 4px 0 var(--ink));
+}
+
+.bubble p {
+  margin: 0;
+}
+
+.bubble p + p {
+  margin-top: 0.7em;
+}
+
+.bubble::before,
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: var(--tail-x);
+  width: 1.9rem;
+  height: 1.6rem;
+  background: var(--ink);
+  clip-path: polygon(22% 0, 100% 100%, 0 100%);
+}
+
+.bubble::after {
+  bottom: calc(100% - 4px);
+  left: calc(var(--tail-x) + 4px);
+  width: calc(1.9rem - 9px);
+  height: calc(1.6rem - 5px);
+  background: var(--white);
+}
+
+.bubble--tail-down::before,
+.bubble--tail-down::after {
+  top: 100%;
+  bottom: auto;
+  clip-path: polygon(0 0, 100% 0, 22% 100%);
+}
+
+.bubble--tail-down::after {
+  top: calc(100% - 4px);
+}
+
+.bubble__title {
+  margin-bottom: 0.4rem;
+  font-size: 1.6rem;
+  color: var(--brand);
+}
+
+.bubble__link {
+  display: inline-block;
+  padding: 0.2rem 0;
+}
+
+.bubble__big {
+  display: block;
+  margin: 0.15rem 0 0.2rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: var(--apple);
+}
+
+.bubble--shout {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+/* Sound effects: decoration only, hidden from screen readers. */
+.sfx {
+  position: absolute;
+  z-index: 3;
+  top: -1.4rem;
+  right: 0.4rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 10vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--apple);
+  -webkit-text-stroke: 2px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 4px 4px 0 var(--ink);
+  rotate: -9deg;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sfx--bzz,
+.sfx--pac,
+.sfx--smacznego {
+  color: var(--white);
+}
+
+.sfx--chlup {
+  color: var(--juice);
+}
+
+.sfx--brum {
+  top: -1.9rem;
+  rotate: 6deg;
+}
+
+.sfx--smacznego {
+  font-size: clamp(2rem, 8vw, 3rem);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.55rem 1.1rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-decoration: none;
+  background: var(--apple);
+  border: var(--line) solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-small);
+}
+
+.button:hover {
+  color: var(--white);
+  background: var(--apple-deep);
+}
+
+.button__arrow {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Cover ==================================================================== */
+
+.cover {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.75rem var(--gutter) 3.5rem;
+  overflow-x: clip;
+}
+
+.cover__grid {
+  display: grid;
+  grid-template-areas:
+    'title'
+    'art';
+  gap: 2.25rem;
+}
+
+.cover__title {
+  grid-area: title;
+}
+
+.cover__kicker {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--brand);
+  border: var(--line) solid var(--ink);
+  rotate: -1.5deg;
+}
+
+.cover__heading {
+  margin: 0 0 1.75rem;
+  font-size: clamp(3.1rem, 13.5vw, 6.6rem);
+  line-height: 0.92;
+  color: var(--brand);
+  text-shadow:
+    3px 3px 0 var(--apple),
+    6px 6px 0 var(--ink);
+}
+
+.bubble--lead {
+  margin-bottom: 2.75rem;
+  font-size: 1.1875rem;
+}
+
+.bubble--lead::before,
+.bubble--lead::after {
+  top: 100%;
+  bottom: auto;
+  left: auto;
+  right: 3rem;
+  clip-path: polygon(0 0, 100% 0, 78% 100%);
+}
+
+.bubble--lead::after {
+  top: calc(100% - 4px);
+  right: calc(3rem + 4px);
+}
+
+.panel--cover {
+  grid-area: art;
+  width: min(100%, 30rem);
+  justify-self: center;
+  rotate: 1.5deg;
+}
+
+.panel--cover .panel__frame {
+  border-width: var(--line-bold);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* The starburst: an ink star behind a red one, both cut with the same polygon. */
+.burst {
+  --star: polygon(50% 0%, 58.9% 11%, 71.7% 5%, 74.9% 18.7%, 89.1% 18.8%, 86% 32.6%, 98.7% 38.9%, 90% 50%, 98.7% 61.1%, 86% 67.4%, 89.1% 81.2%, 74.9% 81.3%, 71.7% 95%, 58.9% 89%, 50% 100%, 41.1% 89%, 28.3% 95%, 25.1% 81.3%, 10.9% 81.2%, 14% 67.4%, 1.3% 61.1%, 10% 50%, 1.3% 38.9%, 14% 32.6%, 10.9% 18.8%, 25.1% 18.7%, 28.3% 5%, 41.1% 11%);
+  position: relative;
+  z-index: 2;
+  grid-area: art;
+  align-self: start;
+  justify-self: end;
+  width: 8.5rem;
+  aspect-ratio: 1;
+  margin: -2.25rem -0.25rem 0 0;
+  rotate: 10deg;
+  filter: drop-shadow(4px 4px 0 var(--ink));
+}
+
+.burst::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  clip-path: var(--star);
+}
+
+.burst__inner {
+  position: absolute;
+  inset: 5px;
+  display: grid;
+  place-items: center;
+  padding: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--white);
+  background: var(--apple);
+  clip-path: var(--star);
+}
+
+.contents {
+  margin-top: 3rem;
+}
+
+.contents__title {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  color: var(--apple);
+}
+
+.contents__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contents__link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.45rem;
+  font-weight: 800;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--white);
+  border: var(--line) solid var(--ink);
+  box-shadow: var(--shadow-small);
+}
+
+.contents__link:hover {
+  color: var(--ink);
+  background: var(--brand-pale);
+}
+
+.contents__num {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--white);
+  background: var(--apple);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+@media (min-width: 40rem) {
+  .contents__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .burst {
+    width: 10rem;
+    margin-right: 0;
+  }
+
+  .burst__inner {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cover {
+    padding-top: 3rem;
+  }
+
+  .cover__grid {
+    grid-template-areas: 'title art';
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .bubble--lead {
+    margin-right: 2rem;
+  }
+
+  .bubble--lead::before,
+  .bubble--lead::after {
+    top: 1.6rem;
+    left: 100%;
+    right: auto;
+    width: 2rem;
+    height: 1.6rem;
+    clip-path: polygon(0 0, 100% 45%, 0 100%);
+  }
+
+  .bubble--lead::after {
+    top: calc(1.6rem + 4px);
+    left: calc(100% - 4px);
+    width: calc(2rem - 6px);
+    height: calc(1.6rem - 8px);
+  }
+
+  .panel--cover {
+    width: 100%;
+  }
+
+  .burst {
+    width: 11rem;
+    margin: -3rem -2.5rem 0 0;
+  }
+}
+
+/* Chapters ================================================================= */
+
+.chapter {
+  padding: 3.5rem var(--gutter) 4.5rem;
+  overflow-x: clip;
+}
+
+.chapter:nth-of-type(even) {
+  background-color: var(--paper-2);
+}
+
+.chapter__head {
+  position: relative;
+  max-width: var(--wide);
+  margin: 0 auto 3rem;
+  padding: 1.1rem 1.25rem 1.3rem;
+  color: var(--white);
+  background-color: var(--brand);
+  background-image: var(--dots-light);
+  background-size: 10px 10px;
+  border: var(--line-bold) solid var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.chapter:nth-of-type(even) .chapter__head {
+  rotate: 0.5deg;
+}
+
+.chapter:nth-of-type(odd) .chapter__head {
+  rotate: -0.5deg;
+}
+
+.chapter__kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chapter__num {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--white);
+  background: var(--apple);
+  border: var(--line) solid var(--ink);
+  border-radius: 50%;
+}
+
+.chapter__title {
+  font-size: clamp(2.6rem, 10vw, 4.75rem);
+  line-height: 0.95;
+  text-shadow: 4px 4px 0 var(--ink);
+}
+
+.chapter__sub {
+  margin: 0.6rem 0 0;
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+/* A comic page. On narrow screens the panels and bubbles zig-zag down one
+   column; from 56rem each chapter has its own composition on twelve columns. */
+.page {
+  display: grid;
+  gap: 2.25rem;
+  max-width: var(--wide);
+  margin: 0 auto;
+}
+
+.page > .panel,
+.page > .bubble {
+  justify-self: start;
+}
+
+.page > .panel:nth-child(even) {
+  rotate: 1deg;
+}
+
+.page > .panel:nth-child(odd) {
+  rotate: -0.75deg;
+}
+
+.page > .bubble:nth-child(4n + 2) {
+  justify-self: end;
+}
+
+.page > .panel--small,
+.panel--hamak,
+.panel--zblizenie,
+.panel--paki,
+.panel--dlon,
+.panel--zrywanie,
+.panel--na-siatce,
+.panel--skrzynki,
+.panel--worki,
+.panel--stempel,
+.panel--namiot,
+.panel--impreza,
+.panel--stol {
+  width: min(88%, 24rem);
+}
+
+.page > .panel--paki,
+.page > .panel--skrzynki,
+.page > .panel--impreza {
+  justify-self: end;
+}
+
+@media (min-width: 30rem) {
+  .bubble {
+    padding: 1.1rem 1.5rem 1.15rem;
+  }
+}
+
+/* Jabłko: the apple grows across a three-panel strip, then the guests. */
+.strip {
+  display: grid;
+  gap: 2.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.strip__step {
+  position: relative;
+}
+
+.strip__note {
+  position: absolute;
+  z-index: 3;
+  top: -0.9rem;
+  left: -0.25rem;
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--white);
+  border: var(--line) solid var(--ink);
+  rotate: -3deg;
+}
+
+.guests {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.bubble--guests {
+  justify-self: center;
+}
+
+/* Transport and partners */
+.partners {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.partners__title {
+  justify-self: start;
+  padding: 0.5rem 0.9rem 0.45rem;
+  font-size: clamp(1.7rem, 6vw, 2.4rem);
+  color: var(--white);
+  background: var(--apple);
+  border: var(--line) solid var(--ink);
+  box-shadow: var(--shadow-small);
+  rotate: -1deg;
+}
+
+.bubble--waste {
+  justify-self: end;
+}
+
+/* Tłoczenie: quality stamps */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 11rem;
+  aspect-ratio: 1;
+  padding: 0.6rem;
+  text-align: center;
+  color: var(--white);
+  border: var(--line-bold) solid var(--ink);
+  border-radius: 50%;
+  box-shadow: var(--shadow-small);
+}
+
+.badge span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  border: 2px dashed currentColor;
+  border-radius: 50%;
+}
+
+.badge--red {
+  background: var(--apple);
+  rotate: -7deg;
+}
+
+.badge--green {
+  background: var(--brand);
+  rotate: 5deg;
+}
+
+/* Pakowanie */
+.checks {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checks li {
+  position: relative;
+  padding-left: 2.1rem;
+}
+
+.checks li::before {
+  content: '';
+  position: absolute;
+  top: 0.1rem;
+  left: 0;
+  width: 1.45rem;
+  height: 1.45rem;
+  background: var(--brand-soft);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.checks li::after {
+  content: '';
+  position: absolute;
+  top: 0.38rem;
+  left: 0.47rem;
+  width: 0.45rem;
+  height: 0.75rem;
+  border: solid var(--brand-deep);
+  border-width: 0 3px 3px 0;
+  rotate: 40deg;
+}
+
+.carton {
+  width: min(100%, 20rem);
+  justify-self: center;
+}
+
+.carton__stage {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem 1rem 2rem;
+  background-color: var(--brand-soft);
+  background-image: var(--dots);
+  background-size: 10px 10px;
+  border: var(--line) solid var(--ink);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.carton__img {
+  width: min(100%, 11.5rem);
+  filter: drop-shadow(5px 5px 0 rgb(28 33 22 / 0.35));
+}
+
+/* Sprzedaż */
+.bubble--litres {
+  font-size: 1.1875rem;
+}
+
+/* Film ===================================================================== */
+
+.film__video {
+  position: absolute;
+  inset: 0;
+}
+
+.film__toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0 1rem 0 0.8rem;
+  font: 800 0.9375rem/1 var(--font-text);
+  color: var(--ink);
+  background: var(--white);
+  border: var(--line) solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-small);
+  cursor: pointer;
+}
+
+.film__toggle:hover {
+  background: var(--brand-pale);
+}
+
+.film__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+}
+
+.film__icon--pause,
+.is-playing .film__icon--play {
+  display: none;
+}
+
+.is-playing .film__icon--pause {
+  display: block;
+}
+
+/* Drawings ================================================================= */
+
+/* The drive is drawn on a 600 × 420 world and scaled as a whole, so the car's
+   offset-path, written in the world's own pixels, lines up with the road at
+   every size. */
+.drive {
+  --k: 0.45;
+  justify-self: center;
+  width: fit-content;
+}
+
+.drive .caption {
+  max-width: calc(600px * var(--k) - 1rem);
+}
+
+.drive__stage {
+  box-sizing: content-box;
+  width: calc(600px * var(--k));
+  height: calc(420px * var(--k));
+  background-color: var(--brand-pale);
+}
+
+.drive__world {
+  position: relative;
+  width: 600px;
+  height: 420px;
+  transform-origin: 0 0;
+  scale: var(--k);
+}
+
+.drive__map {
+  width: 600px;
+  height: 420px;
+  max-width: none;
+}
+
+.drive__car {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 104px;
+  height: 64px;
+  offset-path: path('M70 140C120 140 170 220 220 220C270 220 300 180 350 180C395 180 425 240 470 240');
+  offset-rotate: auto;
+  offset-anchor: 50% 80%;
+  offset-distance: 100%;
+}
+
+.drive__car-art {
+  width: 104px;
+  height: 64px;
+  max-width: none;
+  overflow: visible;
+}
+
+@media (min-width: 22.5rem) {
+  .drive {
+    --k: 0.52;
+  }
+}
+
+@media (min-width: 24rem) {
+  .drive {
+    --k: 0.56;
+  }
+}
+
+@media (min-width: 30rem) {
+  .drive {
+    --k: 0.7;
+  }
+}
+
+@media (min-width: 40rem) {
+  .drive {
+    --k: 0.9;
+  }
+}
+
+@media (min-width: 64rem) {
+  .drive {
+    --k: 1.25;
+  }
+}
+
+.press {
+  width: 100%;
+}
+
+.press__stage {
+  background-color: var(--paper);
+  background-image: var(--dots);
+  background-size: 10px 10px;
+}
+
+.press__art {
+  width: 100%;
+  height: auto;
+}
+
+/* Shared ink for both drawings */
+.k-hill,
+.k-cloud,
+.k-road-edge,
+.k-trunk,
+.k-crown,
+.k-wall,
+.k-roof,
+.k-door,
+.k-window,
+.k-drop,
+.k-sign rect,
+.k-car,
+.k-glass,
+.k-sack,
+.k-wheel,
+.k-light,
+.k-steel,
+.k-machine,
+.k-window-big,
+.k-belt,
+.k-roller,
+.k-panel,
+.k-button,
+.k-bag,
+.k-tap,
+.k-apple-big,
+.k-juice {
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.k-hill--far {
+  fill: var(--brand-soft);
+}
+
+.k-hill--near {
+  fill: #8fbf72;
+}
+
+.k-cloud {
+  fill: var(--white);
+}
+
+.k-trunk {
+  fill: var(--wood);
+}
+
+.k-crown {
+  fill: var(--brand-mid);
+}
+
+.k-apple,
+.k-apple-big {
+  fill: var(--apple);
+}
+
+.k-road-edge {
+  fill: none;
+  stroke-width: 30;
+  stroke-linecap: round;
+}
+
+.k-road {
+  fill: none;
+  stroke: #efe3c4;
+  stroke-width: 24;
+  stroke-linecap: round;
+}
+
+.k-road-line {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 3;
+  stroke-dasharray: 12 12;
+  stroke-linecap: round;
+}
+
+.k-wall {
+  fill: var(--white);
+}
+
+.k-roof {
+  fill: var(--apple);
+}
+
+.k-roof--saw {
+  fill: var(--brand);
+}
+
+.k-door {
+  fill: var(--brand);
+}
+
+.k-window {
+  fill: var(--brand-pale);
+}
+
+.k-drop,
+.k-juice {
+  fill: var(--juice);
+}
+
+.k-sign rect {
+  fill: var(--white);
+}
+
+.k-sign--end rect {
+  fill: var(--apple);
+}
+
+.k-sign text {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  fill: var(--brand);
+}
+
+.k-sign--end text {
+  fill: var(--white);
+}
+
+.k-car {
+  fill: var(--brand-mid);
+}
+
+.k-glass {
+  fill: #dbeef0;
+}
+
+.k-sack {
+  fill: #ec8a2c;
+}
+
+.k-net {
+  fill: none;
+  stroke: #a5521a;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.k-fruit {
+  fill: var(--apple);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.k-fruit--green {
+  fill: #e7e08a;
+}
+
+.k-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.k-line--light {
+  stroke: var(--brand-soft);
+}
+
+.k-light {
+  fill: #fff2b8;
+}
+
+.k-wheel {
+  fill: var(--ink);
+}
+
+.k-hub {
+  fill: var(--steel);
+}
+
+.k-floor {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.k-steel {
+  fill: var(--steel);
+}
+
+.k-machine {
+  fill: var(--brand);
+}
+
+.k-window-big {
+  fill: var(--paper);
+}
+
+.k-belt {
+  fill: none;
+  stroke-width: 5;
+  stroke-dasharray: 10 6;
+}
+
+.k-roller {
+  fill: var(--steel);
+}
+
+.k-spoke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.k-panel {
+  fill: var(--brand-deep);
+}
+
+.k-button--green {
+  fill: var(--brand-soft);
+}
+
+.k-button--red {
+  fill: var(--apple);
+}
+
+.k-pipe {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.k-bag {
+  fill: var(--white);
+}
+
+.k-tap {
+  fill: var(--apple);
+}
+
+.k-stalk {
+  fill: none;
+  stroke: var(--wood);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.press__roller {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Finale =================================================================== */
+
+.finale {
+  padding: 4rem var(--gutter) 5rem;
+  color: var(--ink);
+  background-color: var(--brand-soft);
+  background-image: var(--dots);
+  background-size: 12px 12px;
+  border-top: var(--line-bold) solid var(--ink);
+  overflow-x: clip;
+}
+
+.finale__inner {
+  display: grid;
+  justify-items: center;
+  gap: 2.5rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.finale__end {
+  margin: 0;
+  padding: 0.6rem 1.6rem 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 14vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  background: var(--apple);
+  border: var(--line-bold) solid var(--ink);
+  box-shadow: var(--shadow);
+  rotate: -3deg;
+}
+
+.bubble--motto {
+  --tail-x: calc(50% - 1rem);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.finale__card {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.75rem 1.25rem 2rem;
+  background: var(--white);
+  border: var(--line-bold) solid var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.finale__title {
+  font-size: clamp(2.2rem, 8vw, 3rem);
+  color: var(--brand);
+}
+
+.finale__logo {
+  width: 9rem;
+}
+
+.finale__address {
+  display: grid;
+  gap: 0.15rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.finale__mail {
+  margin-top: 0.4rem;
+  padding: 0.2rem 0;
+}
+
+.finale__social-title {
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+  color: var(--apple);
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.4rem 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--brand-pale);
+  border: var(--line) solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-small);
+}
+
+.social__link:hover {
+  color: var(--ink);
+  background: var(--brand-soft);
+}
+
+.social__icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.social__handle {
+  font-weight: 600;
+}
+
+/* Colophon ================================================================= */
+
+.colophon {
+  padding: 2rem var(--gutter) 2.5rem;
+  font-size: 0.9375rem;
+  color: var(--white);
+  background: var(--brand-deep);
+  text-align: center;
+}
+
+.colophon a {
+  color: var(--white);
+}
+
+.colophon a:hover {
+  color: var(--brand-soft);
+}
+
+.colophon :focus-visible {
+  outline-color: var(--white);
+}
+
+.colophon__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.colophon__nav a {
+  display: inline-block;
+  padding: 0.35rem 0;
+}
+
+.colophon__note,
+.colophon__copy {
+  margin: 0.25rem 0;
+}
+
+/* Tablet: panels keep a zig-zag, with more room ============================ */
+
+@media (min-width: 40rem) {
+  .strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .guests {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem 1.5rem;
+  }
+
+  .bubble--guests {
+    grid-column: 1 / -1;
+  }
+
+  .guests > .panel:nth-child(even) {
+    rotate: 1deg;
+  }
+
+  .guests > .panel:nth-child(odd) {
+    rotate: -1deg;
+  }
+}
+
+/* Desktop: a composed page per chapter ===================================== */
+
+@media (min-width: 56rem) {
+  .chapter {
+    padding-top: 4.5rem;
+    padding-bottom: 6rem;
+  }
+
+  .chapter__head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    gap: 0.4rem 1.5rem;
+    margin-bottom: 4rem;
+    padding: 1.4rem 2rem 1.6rem;
+  }
+
+  .chapter__kicker {
+    grid-column: 1 / -1;
+  }
+
+  .chapter__sub {
+    margin: 0 0 0.5rem;
+  }
+
+  .page,
+  .partners {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    row-gap: 2.5rem;
+    align-items: start;
+  }
+
+  .page > *,
+  .page > .panel,
+  .page > .bubble {
+    justify-self: stretch;
+    width: auto;
+  }
+
+  .page > .bubble {
+    align-self: center;
+  }
+
+  /* Side tails */
+  .bubble--tail-left::before,
+  .bubble--tail-left::after,
+  .bubble--tail-right::before,
+  .bubble--tail-right::after {
+    top: 1.75rem;
+    bottom: auto;
+    width: 1.75rem;
+    height: 1.9rem;
+  }
+
+  .bubble--tail-left::before {
+    left: auto;
+    right: 100%;
+    clip-path: polygon(0 22%, 100% 0, 100% 100%);
+  }
+
+  .bubble--tail-left::after {
+    top: calc(1.75rem + 4px);
+    left: auto;
+    right: calc(100% - 4px);
+    width: calc(1.75rem - 5px);
+    height: calc(1.9rem - 9px);
+    clip-path: polygon(0 22%, 100% 0, 100% 100%);
+  }
+
+  .bubble--tail-right::before {
+    left: 100%;
+    clip-path: polygon(0 0, 100% 22%, 0 100%);
+  }
+
+  .bubble--tail-right::after {
+    top: calc(1.75rem + 4px);
+    left: calc(100% - 4px);
+    width: calc(1.75rem - 5px);
+    height: calc(1.9rem - 9px);
+    clip-path: polygon(0 0, 100% 22%, 0 100%);
+  }
+
+  .sfx {
+    top: -2rem;
+    right: -1.25rem;
+  }
+
+
+  /* 1 · Miejsce */
+  .panel--korona {
+    grid-column: 1 / 9;
+    grid-row: 1;
+  }
+
+  .bubble--miejsce-1 {
+    grid-column: 9 / 13;
+    grid-row: 1;
+  }
+
+  .panel--hamak {
+    grid-column: 2 / 6;
+    grid-row: 2 / 4;
+  }
+
+  .panel--taras {
+    grid-column: 6 / 12;
+    grid-row: 2;
+    margin-top: 2rem;
+  }
+
+  .bubble--miejsce-2 {
+    grid-column: 7 / 12;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 0.5rem;
+  }
+
+  /* 2 · Kwiat */
+  .panel--film {
+    grid-column: 1 / 9;
+    grid-row: 1;
+  }
+
+  .bubble--kwiat-1 {
+    grid-column: 9 / 13;
+    grid-row: 1;
+  }
+
+  .panel--zblizenie {
+    grid-column: 1 / 5;
+    grid-row: 2;
+  }
+
+  .bubble--kwiat-2 {
+    grid-column: 5 / 9;
+    grid-row: 2;
+  }
+
+  .panel--paki {
+    grid-column: 9 / 13;
+    grid-row: 2;
+    margin-top: 3rem;
+  }
+
+  .panel--slonce {
+    grid-column: 2 / 9;
+    grid-row: 3;
+  }
+
+  .bubble--kwiat-3 {
+    grid-column: 9 / 13;
+    grid-row: 3;
+  }
+
+  /* 3 · Jabłko */
+  .page--jablko > .strip,
+  .page--jablko > .guests {
+    grid-column: 1 / -1;
+  }
+
+  .bubble--jablko-1 {
+    grid-column: 3 / 10;
+    margin-top: -0.5rem;
+  }
+
+  .panel--dlon {
+    grid-column: 2 / 6;
+    grid-row: 3;
+  }
+
+  .bubble--jablko-2 {
+    grid-column: 6 / 11;
+    grid-row: 3;
+  }
+
+  .guests {
+    margin-top: 1.5rem;
+  }
+
+  .bubble--guests {
+    max-width: 36rem;
+  }
+
+  /* 4 · Zbiór */
+  .panel--zrywanie {
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+  }
+
+  .bubble--zbior-1 {
+    grid-column: 5 / 12;
+    grid-row: 1;
+    font-size: 1.375rem;
+    font-weight: 800;
+  }
+
+  .panel--siatki {
+    grid-column: 5 / 10;
+    grid-row: 2;
+  }
+
+  .panel--na-siatce {
+    grid-column: 10 / 13;
+    grid-row: 2 / 4;
+    margin-top: 2rem;
+  }
+
+  .panel--skrzynki {
+    grid-column: 6 / 10;
+    grid-row: 3;
+  }
+
+  /* 5 · Transport */
+  .panel--bagaznik {
+    grid-column: 1 / 7;
+    grid-row: 1;
+  }
+
+  .bubble--transport-1 {
+    grid-column: 7 / 12;
+    grid-row: 1;
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .page--transport > .drive {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    margin-top: 1rem;
+  }
+
+  .page--transport > .partners {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 2rem;
+  }
+
+  .partners__title {
+    grid-column: 1 / -1;
+  }
+
+  .partners > .panel--koniki {
+    grid-column: 1 / 6;
+    grid-row: 2 / 4;
+  }
+
+  .bubble--horses {
+    grid-column: 6 / 11;
+    grid-row: 2;
+  }
+
+  .bubble--forest {
+    grid-column: 7 / 13;
+    grid-row: 3;
+  }
+
+  .bubble--waste {
+    grid-column: 3 / 10;
+    grid-row: 4;
+    justify-self: stretch;
+  }
+
+  /* 6 · Tłoczenie */
+  .panel--worki {
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+  }
+
+  .bubble--tloczenie-1 {
+    grid-column: 5 / 12;
+    grid-row: 1;
+  }
+
+  .page--tloczenie > .press {
+    grid-column: 5 / 13;
+    grid-row: 2;
+  }
+
+  .bubble--tloczenie-2 {
+    grid-column: 2 / 7;
+    grid-row: 3;
+    margin-top: 1rem;
+  }
+
+  .page--tloczenie > .badges {
+    grid-column: 7 / 13;
+    grid-row: 3;
+    margin-top: 1rem;
+  }
+
+  /* 7 · Pakowanie */
+  .panel--zawieszki {
+    grid-column: 1 / 7;
+    grid-row: 1;
+  }
+
+  .bubble--pros {
+    grid-column: 7 / 12;
+    grid-row: 1;
+  }
+
+  .bubble--pet {
+    grid-column: 2 / 8;
+    grid-row: 2;
+  }
+
+  .page--pakowanie > .carton {
+    grid-column: 8 / 12;
+    grid-row: 2;
+    justify-self: center;
+    width: 100%;
+    max-width: 18rem;
+  }
+
+  .panel--karton {
+    grid-column: 1 / 7;
+    grid-row: 3;
+  }
+
+  .panel--stempel {
+    grid-column: 8 / 11;
+    grid-row: 3;
+  }
+
+  .bubble--labels {
+    grid-column: 3 / 11;
+    grid-row: 4;
+    max-width: none;
+  }
+
+  .panel--polki {
+    grid-column: 1 / 7;
+    grid-row: 5;
+  }
+
+  .bubble--recycle {
+    grid-column: 7 / 13;
+    grid-row: 5;
+  }
+
+  /* 8 · Sprzedaż */
+  .panel--namiot {
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+  }
+
+  .bubble--litres {
+    grid-column: 5 / 9;
+    grid-row: 1;
+  }
+
+  .panel--impreza {
+    grid-column: 9 / 13;
+    grid-row: 1 / 3;
+    margin-top: 2.5rem;
+  }
+
+  .bubble--imprezy {
+    grid-column: 5 / 9;
+    grid-row: 2;
+  }
+
+  .panel--stol {
+    grid-column: 5 / 9;
+    grid-row: 3;
+  }
+
+  .finale__inner {
+    max-width: 44rem;
+  }
+}
+
+/* Motion =================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hover and press: a small springy hop. */
+  .button,
+  .contents__link,
+  .social__link,
+  .film__toggle {
+    transition:
+      translate 0.6s var(--spring-pop),
+      scale 0.6s var(--spring-pop);
+  }
+
+  .button:hover,
+  .contents__link:hover,
+  .social__link:hover,
+  .film__toggle:hover {
+    translate: -2px -3px;
+  }
+
+  .button:active,
+  .contents__link:active,
+  .social__link:active,
+  .film__toggle:active {
+    scale: 0.95;
+  }
+
+  .button:hover .button__arrow {
+    translate: 0 3px;
+  }
+
+  .button__arrow {
+    transition: translate 0.5s var(--spring-pop);
+  }
+
+  @media (hover: hover) {
+    .panel__frame {
+      transition: rotate 0.7s var(--spring-pop), scale 0.7s var(--spring-pop);
+    }
+
+    .panel:hover > .panel__frame {
+      rotate: -0.6deg;
+      scale: 1.015;
+    }
+  }
+
+  /* The cover arrives with a bounce. */
+  .burst {
+    animation: burst-in 1s var(--spring-pop) 0.25s both;
+  }
+
+  @keyframes burst-in {
+    from {
+      scale: 0;
+      rotate: -40deg;
+    }
+  }
+
+  /* Blocks below the opening screen are armed by script.js and pop in when they
+     scroll into view: panels spring up, bubbles grow out of their tails, sound
+     effects slam in. Anything on screen at load is left alone, fully drawn. */
+  .is-armed {
+    opacity: 0;
+    translate: 0 2.5rem;
+    scale: 0.94;
+  }
+
+  .is-armed.is-inview {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    transition:
+      opacity 0.25s var(--ease-out) var(--delay, 0s),
+      translate 0.9s var(--spring-soft) var(--delay, 0s),
+      scale 0.9s var(--spring-pop) var(--delay, 0s);
+  }
+
+  /* Chrome lays SVG text out at the scale it had when an animation began, so the
+     map's signs would drift off their boards. The drive only slides in. */
+  .drive.is-armed,
+  .drive:hover > .panel__frame {
+    scale: none;
+    rotate: none;
+  }
+
+  .bubble.is-armed {
+    transform-origin: var(--tail-x) 0;
+  }
+
+  .bubble--tail-down.is-armed {
+    transform-origin: var(--tail-x) 100%;
+  }
+
+  .bubble.is-armed:not(.is-inview) {
+    translate: 0 1rem;
+    scale: 0.5;
+  }
+
+  .is-armed .sfx {
+    scale: 2.2;
+    opacity: 0;
+  }
+
+  .is-armed.is-inview .sfx {
+    scale: 1;
+    opacity: 1;
+    transition:
+      opacity 0.15s linear calc(var(--delay, 0s) + 0.35s),
+      scale 0.8s var(--spring-pop) calc(var(--delay, 0s) + 0.35s);
+  }
+
+  /* The press runs three short cycles each time it comes into view, under five
+     seconds in all, then rests. */
+  .press.is-playing .press__roller {
+    animation: spin 1.2s linear 3;
+  }
+
+  .press.is-playing .press__roller--small {
+    animation-direction: reverse;
+  }
+
+  .press.is-playing .press__apple {
+    animation: tumble 1.2s cubic-bezier(0.5, 0, 0.9, 0.6) 3 both;
+  }
+
+  .press.is-playing .press__apple--2 {
+    animation-delay: 0.3s;
+  }
+
+  .press.is-playing .press__apple--3 {
+    animation-delay: 0.6s;
+  }
+
+  .press.is-playing .press__drop {
+    animation: drip 1.2s cubic-bezier(0.5, 0, 0.9, 0.6) 3 both;
+  }
+
+  .press.is-playing .press__drop--2 {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  @keyframes tumble {
+    0% {
+      translate: 0 -40px;
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    80% {
+      translate: 0 70px;
+      opacity: 1;
+    }
+    100% {
+      translate: 0 92px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes drip {
+    0% {
+      translate: 0 0;
+      opacity: 1;
+    }
+    100% {
+      translate: 0 28px;
+      opacity: 0;
+    }
+  }
+
+  /* The drive follows the reader's scroll: the car leaves the orchard as the
+     map comes fully into view and parks at the press before it leaves. */
+  @supports (animation-timeline: view()) {
+    .drive {
+      view-timeline: --drive block;
+    }
+
+    .drive__car {
+      animation: drive linear both;
+      animation-timeline: --drive;
+      animation-range: contain 5% contain 80%;
+    }
+
+    .drive__body {
+      animation: bumps linear both;
+      animation-timeline: --drive;
+      animation-range: contain 5% contain 80%;
+    }
+  }
+
+  .has-drive-fallback .drive__car {
+    offset-distance: calc(var(--drive, 1) * 100%);
+  }
+
+  @keyframes drive {
+    from {
+      offset-distance: 0%;
+    }
+    to {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes bumps {
+    0%,
+    10%,
+    20%,
+    30%,
+    40%,
+    50%,
+    60%,
+    70%,
+    80%,
+    90%,
+    100% {
+      translate: 0 0;
+    }
+    5%,
+    25%,
+    45%,
+    65%,
+    85% {
+      translate: 0 -3px;
+    }
+    15%,
+    35%,
+    55%,
+    75%,
+    95% {
+      translate: 0 -1px;
+    }
+  }
+}
+
+/* Photo hold ================================================================
+   While <html> has is-holding-photos (head of index.html), photos below the
+   opening screen stay out of the layout, so the lazy loader leaves them alone
+   until the page has loaded and been painted. Their frames keep their size. */
+@media screen {
+  .is-holding-photos .panel__frame:not(.is-released) img[loading='lazy'] {
+    display: none;
+  }
+}
+
+/* Print ==================================================================== */
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .masthead__links,
+  .contents,
+  .button,
+  .film__toggle,
+  .film__video,
+  .sfx {
+    display: none;
+  }
+
+  .chapter,
+  .finale {
+    break-inside: avoid-page;
+    background: #fff;
+  }
+
+  .panel__frame,
+  .chapter__head,
+  .bubble,
+  .finale__card {
+    box-shadow: none;
+    filter: none;
+  }
+}
