@@ -30,7 +30,7 @@ After these, stop. A further round only happens when Piotr picks a style.
 
 ### How to deliver a version
 
-Create `versions/YYYY-MM-DD-<slug>/` with its own `index.html`, `styles.css`, and `script.js`. The task names the slug. Add one line to `versions/index.html`. Record the agent name on the page and on the matching line above (`Claude`, `Cursor`, `Codex`). Check that line in the same commit.
+Create `versions/YYYY-MM-DD-<slug>/` with its own `index.html`, `styles.css`, and `script.js`. The task names the slug. Add one line to `versions/index.html`. Record the name of the agent that built it on the page and on the matching line above. Check that line in the same commit.
 
 ### Facts and copy
 
