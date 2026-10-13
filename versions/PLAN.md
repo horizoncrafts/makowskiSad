@@ -70,6 +70,6 @@ Copy the technique from `versions/2026-10-06-fairy-tale/`. Do not copy its look.
 
 Commit straight to `main`. Do not open a pull request. Do not edit a finished folder. That includes the basic site, `versions/shared/`, and any version folder that has already been built. Do not replace the basic site. That needs Piotr’s approval.
 
-No build step. Do not add npm, a framework, Tailwind, a bundler, analytics, or anything server-side. Hosting at makowskisad.pl is separate. The domain is on OVH and still points at Framer. Do not change DNS from a version task.
+No build step. Do not add npm, a framework, Tailwind, a bundler, analytics, or anything server-side. Hosting at makowskisad.pl is separate: GitHub Pages serves `main` over HTTPS, with DNS at OVH pointing only to GitHub. Do not change DNS, `CNAME`, or Pages settings from a version task.
 
 Report the folder path and the Lighthouse performance and accessibility scores.
