@@ -18,11 +18,11 @@ Use a descriptive `kebab-case.md` name, such as `add-dark-mode.md`.
 
 Plain Markdown. No frontmatter. No fields for id, status, assignee, dependencies, date, type, priority, or external reference.
 
-Write the work, acceptance criteria, references, etc as text. Cite another task by filename only (`add-dark-mode.md`), never by a path link. Checkboxes record progress inside the file. An estimate, if any, is also a paragraph with brief cover about reasoning.
+Write the intent, the work, acceptance criteria, references, etc all as text. Cite another task by filename only (`add-dark-mode.md`), never by a path link. Checkboxes record progress inside the file. An estimate, if any, is also a paragraph with brief cover about reasoning.
 
 Match existing task files in this repo when any exist.
 
 ### No redundancy
-Do not copy any context into a task file, always reference. If tasks repeat the same text, create a reference file (location depending on project structure, eventually propose something). 
+Do not copy any context into a task file, always reference. If tasks repeat the same text, create a reference file (location depending on project structure, eventually propose something, at last create files under `.repota/_additional-info`). 
 
 
