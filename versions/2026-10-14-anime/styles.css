@@ -1,0 +1,2766 @@
+/* ==========================================================================
+   Od wiosny do jesieni – Makowski Sad, wersja z 14 października 2026
+   The orchard told as an anime in eight episodes. Every episode is one scene
+   with its own sky over the same Beskidy horizon, from a spring morning to an
+   autumn evening. The real photographs are the cels laid over it; their
+   captions are subtitles. Mobile first.
+   ========================================================================== */
+
+/* Hina Mincho and M PLUS Rounded 1c, cut down to A–Z, a–z, digits, the Polish
+   letters and the punctuation this page uses. Any other character falls back
+   to the system font, so add it to the subset first. index.html preloads the
+   two regular files. Licence: fonts/OFL.txt. */
+@font-face {
+  font-family: 'Hina Mincho';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/hina-mincho.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'M PLUS Rounded 1c';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/m-plus-rounded.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'M PLUS Rounded 1c';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/m-plus-rounded-bold.woff2') format('woff2');
+}
+
+:root {
+  --ink: #142037;
+  --ink-2: #3a4660;
+  --paper: #fffaf2;
+  --brand: #2c5e2e;
+  --apple: #c8322b;
+  --night: #120f24;
+  --keyline: #fff;
+  --focus: #ffcf3f;
+
+  --font-title:
+    'Hina Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, 'Times New Roman', serif;
+  --font-text: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Segoe UI', system-ui, sans-serif;
+
+  --step-0: 1.0625rem;
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --wide: 78rem;
+  --radius: 0.5rem;
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-sway: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Base ===================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--night);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--night);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+address {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 7px rgb(20 32 55 / 0.9);
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 40;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: var(--radius);
+  translate: 0 -200%;
+}
+
+.skip-link:focus {
+  translate: 0 0;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Masthead ================================================================= */
+
+.masthead {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  padding: 1rem var(--gutter);
+}
+
+.masthead__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  max-width: var(--wide);
+  margin-inline: auto;
+}
+
+.masthead__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.masthead a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  text-decoration: none;
+  background: rgb(255 250 242 / 0.9);
+  border-radius: 999px;
+  box-shadow: 0 0.35rem 1rem -0.4rem rgb(40 50 110 / 0.45);
+}
+
+.masthead a:hover {
+  background: #fff;
+}
+
+.masthead__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: #e98aa6;
+}
+
+/* Episodes and their world ================================================
+   Each episode is a scene. Its world (sky, sun, clouds, ridges, wind) stays
+   pinned behind the photos while the episode scrolls past, then the next
+   episode pushes it up and away. */
+
+.ep {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  color: var(--ink);
+  background: var(--h4);
+  view-timeline: --ep block;
+}
+
+.ep > :not(.world) {
+  position: relative;
+  z-index: 1;
+}
+
+.world {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100lvh;
+  margin-bottom: -100vh;
+  margin-bottom: -100lvh;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--sky-5);
+}
+
+.world > * {
+  position: absolute;
+}
+
+/* The sky is a gradient with a few hard-edged bands of light near the
+   horizon, the way a painted cel background steps its light. */
+.world__sky {
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--sky-1) 0%,
+    var(--sky-2) 24%,
+    var(--sky-3) 46%,
+    var(--sky-4) 64%,
+    var(--sky-5) 82%
+  );
+}
+
+.world__sky::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: linear-gradient(
+    180deg,
+    transparent 0 38%,
+    rgb(255 255 255 / 0.07) 38% 50%,
+    rgb(255 255 255 / 0.13) 50% 59%,
+    rgb(255 255 255 / 0.2) 59% 100%
+  );
+}
+
+/* The sun: a disc in hard rings of glow, with soft rays around it. */
+.world__sun {
+  top: var(--sun-y);
+  left: var(--sun-x);
+  width: 0;
+  height: 0;
+}
+
+.world__sun::before {
+  position: absolute;
+  width: var(--sun-size, 86vmin);
+  aspect-ratio: 1;
+  content: '';
+  background: radial-gradient(
+    circle,
+    var(--sun-core) 0 5%,
+    color-mix(in srgb, var(--sun-glow) 82%, transparent) 5% 8.5%,
+    color-mix(in srgb, var(--sun-glow) 50%, transparent) 8.5% 13%,
+    color-mix(in srgb, var(--sun-glow) 28%, transparent) 13% 20%,
+    color-mix(in srgb, var(--sun-glow) 14%, transparent) 20% 31%,
+    color-mix(in srgb, var(--sun-glow) 6%, transparent) 31% 46%,
+    transparent 46%
+  );
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.world__rays {
+  position: absolute;
+  width: 150vmin;
+  aspect-ratio: 1;
+  background: repeating-conic-gradient(
+    from 4deg,
+    rgb(255 255 255 / var(--rays, 0.13)) 0 2.5deg,
+    transparent 2.5deg 11deg
+  );
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle, #000 0, rgb(0 0 0 / 0.6) 12%, transparent 48%);
+  mask-image: radial-gradient(circle, #000 0, rgb(0 0 0 / 0.6) 12%, transparent 48%);
+  translate: -50% -50%;
+}
+
+/* Clouds: a lit side, a base tone and a hard shadow, cut from circles. */
+.world__cloud {
+  height: auto;
+  overflow: visible;
+}
+
+.cloud__hi {
+  fill: var(--cloud-hi);
+}
+
+.cloud__base {
+  fill: var(--cloud-base);
+}
+
+.cloud__shade {
+  fill: var(--cloud-shade);
+}
+
+.world__cloud--a {
+  top: var(--cloud-a-y, 12%);
+  left: var(--cloud-a-x, 56%);
+  width: clamp(15rem, 40vw, 44rem);
+}
+
+.world__cloud--b {
+  top: var(--cloud-b-y, 22%);
+  left: var(--cloud-b-x, 4%);
+  width: clamp(10rem, 24vw, 26rem);
+}
+
+.world__cloud--c {
+  top: var(--cloud-c-y, 40%);
+  left: var(--cloud-c-x, 26%);
+  width: clamp(13rem, 44vw, 46rem);
+}
+
+.world__cloud--d {
+  top: var(--cloud-d-y, 7%);
+  left: var(--cloud-d-x, 40%);
+  width: clamp(5rem, 10vw, 10rem);
+}
+
+/* The Beskidy horizon, the same in every episode: four ridges, each with a
+   rim of light along its top and mist in the valleys behind it. */
+.world__hill {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--hills-h, 44%);
+}
+
+.hill__body,
+.hill__trees {
+  fill: var(--hill);
+}
+
+.hill__rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.hill__mist {
+  fill: var(--mist);
+  opacity: var(--mist-o, 0.5);
+}
+
+.world__hill--far {
+  --hill: var(--h1);
+  --rim: var(--r1);
+}
+
+.world__hill--mid {
+  --hill: var(--h2);
+  --rim: var(--r2);
+}
+
+.world__hill--near {
+  --hill: var(--h3);
+  --rim: var(--r3);
+}
+
+.world__hill--front {
+  --hill: var(--h4);
+  --rim: var(--r4);
+}
+
+/* Wind: two gusts drawn as strokes, and petals or leaves carried across. */
+.world__gust {
+  top: 28%;
+  left: 0;
+  width: clamp(9rem, 28vw, 24rem);
+  opacity: 0;
+  fill: none;
+  stroke: rgb(255 255 255 / 0.85);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.world__gust--2 {
+  top: 50%;
+}
+
+.world__wind {
+  inset: 0;
+  display: none;
+}
+
+.world__wind i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.world__wind i::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background: linear-gradient(135deg, var(--petal-a) 30%, var(--petal-b));
+  border-radius: 0 100% 0 100%;
+}
+
+.world__wind i:nth-child(3n)::before {
+  background: linear-gradient(135deg, var(--petal-b) 20%, var(--petal-a));
+}
+
+.world__wind i:nth-child(1) {
+  top: 8%;
+  --dur: 13s;
+  --delay: -1s;
+}
+.world__wind i:nth-child(2) {
+  top: 18%;
+  --dur: 17s;
+  --delay: -9s;
+}
+.world__wind i:nth-child(3) {
+  top: 27%;
+  --dur: 15s;
+  --delay: -4s;
+}
+.world__wind i:nth-child(4) {
+  top: 36%;
+  --dur: 19s;
+  --delay: -12s;
+}
+.world__wind i:nth-child(5) {
+  top: 12%;
+  --dur: 14s;
+  --delay: -7s;
+}
+.world__wind i:nth-child(6) {
+  top: 46%;
+  --dur: 16s;
+  --delay: -2s;
+}
+.world__wind i:nth-child(7) {
+  top: 55%;
+  --dur: 18s;
+  --delay: -14s;
+}
+.world__wind i:nth-child(8) {
+  top: 31%;
+  --dur: 12s;
+  --delay: -5s;
+}
+.world__wind i:nth-child(9) {
+  top: 64%;
+  --dur: 20s;
+  --delay: -10s;
+}
+.world__wind i:nth-child(10) {
+  top: 22%;
+  --dur: 15s;
+  --delay: -11s;
+}
+.world__wind i:nth-child(11) {
+  top: 41%;
+  --dur: 13s;
+  --delay: -8s;
+}
+.world__wind i:nth-child(12) {
+  top: 5%;
+  --dur: 18s;
+  --delay: -3s;
+}
+.world__wind i:nth-child(13) {
+  top: 50%;
+  --dur: 14s;
+  --delay: -13s;
+}
+.world__wind i:nth-child(14) {
+  top: 70%;
+  --dur: 17s;
+  --delay: -6s;
+}
+.world__wind i:nth-child(15) {
+  top: 15%;
+  --dur: 21s;
+  --delay: -16s;
+}
+.world__wind i:nth-child(16) {
+  top: 59%;
+  --dur: 16s;
+  --delay: -15s;
+}
+
+.world__wind i:nth-child(2n) {
+  width: 0.65rem;
+  height: 0.65rem;
+}
+
+.world__wind i:nth-child(5n) {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Leaves instead of petals from late summer on. */
+.ep--3 .world__wind i::before,
+.ep--4 .world__wind i::before,
+.ep--5 .world__wind i::before,
+.ep--6 .world__wind i::before,
+.ep--7 .world__wind i::before {
+  height: 55%;
+  border-radius: 0 100% 0 100% / 0 100% 0 100%;
+}
+
+/* Summer turns to early autumn as the apples redden. */
+.world__warm {
+  inset: 0;
+  background: linear-gradient(180deg, rgb(255 168 76 / 0) 20%, rgb(255 150 64 / 0.38));
+  opacity: 0;
+}
+
+/* Packaging happens indoors: the same horizon, through a window. */
+.world__window {
+  inset: 0;
+  border: clamp(1rem, 3.5vw, 2.75rem) solid var(--wood);
+  box-shadow:
+    inset 0 0 0 0.35rem var(--wood-2),
+    inset 0 0 5rem rgb(60 24 8 / 0.55);
+}
+
+.world__window::before,
+.world__window::after {
+  position: absolute;
+  content: '';
+  background: var(--wood);
+  box-shadow: 0 0 0 0.25rem var(--wood-2);
+}
+
+.world__window::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: clamp(0.75rem, 1.4vw, 1.25rem);
+  translate: -50% 0;
+}
+
+.world__window::after {
+  top: 34%;
+  right: 0;
+  left: 0;
+  height: clamp(0.75rem, 1.4vw, 1.25rem);
+}
+
+/* Market days end under the first stars. */
+.world__stars {
+  inset: 0 0 50%;
+}
+
+.world__stars i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgb(255 255 255 / 0.7);
+}
+
+.world__stars i:nth-child(1) {
+  top: 8%;
+  left: 12%;
+}
+.world__stars i:nth-child(2) {
+  top: 20%;
+  left: 26%;
+}
+.world__stars i:nth-child(3) {
+  top: 6%;
+  left: 41%;
+}
+.world__stars i:nth-child(4) {
+  top: 30%;
+  left: 55%;
+}
+.world__stars i:nth-child(5) {
+  top: 12%;
+  left: 68%;
+}
+.world__stars i:nth-child(6) {
+  top: 24%;
+  left: 83%;
+}
+.world__stars i:nth-child(7) {
+  top: 4%;
+  left: 92%;
+}
+.world__stars i:nth-child(8) {
+  top: 40%;
+  left: 7%;
+}
+.world__stars i:nth-child(9) {
+  top: 46%;
+  left: 34%;
+}
+.world__stars i:nth-child(10) {
+  top: 16%;
+  left: 50%;
+}
+.world__stars i:nth-child(11) {
+  top: 38%;
+  left: 76%;
+}
+.world__stars i:nth-child(12) {
+  top: 52%;
+  left: 62%;
+}
+.world__stars i:nth-child(13) {
+  top: 33%;
+  left: 19%;
+}
+.world__stars i:nth-child(14) {
+  top: 10%;
+  left: 4%;
+}
+
+.world__stars i:nth-child(3n) {
+  width: 2px;
+  height: 2px;
+}
+
+/* The eight lights ==========================================================
+   Sky top to horizon (--sky-1 … --sky-5), the sun, the clouds, the four
+   ridges far to near (--h1 … --h4) with their rims (--r1 … --r4), the mist,
+   and the colour that titles and panels take in that light. */
+
+.ep--1 {
+  --sky-1: #7da3da;
+  --sky-2: #a7bfe6;
+  --sky-3: #d2d2ee;
+  --sky-4: #f3d6dc;
+  --sky-5: #ffe4c6;
+  --sun-x: 74%;
+  --sun-y: 64%;
+  --sun-core: #fffaf0;
+  --sun-glow: #ffe2b4;
+  --cloud-hi: #fff;
+  --cloud-base: #fdf0f2;
+  --cloud-shade: #d8c3e0;
+  --h1: #b4b6df;
+  --r1: #ddd7f2;
+  --h2: #8ea2cc;
+  --r2: #bdc9e8;
+  --h3: #6c9486;
+  --r3: #a6c4a8;
+  --h4: #4b7a57;
+  --r4: #84b27e;
+  --mist: #fff3ea;
+  --mist-o: 0.75;
+  --petal-a: #fff;
+  --petal-b: #f6c2d1;
+  --accent: #5a4790;
+  --shadow: 60 50 120;
+  --cloud-a-x: 52%;
+  --cloud-a-y: 13%;
+  --cloud-b-x: 3%;
+  --cloud-b-y: 30%;
+  --cloud-c-x: 24%;
+  --cloud-c-y: 47%;
+}
+
+.ep--2 {
+  --sky-1: #2f78d2;
+  --sky-2: #4f93e0;
+  --sky-3: #82b5ec;
+  --sky-4: #b9d8f4;
+  --sky-5: #e3f1fb;
+  --sun-x: 82%;
+  --sun-y: 15%;
+  --sun-core: #fff;
+  --sun-glow: #fff4d6;
+  --cloud-hi: #fff;
+  --cloud-base: #f1f6fd;
+  --cloud-shade: #b1c4e3;
+  --h1: #9fc0e6;
+  --r1: #cadef3;
+  --h2: #78a6c8;
+  --r2: #a8c8df;
+  --h3: #5d9c6a;
+  --r3: #95c690;
+  --h4: #3c7c45;
+  --r4: #71aa66;
+  --mist: #fff;
+  --mist-o: 0.45;
+  --petal-a: #fff;
+  --petal-b: #f4b8ca;
+  --accent: #1f5c9e;
+  --shadow: 20 60 120;
+  --cloud-a-x: 4%;
+  --cloud-a-y: 16%;
+  --cloud-b-x: 64%;
+  --cloud-b-y: 34%;
+  --cloud-c-x: 40%;
+  --cloud-c-y: 50%;
+  --cloud-d-x: 58%;
+  --cloud-d-y: 9%;
+}
+
+.ep--3 {
+  --sky-1: #1c64c8;
+  --sky-2: #3a86dc;
+  --sky-3: #6aa8ea;
+  --sky-4: #a4ccf1;
+  --sky-5: #d9edf9;
+  --sun-x: 50%;
+  --sun-y: 9%;
+  --sun-core: #fff;
+  --sun-glow: #fff6d8;
+  --rays: 0.16;
+  --cloud-hi: #fff;
+  --cloud-base: #edf3fb;
+  --cloud-shade: #a3b7d9;
+  --h1: #8bb3dc;
+  --r1: #b8d3ee;
+  --h2: #5b94b6;
+  --r2: #8fbfd6;
+  --h3: #4b9748;
+  --r3: #8cc56b;
+  --h4: #2c7533;
+  --r4: #5ea24e;
+  --mist: #fff;
+  --mist-o: 0.35;
+  --petal-a: #a8d26a;
+  --petal-b: #5f9a3a;
+  --accent: #23662b;
+  --shadow: 16 60 110;
+  --cloud-a-x: 60%;
+  --cloud-a-y: 20%;
+  --cloud-b-x: 2%;
+  --cloud-b-y: 28%;
+  --cloud-c-x: 18%;
+  --cloud-c-y: 46%;
+  --cloud-d-x: 30%;
+  --cloud-d-y: 12%;
+}
+
+.ep--4 {
+  --sky-1: #4f7fc0;
+  --sky-2: #7c9fcf;
+  --sky-3: #b4bfcf;
+  --sky-4: #ecd09e;
+  --sky-5: #f8dfae;
+  --sun-x: 24%;
+  --sun-y: 52%;
+  --sun-core: #fff6dc;
+  --sun-glow: #ffd27a;
+  --cloud-hi: #fff4dc;
+  --cloud-base: #f0ddbe;
+  --cloud-shade: #c0a48e;
+  --h1: #a9a8c6;
+  --r1: #f0d4a8;
+  --h2: #8f9a8a;
+  --r2: #d8c48c;
+  --h3: #8b9846;
+  --r3: #c8c25e;
+  --h4: #6c7a2c;
+  --r4: #a3a640;
+  --mist: #ffe9c2;
+  --mist-o: 0.55;
+  --petal-a: #f0c24a;
+  --petal-b: #c8862c;
+  --accent: #80510f;
+  --shadow: 90 60 30;
+  --cloud-a-x: 56%;
+  --cloud-a-y: 10%;
+  --cloud-b-x: 36%;
+  --cloud-b-y: 30%;
+  --cloud-c-x: 2%;
+  --cloud-c-y: 18%;
+  --cloud-d-x: 82%;
+  --cloud-d-y: 40%;
+}
+
+.ep--5 {
+  --sky-1: #5f7bb2;
+  --sky-2: #8597c2;
+  --sky-3: #bcadbc;
+  --sky-4: #ebb592;
+  --sky-5: #f6c89c;
+  --sun-x: 70%;
+  --sun-y: 48%;
+  --sun-core: #fff1d6;
+  --sun-glow: #ffbf78;
+  --cloud-hi: #ffe6cc;
+  --cloud-base: #e8c7b8;
+  --cloud-shade: #a68ba6;
+  --h1: #9b93b8;
+  --r1: #e8b9a6;
+  --h2: #7f7b9c;
+  --r2: #c09a9e;
+  --h3: #8a6a42;
+  --r3: #c49052;
+  --h4: #6a4a2e;
+  --r4: #a06a38;
+  --mist: #ffd9b8;
+  --mist-o: 0.5;
+  --petal-a: #f0a040;
+  --petal-b: #c8502c;
+  --accent: #8a3a17;
+  --shadow: 80 40 40;
+  --cloud-a-x: 6%;
+  --cloud-a-y: 12%;
+  --cloud-b-x: 58%;
+  --cloud-b-y: 20%;
+  --cloud-c-x: 30%;
+  --cloud-c-y: 36%;
+}
+
+.ep--6 {
+  --sky-1: #4c5a98;
+  --sky-2: #6f6ca2;
+  --sky-3: #ad84a2;
+  --sky-4: #e7977a;
+  --sky-5: #f5b07a;
+  --sun-x: 28%;
+  --sun-y: 64%;
+  --sun-core: #ffe7b8;
+  --sun-glow: #ff9e5e;
+  --cloud-hi: #bd8fac;
+  --cloud-base: #9a739c;
+  --cloud-shade: #ffb487;
+  --h1: #8e78a4;
+  --r1: #e59a8a;
+  --h2: #6e5d8c;
+  --r2: #b07a92;
+  --h3: #574869;
+  --r3: #8a6681;
+  --h4: #3d3350;
+  --r4: #5e4a68;
+  --mist: #ffb98e;
+  --mist-o: 0.45;
+  --petal-a: #f09040;
+  --petal-b: #b8442a;
+  --accent: #74336d;
+  --shadow: 50 30 70;
+  --cloud-a-x: 54%;
+  --cloud-a-y: 16%;
+  --cloud-b-x: 6%;
+  --cloud-b-y: 12%;
+  --cloud-c-x: 34%;
+  --cloud-c-y: 40%;
+  --cloud-d-x: 86%;
+  --cloud-d-y: 34%;
+}
+
+.ep--7 {
+  --sky-1: #3a4683;
+  --sky-2: #5a5893;
+  --sky-3: #976a97;
+  --sky-4: #d67f73;
+  --sky-5: #ee9e6c;
+  --sun-x: 62%;
+  --sun-y: 72%;
+  --sun-core: #ffe2b0;
+  --sun-glow: #ff8f58;
+  --cloud-hi: #a77a9e;
+  --cloud-base: #85638f;
+  --cloud-shade: #ffa77a;
+  --h1: #6b5c8c;
+  --r1: #d98a86;
+  --h2: #55476d;
+  --r2: #95668a;
+  --h3: #41375a;
+  --r3: #6c5072;
+  --h4: #2e273f;
+  --r4: #4a3a56;
+  --mist: #ff9f7a;
+  --mist-o: 0.4;
+  --petal-a: #e88a3a;
+  --petal-b: #a8402a;
+  --wood: #5b3a26;
+  --wood-2: #7e5236;
+  --accent: #7a3d1f;
+  --shadow: 50 25 20;
+  --cloud-a-x: 8%;
+  --cloud-a-y: 14%;
+  --cloud-b-x: 60%;
+  --cloud-b-y: 22%;
+  --cloud-c-x: 50%;
+  --cloud-c-y: 46%;
+  --cloud-d-x: 30%;
+  --cloud-d-y: 30%;
+}
+
+.ep--8 {
+  --sky-1: #1b2150;
+  --sky-2: #2f2e69;
+  --sky-3: #5a3d7c;
+  --sky-4: #b05a77;
+  --sky-5: #f08a62;
+  --sun-x: 46%;
+  --sun-y: 86%;
+  --sun-core: #ffe9c4;
+  --sun-glow: #ff9a5e;
+  --rays: 0.08;
+  --cloud-hi: #5e4583;
+  --cloud-base: #4b3670;
+  --cloud-shade: #ffa77a;
+  --h1: #4a3d6e;
+  --r1: #b46a7e;
+  --h2: #372e57;
+  --r2: #7d4f75;
+  --h3: #29233f;
+  --r3: #5a3f62;
+  --h4: #1b1730;
+  --r4: #3c2c4f;
+  --mist: #f39a74;
+  --mist-o: 0.45;
+  --accent: #3d2f78;
+  --shadow: 10 8 30;
+  --cloud-a-x: 58%;
+  --cloud-a-y: 26%;
+  --cloud-b-x: 6%;
+  --cloud-b-y: 40%;
+  --cloud-c-x: 28%;
+  --cloud-c-y: 52%;
+  --cloud-d-x: 80%;
+  --cloud-d-y: 14%;
+}
+
+/* Opening ================================================================== */
+
+.opening {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+  width: min(100% - 2 * var(--gutter), var(--wide));
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+  padding: 7.5rem 0 6rem;
+}
+
+.opening__kicker {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.opening__title {
+  max-width: 13ch;
+  margin-top: 0.85rem;
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 1.3rem + 5.2vw, 5.75rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  text-shadow: 0 2px 0 rgb(255 255 255 / 0.35);
+}
+
+.opening__lead {
+  max-width: 30rem;
+  margin-top: 1.25rem;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3rem);
+  line-height: 1.6;
+}
+
+.opening__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  margin-top: 1.75rem;
+  padding: 0.65rem 1.4rem 0.65rem 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: var(--brand);
+  border-radius: 999px;
+  box-shadow: 0 0.6rem 1.5rem -0.4rem rgb(44 94 46 / 0.6);
+}
+
+.opening__play svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.opening__play:hover {
+  background: #23502a;
+}
+
+.episodes {
+  margin-top: 2.25rem;
+}
+
+.episodes__label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.episodes__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.episodes__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.3rem 0.9rem 0.3rem 0.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  text-decoration: none;
+  background: rgb(255 250 242 / 0.86);
+  border-radius: 999px;
+}
+
+.episodes__list a:hover {
+  background: #fff;
+}
+
+.episodes__n {
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+.opening__shot {
+  justify-self: center;
+  width: min(100%, 26rem);
+  rotate: 1.5deg;
+}
+
+@media (min-width: 64rem) {
+  .opening {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 4rem;
+    padding-top: 6rem;
+  }
+
+  .opening__shot {
+    width: min(100%, 29rem);
+    margin-top: 4rem;
+  }
+}
+
+/* Title cards ==============================================================
+   Every episode opens on its sky with a paper card: the episode number, the
+   season, a title and the chapter's name, sealed with a stamp, the way the
+   family stamps its own labels. */
+
+.card {
+  display: grid;
+  place-items: start center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 18vh var(--gutter) 24vh;
+}
+
+.card__plate {
+  position: relative;
+  width: min(100%, 36rem);
+  padding: 2.2rem clamp(1.4rem, 5vw, 3rem) 2.1rem;
+  text-align: center;
+  background: var(--paper);
+  border-radius: 0.375rem;
+  box-shadow: 0 1.75rem 3rem -1.25rem rgb(var(--shadow) / 0.6);
+}
+
+.card__plate::before {
+  position: absolute;
+  inset: 0.55rem;
+  content: '';
+  pointer-events: none;
+  border-radius: 0.2rem;
+  box-shadow:
+    inset 0 0 0 1px var(--accent),
+    inset 0 0 0 4px var(--paper),
+    inset 0 0 0 5px color-mix(in srgb, var(--accent) 45%, var(--paper));
+}
+
+.card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 1.75rem 0.85rem 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, var(--paper));
+}
+
+.card__meta > :first-child {
+  white-space: nowrap;
+}
+
+@media (min-width: 24rem) {
+  .card__meta {
+    gap: 1rem;
+    letter-spacing: 0.16em;
+  }
+}
+
+.card__title {
+  margin-top: 1.4rem;
+  font-family: var(--font-title);
+  font-size: clamp(2.1rem, 1.2rem + 3.6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.card__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.card__name::before,
+.card__name::after {
+  width: 2.25rem;
+  height: 1px;
+  content: '';
+  background: currentColor;
+}
+
+.card__stamp {
+  position: absolute;
+  top: -2.25rem;
+  right: -0.75rem;
+  display: grid;
+  place-items: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  font-family: var(--font-title);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--paper);
+  background: var(--brand);
+  border-radius: 0.65rem;
+  box-shadow:
+    inset 0 0 0 3px var(--brand),
+    inset 0 0 0 5px var(--paper),
+    0 0.5rem 1rem -0.2rem rgb(0 0 0 / 0.3);
+  rotate: 8deg;
+}
+
+/* Scenes ===================================================================
+   Phones get one column with a little sway left and right; wide screens lay
+   each scene out on twelve columns, with photos overlapping and panels
+   sliding over their edges. */
+
+.chapter {
+  padding-bottom: 14rem;
+}
+
+.scene {
+  display: grid;
+  gap: 2.75rem;
+  width: min(100% - 2 * var(--gutter), 36rem);
+  margin: 0 auto 7rem;
+}
+
+.scene > .shot--small:nth-child(odd),
+.scene > .shot--mid:nth-child(odd) {
+  margin-right: 8%;
+}
+
+.scene > .shot--small:nth-child(even),
+.scene > .shot--mid:nth-child(even) {
+  margin-left: 8%;
+}
+
+@media (min-width: 64rem) {
+  .scene {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 2rem);
+    row-gap: 0;
+    align-items: start;
+    width: min(100% - 2 * var(--gutter), var(--wide));
+    margin-bottom: 12rem;
+  }
+
+  .scene > .shot--small:nth-child(n),
+  .scene > .shot--mid:nth-child(n) {
+    margin-inline: 0;
+  }
+
+  .scene--duo > :nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / span 7;
+  }
+
+  .scene--duo > :nth-child(2) {
+    grid-row: 1;
+    grid-column: 9 / span 4;
+    margin-top: 9rem;
+  }
+
+  .scene--duo > .say {
+    grid-row: 2;
+    grid-column: 2 / span 5;
+    margin-top: 2.5rem;
+  }
+
+  .scene--duo.scene--flip > :nth-child(1) {
+    grid-column: 6 / span 7;
+  }
+
+  .scene--duo.scene--flip > :nth-child(2) {
+    grid-column: 1 / span 4;
+  }
+
+  .scene--duo.scene--flip > .say {
+    grid-column: 7 / span 5;
+  }
+
+  .scene--pair > :nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / span 6;
+  }
+
+  .scene--pair > :nth-child(2) {
+    grid-row: 1;
+    grid-column: 8 / span 5;
+    margin-top: 12rem;
+  }
+
+  .scene--pair.scene--flip > :nth-child(1) {
+    grid-column: 7 / span 6;
+  }
+
+  .scene--pair.scene--flip > :nth-child(2) {
+    grid-column: 1 / span 5;
+  }
+
+  .scene--split > .shot {
+    grid-row: 1;
+    grid-column: 1 / span 7;
+  }
+
+  .scene--split > .say {
+    grid-row: 1;
+    grid-column: 8 / span 5;
+    align-self: center;
+    margin-left: -3rem;
+  }
+
+  .scene--split.scene--flip > .shot {
+    grid-column: 6 / span 7;
+  }
+
+  .scene--split.scene--flip > .say {
+    grid-column: 1 / span 5;
+    margin-right: -3rem;
+    margin-left: 0;
+  }
+
+  .scene--trio > :nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+  }
+
+  .scene--trio > :nth-child(2) {
+    grid-row: 1;
+    grid-column: 5 / span 4;
+    margin-top: 5rem;
+  }
+
+  .scene--trio > :nth-child(3) {
+    grid-row: 1;
+    grid-column: 9 / span 4;
+    margin-top: 10rem;
+  }
+
+  .scene--trio > .say {
+    grid-row: 2;
+    grid-column: 3 / span 6;
+    margin-top: 3.5rem;
+  }
+
+  .scene--solo > * {
+    grid-column: 2 / span 10;
+  }
+}
+
+/* Photos ===================================================================
+   White-keyed frames, cropped to a few shapes; the caption sits on the photo
+   as a subtitle, in the family's own words. */
+
+.shot {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--sky-3) 70%, #fff);
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 4px var(--keyline),
+    0 1.6rem 2.6rem -1.2rem rgb(var(--shadow) / 0.55);
+}
+
+.frame picture,
+.frame img,
+.frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.frame--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.frame--landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.frame--wide {
+  aspect-ratio: 3 / 2;
+}
+
+.frame--soft {
+  aspect-ratio: 5 / 6;
+}
+
+.frame--tall {
+  aspect-ratio: 2 / 3;
+}
+
+.frame--square {
+  aspect-ratio: 1;
+}
+
+.frame--film {
+  aspect-ratio: 16 / 9;
+}
+
+.shot figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 3.25rem 1rem 0.85rem;
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: #fff;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow:
+    1px 0 0 #0b1020,
+    -1px 0 0 #0b1020,
+    0 1px 0 #0b1020,
+    0 -1px 0 #0b1020,
+    1px 1px 0 #0b1020,
+    -1px -1px 0 #0b1020,
+    1px -1px 0 #0b1020,
+    -1px 1px 0 #0b1020,
+    0 2px 6px rgb(0 0 0 / 0.55);
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(8 10 22 / 0.8), rgb(8 10 22 / 0.52) 55%, transparent);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+/* Without script.js the clip keeps the browser's own controls along its
+   bottom edge, so its subtitle moves up out of their way. */
+:root:not(.js) .film figcaption {
+  bottom: 3rem;
+  border-radius: 0;
+}
+
+/* Lens flares, placed on the sun of each backlit photo: a glow in hard
+   rings, soft rays, a streak and a line of ghosts through the centre. */
+.flare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.flare i {
+  position: absolute;
+  top: var(--sy);
+  left: var(--sx);
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.flare__glow {
+  width: 75%;
+  aspect-ratio: 1;
+  background: radial-gradient(
+    circle,
+    rgb(255 250 236 / 0.95) 0 4%,
+    rgb(255 228 172 / 0.5) 4% 8%,
+    rgb(255 214 150 / 0.3) 8% 14%,
+    rgb(255 202 140 / 0.15) 14% 24%,
+    rgb(255 190 130 / 0.06) 24% 40%,
+    transparent 40%
+  );
+}
+
+.flare__rays {
+  width: 115%;
+  aspect-ratio: 1;
+  background: repeating-conic-gradient(
+    from 8deg,
+    rgb(255 244 214 / 0.22) 0 1.6deg,
+    transparent 1.6deg 9deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 0, rgb(0 0 0 / 0.45) 10%, transparent 42%);
+  mask-image: radial-gradient(circle, #000 0, rgb(0 0 0 / 0.45) 10%, transparent 42%);
+}
+
+.flare__streak {
+  width: 150%;
+  height: 3%;
+  background: radial-gradient(
+    closest-side,
+    rgb(255 246 222 / 0.75),
+    rgb(255 200 150 / 0.2) 55%,
+    transparent
+  );
+}
+
+.flare__ghost {
+  top: calc(var(--sy) + (50% - var(--sy)) * var(--k));
+  left: calc(var(--sx) + (50% - var(--sx)) * var(--k));
+  aspect-ratio: 1;
+}
+
+.flare__ghost:nth-child(4) {
+  --k: 0.7;
+  width: 6%;
+  background: radial-gradient(
+    circle,
+    transparent 52%,
+    rgb(150 255 210 / 0.45) 66%,
+    transparent 74%
+  );
+}
+
+.flare__ghost:nth-child(5) {
+  --k: 1.25;
+  width: 12%;
+  background: rgb(255 150 220 / 0.18);
+  border-radius: 0;
+  clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
+}
+
+.flare__ghost:nth-child(6) {
+  --k: 1.6;
+  width: 4.5%;
+  background: radial-gradient(circle, rgb(160 210 255 / 0.5), transparent 70%);
+}
+
+.flare__ghost:nth-child(7) {
+  --k: 2;
+  width: 16%;
+  background: radial-gradient(
+    circle,
+    transparent 56%,
+    rgb(255 214 130 / 0.32) 68%,
+    transparent 76%
+  );
+}
+
+.flare--hamak {
+  --sx: 72.5%;
+  --sy: 58%;
+}
+
+.flare--taras {
+  --sx: 92%;
+  --sy: 26%;
+}
+
+.flare--korona {
+  --sx: 54.5%;
+  --sy: 38.5%;
+}
+
+.flare--smugi {
+  --sx: 5%;
+  --sy: 3%;
+}
+
+.flare--kisc {
+  --sx: 49%;
+  --sy: 58%;
+}
+
+.flare--liscie {
+  --sx: 64.6%;
+  --sy: 49%;
+}
+
+.flare--czerwone {
+  --sx: 47.5%;
+  --sy: 47.5%;
+}
+
+.flare--pod-slonce {
+  --sx: 43%;
+  --sy: 71%;
+}
+
+.flare--jesien {
+  --sx: 48.5%;
+  --sy: 59.6%;
+}
+
+.flare--koniki {
+  --sx: 52%;
+  --sy: 9.5%;
+}
+
+/* The family speaks ======================================================== */
+
+.say {
+  position: relative;
+  padding: 2.1rem clamp(1.25rem, 3vw, 2.1rem) 2rem;
+  background: var(--paper);
+  border-radius: 1rem;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--accent) 55%, var(--paper)),
+    0 1.4rem 2.6rem -1.2rem rgb(var(--shadow) / 0.55);
+}
+
+/* The "more to read" marker of a dialogue box. */
+.say::after {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 0.8rem;
+  content: '';
+  border: 0.42rem solid transparent;
+  border-top: 0.55rem solid var(--accent);
+  border-bottom: 0;
+}
+
+.say__who {
+  position: absolute;
+  top: -0.9rem;
+  left: 1.25rem;
+  padding: 0.2rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.say > p + p,
+.say > ul + p,
+.say > .say__title + p {
+  margin-top: 0.9em;
+}
+
+.say__title {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.say__title:not(:first-of-type) {
+  margin-top: 1.5rem;
+}
+
+.say__sub {
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.say__list {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.say__list li + li {
+  margin-top: 0.65rem;
+}
+
+.say__list a {
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.say__list--ticks {
+  padding: 0;
+  list-style: none;
+}
+
+.say__list--ticks li {
+  position: relative;
+  padding-left: 1.9rem;
+}
+
+.say__list--ticks li::before {
+  position: absolute;
+  top: 0.45em;
+  left: 0.15rem;
+  width: 1rem;
+  height: 0.55rem;
+  content: '';
+  border: solid var(--brand);
+  border-width: 0 0 3px 3px;
+  rotate: -45deg;
+}
+
+.say__big {
+  display: block;
+  margin: 0.3rem 0;
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 1.8rem + 3vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--brand);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.badges li {
+  padding: 0.4rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 999px;
+}
+
+@media (min-width: 64rem) {
+  .say--wide {
+    grid-column-end: span 6 !important;
+  }
+}
+
+/* The blossom clip ========================================================= */
+
+.film__toggle {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  font: 700 0.875rem/1 var(--font-text);
+  color: var(--ink);
+  cursor: pointer;
+  background: rgb(255 250 242 / 0.92);
+  border: 0;
+  border-radius: 999px;
+}
+
+.film__toggle[hidden] {
+  display: none;
+}
+
+.film__icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.film__icon--pause,
+.film.is-playing .film__icon--play {
+  display: none;
+}
+
+.film.is-playing .film__icon--pause {
+  display: block;
+}
+
+.film__video {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+/* The drive to the press ===================================================
+   Still: three storyboard panels, from the orchard to the press. With motion
+   allowed, one pinned panorama instead: the reader's scroll drives the car,
+   the road runs past and the hills follow slowly. */
+
+.scene--drive {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.drive__track {
+  display: none;
+}
+
+.drive__stills {
+  display: grid;
+  gap: 1.25rem;
+  width: min(100% - 2 * var(--gutter), var(--wide));
+  margin-inline: auto;
+}
+
+.drive__still {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, var(--sky-2), var(--sky-4) 70%, var(--sky-5));
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 4px var(--keyline),
+    0 1.6rem 2.6rem -1.2rem rgb(var(--shadow) / 0.55);
+}
+
+.drive__still-hills {
+  --hill: var(--h1);
+  --rim: var(--r1);
+}
+
+.drive__sign {
+  font: 700 44px var(--font-text);
+  fill: #fff;
+}
+
+.drive__caption {
+  width: fit-content;
+  max-width: min(100% - 2 * var(--gutter), 40rem);
+  margin: 1.5rem auto 0;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  background: var(--paper);
+  border-radius: 999px;
+}
+
+@media (min-width: 64rem) {
+  .drive__stills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.drive__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--sky-1),
+    var(--sky-3) 42%,
+    var(--sky-4) 60%,
+    var(--sky-5)
+  );
+  container-type: size;
+}
+
+.drive__layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: none;
+}
+
+.drive__layer--far {
+  --hill: var(--h1);
+  --rim: var(--r1);
+  bottom: 30%;
+  width: 130cqw;
+  height: 45%;
+}
+
+.drive__layer--mid {
+  --hill: var(--h2);
+  --rim: var(--r2);
+  bottom: 28%;
+  width: 190cqw;
+  height: 34%;
+}
+
+/* The road stops with the sign of the press in view, also on a phone. */
+.drive__layer--road {
+  --stop: max(50cqw - 545cqh, 100cqw - 100%);
+  width: 600cqh;
+  height: 100cqh;
+}
+
+/* The car parks in front of the press, and never past the edge of a
+   narrow screen. */
+.drive__car {
+  --park: min(62cqw, 96cqw - 100%);
+  position: absolute;
+  bottom: 13.4%;
+  left: 0;
+  height: 15%;
+  aspect-ratio: 2;
+}
+
+.drive__body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.drive__wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.drive__speed {
+  position: absolute;
+  top: 38%;
+  right: 100%;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.9));
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.drive__speed--2 {
+  top: 58%;
+  width: 42%;
+}
+
+.drive__speed--3 {
+  top: 76%;
+  width: 70%;
+}
+
+/* The press ================================================================ */
+
+.press__stage {
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 4px var(--keyline),
+    0 1.6rem 2.6rem -1.2rem rgb(var(--shadow) / 0.55);
+}
+
+.press__art {
+  width: 100%;
+  height: auto;
+}
+
+.press figcaption {
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.5rem auto 0;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  background: var(--paper);
+  border-radius: 999px;
+}
+
+.press__roller,
+.press__level {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.press__level {
+  transform-origin: bottom;
+}
+
+/* End credits ============================================================== */
+
+.credits {
+  width: min(100% - 2 * var(--gutter), 36rem);
+  margin: 0 auto;
+  padding: 4rem clamp(1.25rem, 5vw, 3rem) 4.5rem;
+  color: #fff;
+  text-align: center;
+  background: rgb(16 12 36 / 0.84);
+  border-radius: 1rem;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.18);
+}
+
+.credits a {
+  color: #fff;
+}
+
+.credits__label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #ffd2b0;
+  text-transform: uppercase;
+}
+
+.credits__logo {
+  width: min(12rem, 55vw);
+  height: auto;
+  margin: 2rem auto 0;
+}
+
+.credits__title {
+  margin-top: 2rem;
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.credits__address {
+  margin-top: 1rem;
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.credits__address p + p {
+  margin-top: 0.5rem;
+}
+
+.credits__social-title {
+  margin-top: 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.credits__social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.credits__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  border-radius: 999px;
+}
+
+.credits__social a:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.credits__social span {
+  font-weight: 400;
+  color: #e8e2f6;
+}
+
+.credits__social svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.credits__end {
+  margin-top: 3.5rem;
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: #ffe0c4;
+}
+
+.ep--8 .chapter {
+  padding-bottom: 6rem;
+}
+
+.ep--8 .credits {
+  margin-bottom: 18rem;
+}
+
+/* Colophon ================================================================= */
+
+/* Positioned, so the last episode's pinned sky stays behind it. */
+.colophon {
+  position: relative;
+  z-index: 1;
+  padding: 3rem var(--gutter) 7rem;
+  font-size: 0.9375rem;
+  color: #e9e4f5;
+  text-align: center;
+  background: var(--night);
+}
+
+.colophon__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.colophon a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.colophon__note {
+  margin-top: 1rem;
+}
+
+.colophon__copy {
+  margin-top: 0.35rem;
+  color: #c9c2dd;
+}
+
+/* The stop button ========================================================== */
+
+.still {
+  position: fixed;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem;
+  font: 700 0.875rem/1 var(--font-text);
+  color: var(--ink);
+  cursor: pointer;
+  background: rgb(255 250 242 / 0.94);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 0.5rem 1.5rem -0.3rem rgb(0 0 0 / 0.35);
+}
+
+.still[hidden] {
+  display: none;
+}
+
+.still__icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: #e98aa6;
+  transition: rotate 0.6s var(--ease-out);
+}
+
+.is-still .still__icon {
+  fill: #9aa3b5;
+  rotate: 90deg;
+}
+
+.still__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (min-width: 48rem) {
+  .still {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.5rem 1rem 0.5rem 0.75rem;
+  }
+
+  .still__label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+/* Motion ===================================================================
+   Everything below runs only when the reader allows motion. Without it the
+   page is the same story, fully drawn and still. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .world__wind {
+    display: block;
+  }
+
+  /* Ambient loops. script.js pauses them off screen and when the reader
+     stops them; without it there is no switch, so they stay still. */
+  .world__rays {
+    animation: turn 180s linear infinite;
+  }
+
+  .world__cloud {
+    animation: cloud-drift 70s var(--ease-sway) infinite alternate;
+  }
+
+  .world__cloud--b {
+    animation-duration: 52s;
+    animation-delay: -20s;
+  }
+
+  .world__cloud--c {
+    animation-duration: 90s;
+    animation-delay: -40s;
+  }
+
+  .world__cloud--d {
+    animation-duration: 44s;
+    animation-delay: -12s;
+  }
+
+  .world__gust {
+    animation: gust 9s var(--ease-sway) infinite;
+  }
+
+  .world__gust--2 {
+    animation-delay: -4.5s;
+  }
+
+  .world__wind i {
+    animation: blow var(--dur, 15s) linear var(--delay, 0s) infinite;
+  }
+
+  .world__wind i::before {
+    animation: flutter 1.9s var(--ease-sway) infinite alternate;
+  }
+
+  .world__wind i:nth-child(2n)::before {
+    animation-duration: 1.4s;
+    animation-direction: alternate-reverse;
+  }
+
+  .world__stars i {
+    animation: twinkle 5s ease-in-out infinite alternate;
+  }
+
+  .world__stars i:nth-child(2n) {
+    animation-duration: 7s;
+    animation-delay: -3s;
+  }
+
+  .flare__glow {
+    animation: breathe 7s ease-in-out infinite alternate;
+  }
+
+  .flare__rays {
+    animation: rays-sway 26s ease-in-out infinite alternate;
+  }
+
+  .drive__speed {
+    animation: speed 0.9s linear infinite;
+  }
+
+  .drive__speed--2 {
+    animation-delay: -0.3s;
+  }
+
+  .drive__speed--3 {
+    animation-delay: -0.6s;
+  }
+
+  .press__belt {
+    animation: belt 1.6s linear infinite;
+  }
+
+  .press__roller {
+    animation: turn 5s linear infinite;
+  }
+
+  .press__roller--back {
+    animation-direction: reverse;
+  }
+
+  .press__drop {
+    animation: drip 1.5s ease-in infinite;
+  }
+
+  .press__drop--2 {
+    animation-delay: -0.5s;
+  }
+
+  .press__drop--3 {
+    animation-delay: -1s;
+  }
+
+  .press__level {
+    animation: fill-up 6s var(--ease-sway) infinite alternate;
+  }
+
+  .js
+    [data-loop]:not(.is-playing)
+    :is(
+      .world__rays,
+      .world__cloud,
+      .world__gust,
+      .world__wind i,
+      .world__stars i,
+      .flare__glow,
+      .flare__rays,
+      .drive__speed,
+      .press__belt,
+      .press__roller,
+      .press__drop,
+      .press__level
+    ),
+  :is(.is-still, :root:not(.js))
+    :is(
+      .world__rays,
+      .world__cloud,
+      .world__gust,
+      .world__wind i,
+      .world__stars i,
+      .flare__glow,
+      .flare__rays,
+      .drive__speed,
+      .press__belt,
+      .press__roller,
+      .press__drop,
+      .press__level
+    ) {
+    animation-play-state: paused;
+  }
+
+  .js [data-loop]:not(.is-playing) .world__wind i::before,
+  :is(.is-still, :root:not(.js)) .world__wind i::before {
+    animation-play-state: paused;
+  }
+
+  /* With nothing moving, the wind has nothing to carry. */
+  :is(.is-still, :root:not(.js)) .world__wind,
+  :is(.is-still, :root:not(.js)) .drive__speed {
+    display: none;
+  }
+
+  /* Browsers without scroll-driven animations: script.js arms what starts
+     below the fold and lets it rise into place when it is reached. */
+  .is-armed {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+
+  .is-armed.is-inview {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.9s var(--ease-out),
+      transform 0.9s var(--ease-out);
+  }
+
+  /* The drive becomes a pinned panorama: natively with scroll-driven
+     animations, or through --p from script.js. */
+  .has-drive-fallback .drive__track {
+    display: block;
+    height: 320vh;
+  }
+
+  .has-drive-fallback .drive__stills {
+    display: none;
+  }
+
+  .has-drive-fallback .drive__layer {
+    transform: translateX(calc((-100% + 100cqw) * var(--p, 0)));
+  }
+
+  .has-drive-fallback .drive__layer--road {
+    transform: translateX(calc(var(--stop) * var(--p, 0)));
+  }
+
+  .has-drive-fallback .drive__car {
+    transform: translateX(calc(6cqw + (var(--park) - 6cqw) * var(--p, 0)));
+  }
+
+  .has-drive-fallback .drive__wheel {
+    transform: rotate(calc(3600deg * var(--p, 0)));
+  }
+
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+
+    /* A title card: it rises in, holds while it is read, and drifts off. */
+    .card__plate[data-reveal] {
+      animation:
+        card-in linear both,
+        card-out linear both;
+      animation-timeline: view(), view();
+      animation-range:
+        entry 25% cover 45%,
+        exit 15% exit 85%;
+    }
+
+    .card__stamp {
+      animation: stamp linear both;
+      animation-timeline: view();
+      animation-range: entry 60% cover 50%;
+    }
+
+    /* Within an episode the sun keeps moving: up through the spring
+       mornings, down through the autumn afternoons. */
+    .world__sun {
+      animation: sun-path linear both;
+      animation-timeline: --ep;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .world__hill {
+      animation: hill-rise linear both;
+      animation-timeline: --ep;
+      animation-range: entry 50% entry 100%;
+    }
+
+    .world__hill--mid {
+      --rise: 5%;
+    }
+
+    .world__hill--near {
+      --rise: 9%;
+    }
+
+    .world__hill--front {
+      --rise: 14%;
+    }
+
+    .world__warm {
+      animation: warm-up linear both;
+      animation-timeline: --ep;
+      animation-range: contain 35% contain 100%;
+    }
+
+    .drive__track {
+      display: block;
+      height: 320vh;
+      view-timeline: --drive block;
+    }
+
+    .drive__stills {
+      display: none;
+    }
+
+    .drive__layer {
+      animation: drive-pan linear both;
+      animation-timeline: --drive;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .drive__layer--road {
+      animation-name: drive-road;
+    }
+
+    .drive__car {
+      animation: drive-car linear both;
+      animation-timeline: --drive;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .drive__wheel {
+      animation: drive-wheel linear both;
+      animation-timeline: --drive;
+      animation-range: contain 0% contain 100%;
+    }
+  }
+}
+
+.ep--1 {
+  --sun-from: 0 9vh;
+  --sun-to: 0 -5vh;
+}
+
+.ep--2 {
+  --sun-from: 0 5vh;
+  --sun-to: -4vw -2vh;
+}
+
+.ep--3 {
+  --sun-from: -6vw 2vh;
+  --sun-to: 8vw 4vh;
+}
+
+.ep--4 {
+  --sun-from: 0 -4vh;
+  --sun-to: 0 7vh;
+}
+
+.ep--5 {
+  --sun-from: 0 -4vh;
+  --sun-to: 2vw 9vh;
+}
+
+.ep--6 {
+  --sun-from: 0 -6vh;
+  --sun-to: 0 8vh;
+}
+
+.ep--7 {
+  --sun-from: 0 -5vh;
+  --sun-to: 0 9vh;
+}
+
+.ep--8 {
+  --sun-from: 0 -4vh;
+  --sun-to: 0 10vh;
+}
+
+@keyframes turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-3vw);
+  }
+
+  to {
+    transform: translateX(4vw);
+  }
+}
+
+@keyframes gust {
+  0% {
+    opacity: 0;
+    transform: translateX(-30vw);
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  60% {
+    opacity: 0;
+    transform: translateX(110vw);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(110vw);
+  }
+}
+
+@keyframes blow {
+  0% {
+    transform: translate(-6vw, 0) rotate(0);
+  }
+
+  25% {
+    transform: translate(22vw, 7vh) rotate(140deg);
+  }
+
+  50% {
+    transform: translate(50vw, 2vh) rotate(250deg);
+  }
+
+  75% {
+    transform: translate(78vw, 10vh) rotate(400deg);
+  }
+
+  100% {
+    transform: translate(108vw, 5vh) rotate(540deg);
+  }
+}
+
+@keyframes flutter {
+  from {
+    transform: rotate3d(1, 0.35, 0, 15deg);
+  }
+
+  to {
+    transform: rotate3d(1, 0.35, 0, 165deg);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.8;
+    scale: 0.96;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1.04;
+  }
+}
+
+@keyframes rays-sway {
+  from {
+    rotate: -8deg;
+  }
+
+  to {
+    rotate: 10deg;
+  }
+}
+
+@keyframes speed {
+  from {
+    opacity: 0;
+    transform: translateX(30%);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-40%);
+  }
+}
+
+@keyframes belt {
+  to {
+    transform: translate(42px, -48px);
+  }
+}
+
+@keyframes drip {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+@keyframes fill-up {
+  from {
+    transform: scaleY(0.55);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(3.5rem) scale(0.96);
+  }
+}
+
+@keyframes card-out {
+  to {
+    opacity: 0;
+    transform: translateY(-3rem) scale(0.98);
+  }
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.8) rotate(-14deg);
+  }
+}
+
+@keyframes sun-path {
+  from {
+    translate: var(--sun-from);
+  }
+
+  to {
+    translate: var(--sun-to);
+  }
+}
+
+@keyframes hill-rise {
+  from {
+    transform: translateY(var(--rise, 2%));
+  }
+}
+
+@keyframes warm-up {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drive-pan {
+  to {
+    transform: translateX(calc(-100% + 100cqw));
+  }
+}
+
+@keyframes drive-road {
+  to {
+    transform: translateX(var(--stop));
+  }
+}
+
+@keyframes drive-car {
+  from {
+    transform: translateX(6cqw);
+  }
+
+  to {
+    transform: translateX(var(--park));
+  }
+}
+
+@keyframes drive-wheel {
+  to {
+    transform: rotate(3600deg);
+  }
+}
+
+/* Photo hold ===============================================================
+   While <html> has is-holding-photos (head of index.html), photos below the
+   opening screen stay out of the layout, so the lazy loader leaves them alone
+   until the page has loaded and been painted. Their frames keep their size. */
+@media screen {
+  .is-holding-photos .frame:not(.is-released) img[loading='lazy'] {
+    display: none;
+  }
+}
+
+/* Print ==================================================================== */
+
+@media print {
+  body,
+  .ep {
+    color: #000;
+    background: #fff;
+  }
+
+  .masthead,
+  .world,
+  .still,
+  .flare,
+  .film__toggle,
+  .drive__track {
+    display: none;
+  }
+
+  .opening,
+  .card {
+    min-height: 0;
+    padding-block: 2rem;
+  }
+
+  .drive__stills {
+    display: grid;
+  }
+
+  .frame,
+  .say,
+  .card__plate {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .shot figcaption {
+    position: static;
+    padding: 0.5rem 0 0;
+    color: #000;
+    text-shadow: none;
+    background: none;
+  }
+
+  .credits {
+    color: #000;
+    background: none;
+  }
+
+  .credits a {
+    color: #000;
+  }
+}
