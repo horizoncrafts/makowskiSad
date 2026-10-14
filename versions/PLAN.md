@@ -19,10 +19,10 @@ Do not edit these.
 
 ## Still to build
 
-- [ ] [build-anime-version.md](../.repota/build-anime-version.md) — Anime telling of the orchard. Before build-animated-3d-version.md.
-- [ ] [build-animated-3d-version.md](../.repota/build-animated-3d-version.md) — CSS 3D pop-up book. After build-anime-version.md.
-- [ ] [build-framer-site-version.md](../.repota/build-framer-site-version.md) — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
-- [ ] [build-brutal-prompt-version.md](../.repota/build-brutal-prompt-version.md) — Art direction from BrutalPrompt.md. No order.
+- [ ] `build-anime-version.md` — Anime telling of the orchard. Before build-animated-3d-version.md.
+- [ ] `build-animated-3d-version.md` — CSS 3D pop-up book. After build-anime-version.md.
+- [ ] `build-framer-site-version.md` — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
+- [ ] `build-brutal-prompt-version.md` — Art direction from BrutalPrompt.md. No order.
 
 After these, stop. A further round only happens when Piotr picks a style.
 
