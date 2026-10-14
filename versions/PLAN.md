@@ -15,13 +15,14 @@ Do not edit these.
 | `2026-10-06-fairy-tale/`                                                          | The walk-in orchard. Captions rewritten in `e9ef811` |
 | `2026-10-08-cartoon/`                                                             | The comic book. Built by Claude                      |
 | `2026-10-08-cartoon-2/`                                                           | The second comic, in ink plates. Built by Grok       |
+| `2026-10-14-framer/`                                                              | The Framer site, rebuilt. Built by Claude            |
 
 
 ## Still to build
 
 - [ ] `build-anime-version.md` — Anime telling of the orchard. Before build-animated-3d-version.md.
 - [ ] `build-animated-3d-version.md` — CSS 3D pop-up book. After build-anime-version.md.
-- [ ] `build-framer-site-version.md` — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
+- [x] `build-framer-site-version.md` — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
 - [ ] `build-brutal-prompt-version.md` — Art direction from BrutalPrompt.md. No order.
 
 After these, stop. A further round only happens when Piotr picks a style.
