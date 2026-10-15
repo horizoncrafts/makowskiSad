@@ -17,12 +17,13 @@ Do not edit these.
 | `2026-10-08-cartoon-2/`                                                           | The second comic, in ink plates. Built by Grok       |
 | `2026-10-14-framer/`                                                              | The Framer site, rebuilt. Built by Claude            |
 | `2026-10-14-anime/`                                                               | The anime telling, eight episodes. Built by Claude   |
+| `2026-10-15-animated-3d/`                                                         | The CSS 3D pop-up book. Built by Claude              |
 
 
 ## Still to build
 
 - [x] `build-anime-version.md` — Anime telling of the orchard. Before build-animated-3d-version.md. Built by Claude.
-- [ ] `build-animated-3d-version.md` — CSS 3D pop-up book. After build-anime-version.md.
+- [x] `build-animated-3d-version.md` — CSS 3D pop-up book. After build-anime-version.md. Built by Claude.
 - [x] `build-framer-site-version.md` — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
 - [ ] `build-brutal-prompt-version.md` — Art direction from BrutalPrompt.md. No order.
 

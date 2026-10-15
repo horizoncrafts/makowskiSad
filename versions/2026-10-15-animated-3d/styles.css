@@ -1,0 +1,1121 @@
+/* Makowski Sad – a moving pop-up book.
+   Each chapter is a paper diorama built with CSS 3D only: perspective on the stage,
+   preserve-3d on the diorama, and layers (sky, hills, photo cards, grass) at their
+   own depth. As a chapter scrolls in, its layers fold up off the floor of the page
+   and the view tilts through the scene. On phones there are fewer layers. With
+   reduced motion it is a still diorama with every page standing. */
+
+@font-face {
+  font-family: 'Fraunces Display';
+  font-style: normal;
+  font-weight: 650;
+  font-display: swap;
+  src: url('fonts/fraunces-display.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/fraunces-text.woff2') format('woff2');
+}
+
+:root {
+  --green: #2c5e2e;
+  --green-dark: #1e4220;
+  --ink: #2a2620;
+  --ink-soft: #4d463b;
+  --paper: #f3ead6;
+  --paper-light: #fffaf0;
+  --paper-edge: #dccdab;
+  --rose: #a9564a;
+  --kraft: #c69a6b;
+  --kraft-dark: #a57a4e;
+  --wrap: 76rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --font-head: 'Fraunces Display', Georgia, 'Times New Roman', serif;
+  --font-text: 'Fraunces Text', Georgia, 'Times New Roman', serif;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* Faint paper grain from two gradients, no image. */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgb(255 255 255 / 0.5), transparent 40%),
+    repeating-linear-gradient(0deg, rgb(120 90 40 / 0.025) 0 1px, transparent 1px 4px);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: clamp(1.02rem, 0.96rem + 0.3vw, 1.18rem);
+  line-height: 1.65;
+  overflow-x: clip;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: var(--green);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--green-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 3px;
+  border-radius: 0.2rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-head);
+  font-weight: 650;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h2 {
+  color: var(--green);
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem);
+}
+
+h3 {
+  margin-top: 1.4em;
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.6rem 1rem;
+  background: var(--green);
+  color: #fff;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Masthead and cover ========================================================= */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 1rem var(--gutter);
+}
+
+.masthead__logo img {
+  width: clamp(9rem, 7rem + 8vw, 11.5rem);
+}
+
+.masthead ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.masthead a {
+  display: inline-block;
+  padding: 0.45rem 0;
+}
+
+.cover {
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 4rem) var(--gutter) clamp(1rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.cover__kicker {
+  margin-bottom: 0.75rem;
+  color: var(--rose);
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cover h1 {
+  max-width: 16ch;
+  margin: 0 auto 0.4em;
+  color: var(--green);
+  font-size: clamp(2.4rem, 1.4rem + 5vw, 5rem);
+  line-height: 1.04;
+}
+
+.cover__lead {
+  max-width: 34rem;
+  margin: 0 auto 1.75rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+}
+
+.contents ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: chapter;
+}
+
+.contents li {
+  counter-increment: chapter;
+}
+
+.contents a {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--paper-edge);
+  border-radius: 2rem;
+  background: var(--paper-light);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.contents a::before {
+  content: counter(chapter) '. ';
+  color: var(--rose);
+}
+
+/* Spreads ==================================================================== */
+
+.spread {
+  /* Season colours for the paper layers. */
+  --sky-a: #cfe3f2;
+  --sky-b: #fbe7ec;
+  --hill-far: #a9c79a;
+  --hill: #6f9f5c;
+  --front: #4f8540;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 6rem) var(--gutter);
+  /* The scaled back layers reach past the stage; keep them off the page edge. */
+  overflow-x: clip;
+}
+
+.spread--blossom {
+  --sky-a: #d8e8f4;
+  --sky-b: #fde3ea;
+  --hill-far: #b8d3a6;
+  --hill: #7fae69;
+  --front: #5a9049;
+}
+
+.spread--summer {
+  --sky-a: #9cc8ea;
+  --sky-b: #f8e7b9;
+  --hill-far: #8db86f;
+  --hill: #5a8e3d;
+  --front: #3f7330;
+}
+
+.spread--harvest {
+  --sky-a: #f3d9a0;
+  --sky-b: #f6c58a;
+  --hill-far: #b9b467;
+  --hill: #8c8a3e;
+  --front: #6f7a32;
+}
+
+.spread--autumn {
+  --sky-a: #f0c48c;
+  --sky-b: #d98b63;
+  --hill-far: #b8875a;
+  --hill: #8d6a3d;
+  --front: #6e5a2e;
+}
+
+.spread--press {
+  --sky-a: #e9dcc7;
+  --sky-b: #d6c2a2;
+}
+
+.spread--indoor {
+  --sky-a: #efe0c4;
+  --sky-b: #d9b98d;
+}
+
+.spread--market {
+  --sky-a: #bfdcf3;
+  --sky-b: #fff1c9;
+  --hill-far: #a5c48f;
+  --hill: #6c9a52;
+  --front: #4c7f3c;
+}
+
+.spread__page {
+  position: relative;
+  max-width: 36rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--paper-edge);
+  border-radius: 0.5rem;
+  background: var(--paper-light);
+  box-shadow: 0 1rem 2rem -1.5rem rgb(60 40 10 / 0.5);
+}
+
+.spread__num {
+  margin-bottom: 0.25rem;
+  color: var(--rose);
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.spread__page > :last-child {
+  margin-bottom: 0;
+}
+
+.pledge {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--green);
+  background: #eef3e6;
+  font-family: var(--font-head);
+}
+
+.subhead {
+  font-family: var(--font-head);
+  font-size: 1.2em;
+}
+
+.ticks,
+.partners {
+  margin: 0 0 1em;
+  padding-left: 1.25rem;
+}
+
+.ticks li,
+.partners li {
+  margin-bottom: 0.5em;
+}
+
+.ticks li::marker {
+  content: '✓  ';
+  color: var(--green);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-head);
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--green-dark);
+  color: #fff;
+}
+
+@media (min-width: 60rem) {
+  .spread {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+
+  .spread--flip {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  }
+
+  .spread--flip .spread__stage {
+    order: 2;
+  }
+}
+
+/* The stage and the diorama ================================================== */
+
+.spread__stage {
+  perspective: 1100px;
+  perspective-origin: 50% 20%;
+  padding: 0 4%;
+  /* Layers nearer the eye project past the scene; the stage trims them to a clean
+     bottom edge. Clipping here, on the perspective box, leaves the 3D intact. */
+  overflow: clip;
+}
+
+.diorama {
+  position: relative;
+  aspect-ratio: 1 / 0.95;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg);
+}
+
+.layer {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--z, 0));
+}
+
+/* Each pop-up folds on its bottom edge, like a paper tab glued to the floor. */
+.layer > .pop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+}
+
+.layer--sky {
+  inset: -2% -8% -20%;
+  transform: translateZ(var(--z)) scale(1.2);
+  transform-origin: 50% 100%;
+}
+
+.layer--sky .pop {
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: linear-gradient(to bottom, var(--sky-a), var(--sky-b));
+  box-shadow: inset 0 -2rem 3rem -2rem rgb(255 255 255 / 0.6);
+}
+
+.layer--hills-far,
+.layer--hills {
+  left: -6%;
+  right: -6%;
+}
+
+.layer--hills-far {
+  bottom: -14%;
+  height: 64%;
+  transform: translateZ(var(--z)) scale(1.13);
+  transform-origin: 50% 100%;
+}
+
+.layer--hills {
+  bottom: -10%;
+  height: 48%;
+  transform: translateZ(var(--z)) scale(1.08);
+  transform-origin: 50% 100%;
+}
+
+.layer--hills-far svg {
+  fill: var(--hill-far);
+}
+
+.layer--hills svg {
+  fill: var(--hill);
+}
+
+.layer--front {
+  left: -4%;
+  right: -4%;
+  bottom: -3%;
+  height: 20%;
+}
+
+.layer--front svg {
+  fill: var(--front);
+}
+
+.layer--front .blossom {
+  fill: #fff4f6;
+}
+
+.layer--front .apple {
+  fill: #c0392b;
+}
+
+/* Photo cards: a print on white card with its caption written underneath. */
+.card {
+  margin: 0;
+  padding: 0.35rem 0.35rem 0.4rem;
+  border-radius: 0.3rem;
+  background: #fff;
+  box-shadow: 0 0.6rem 1.2rem -0.6rem rgb(40 30 10 / 0.55);
+}
+
+.card picture {
+  display: block;
+  overflow: hidden;
+  border-radius: 0.15rem;
+  background: #e9e1cf;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.layer--portrait .card picture {
+  aspect-ratio: 4 / 5;
+}
+
+.layer--landscape .card picture {
+  aspect-ratio: 4 / 3;
+}
+
+.card figcaption {
+  padding: 0.35rem 0.2rem 0;
+  color: var(--ink);
+  font-size: clamp(0.72rem, 0.62rem + 0.35vw, 0.9rem);
+  line-height: 1.35;
+}
+
+.layer--main.layer--portrait {
+  left: 10%;
+  top: 4%;
+  width: 42%;
+}
+
+.layer--main.layer--landscape {
+  left: 4%;
+  top: 6%;
+  width: 52%;
+}
+
+.layer--side.layer--landscape {
+  right: 2%;
+  bottom: 15%;
+  width: 42%;
+}
+
+.layer--side.layer--portrait {
+  right: 8%;
+  bottom: 15%;
+  width: 32%;
+}
+
+.layer--main,
+.layer--side {
+  height: auto;
+}
+
+.layer--main .pop,
+.layer--side .pop {
+  height: auto;
+}
+
+.spread--flip .layer--main {
+  left: auto;
+  right: 10%;
+}
+
+.spread--flip .layer--main.layer--landscape {
+  right: 4%;
+}
+
+.spread--flip .layer--side {
+  right: auto;
+  left: 2%;
+}
+
+.spread--flip .layer--side.layer--portrait {
+  left: 8%;
+}
+
+/* Drawings stand at the back of their scene. */
+.layer--drawing {
+  left: 4%;
+  right: 4%;
+  top: 3%;
+}
+
+.layer--drawing .pop {
+  height: auto;
+}
+
+.drawing-card {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 0.4rem;
+  background: var(--paper-light);
+  box-shadow: 0 0.6rem 1.2rem -0.6rem rgb(40 30 10 / 0.5);
+}
+
+.drawing-card figcaption {
+  margin-top: 0.4rem;
+  font-size: clamp(0.72rem, 0.62rem + 0.35vw, 0.9rem);
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.drawing-card text {
+  fill: var(--ink);
+  font-family: var(--font-head);
+  font-size: 22px;
+}
+
+.d-road {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 5;
+  stroke-dasharray: 2 12;
+  stroke-linecap: round;
+}
+
+.d-tree,
+.d-house {
+  fill: var(--green);
+}
+
+.d-apple {
+  fill: #c0392b;
+}
+
+.d-door {
+  fill: var(--paper);
+}
+
+.d-car {
+  fill: var(--rose);
+}
+
+.d-wheel {
+  fill: var(--ink);
+}
+
+.d-floor {
+  fill: var(--paper-edge);
+}
+
+.d-steel {
+  fill: #cdd4d6;
+  stroke: #6f7c80;
+  stroke-width: 3;
+}
+
+.d-pipe {
+  fill: none;
+  stroke: #6f7c80;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.d-panel rect {
+  fill: var(--ink);
+}
+
+.d-panel circle {
+  fill: #8fd18a;
+}
+
+.d-rollers circle {
+  fill: #9aa5a8;
+  stroke: #5d686b;
+  stroke-width: 3;
+}
+
+.d-apples circle {
+  fill: #c0392b;
+}
+
+.d-juice {
+  fill: #e5b04a;
+}
+
+#transport .layer--main {
+  top: 44%;
+  width: 42%;
+}
+
+#transport .layer--side {
+  width: 40%;
+}
+
+#tloczenie .layer--drawing {
+  right: 30%;
+  left: 2%;
+}
+
+#tloczenie .layer--side {
+  top: 26%;
+  bottom: auto;
+  left: auto;
+  right: 3%;
+  width: 26%;
+}
+
+#tloczenie .layer--side img {
+  object-position: 50% 90%;
+}
+
+/* The juice carton: six faces of kraft card ==================================== */
+
+.layer--box {
+  left: 50%;
+  top: 22%;
+  width: 0;
+  height: 0;
+}
+
+.box {
+  --w: clamp(5.5rem, 4rem + 6vw, 9rem);
+  --h: calc(var(--w) * 1.3);
+  --d: calc(var(--w) * 0.8);
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  margin-left: calc(var(--w) / -2);
+  transform-style: preserve-3d;
+  transform: rotateX(-14deg) rotateY(-34deg);
+}
+
+.box__face {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--kraft-dark);
+  background:
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.03) 0 2px, transparent 2px 6px),
+    var(--kraft);
+  color: var(--green-dark);
+  font-family: var(--font-head);
+  font-size: calc(var(--w) * 0.12);
+  text-align: center;
+}
+
+.box__face img {
+  width: 72%;
+  mix-blend-mode: multiply;
+}
+
+.box__face--front,
+.box__face--back {
+  width: var(--w);
+  height: var(--h);
+}
+
+.box__face--front {
+  transform: translateZ(calc(var(--d) / 2));
+}
+
+.box__face--back {
+  transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
+}
+
+.box__face--left,
+.box__face--right {
+  left: calc((var(--w) - var(--d)) / 2);
+  width: var(--d);
+  height: var(--h);
+}
+
+.box__face--left span,
+.box__face--right span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.box__face--right {
+  transform: rotateY(90deg) translateZ(calc(var(--w) / 2));
+  background-color: var(--kraft-dark);
+}
+
+.box__face--left {
+  transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+  background-color: var(--kraft-dark);
+}
+
+.box__face--top,
+.box__face--bottom {
+  top: calc((var(--h) - var(--d)) / 2);
+  width: var(--w);
+  height: var(--d);
+}
+
+.box__face--top {
+  transform: rotateX(90deg) translateZ(calc(var(--h) / 2));
+  background-color: #d4ad80;
+}
+
+.box__face--bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--h) / 2));
+}
+
+#pakowanie .layer--main {
+  left: 2%;
+  top: 2%;
+  width: 56%;
+}
+
+#pakowanie .layer--side {
+  right: 2%;
+  left: auto;
+  bottom: 4%;
+  width: 28%;
+}
+
+#pakowanie .layer--main {
+  top: 3%;
+}
+
+#pakowanie .layer--box {
+  left: 66%;
+  top: 14%;
+}
+
+/* Phones: fewer layers and less depth, so the scene stays smooth. */
+@media (max-width: 37.5rem) {
+  .spread__stage {
+    perspective: 900px;
+    padding: 0 2% 4%;
+  }
+
+  .diorama {
+    aspect-ratio: 1 / 1.15;
+  }
+
+  .layer--hills-far {
+    display: none;
+  }
+
+  .layer--front {
+    height: 17%;
+  }
+
+  #pakowanie .layer--box {
+    left: 74%;
+  }
+
+  .layer--main.layer--portrait,
+  .layer--main.layer--landscape {
+    left: 4%;
+    width: 46%;
+  }
+
+  .spread--flip .layer--main.layer--portrait,
+  .spread--flip .layer--main.layer--landscape {
+    left: auto;
+    right: 4%;
+  }
+
+  .layer--side.layer--landscape {
+    right: 2%;
+    width: 46%;
+  }
+
+  .layer--side.layer--portrait {
+    right: 4%;
+    width: 38%;
+  }
+
+  .spread--flip .layer--side.layer--landscape,
+  .spread--flip .layer--side.layer--portrait {
+    right: auto;
+    left: 4%;
+  }
+
+  #transport .layer--main {
+    top: 40%;
+    width: 46%;
+  }
+
+  #transport .layer--side {
+    width: 46%;
+  }
+
+  #tloczenie .layer--drawing {
+    right: 34%;
+  }
+
+  #tloczenie .layer--side {
+    top: 30%;
+    width: 30%;
+  }
+
+  #pakowanie .layer--main {
+    width: 56%;
+  }
+
+  #pakowanie .layer--side {
+    width: 34%;
+  }
+}
+
+/* Colophon =================================================================== */
+
+.colophon {
+  margin-top: 2rem;
+  border-top: 1px solid var(--paper-edge);
+  background: var(--paper-light);
+}
+
+.colophon__inner,
+.colophon__base {
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter);
+}
+
+.colophon__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.colophon__logo {
+  width: 8.5rem;
+}
+
+.colophon h2 {
+  color: var(--ink);
+  font-size: 1.35rem;
+}
+
+.colophon address {
+  font-style: normal;
+}
+
+.social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: inline-block;
+  padding: 0.35rem 0;
+}
+
+.colophon__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--paper-edge);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.colophon__base p {
+  margin: 0;
+}
+
+.colophon__base nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.colophon__base a {
+  display: inline-block;
+  padding: 0.4rem 0;
+}
+
+@media (min-width: 48rem) {
+  .colophon__inner {
+    grid-template-columns: auto 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Motion ===================================================================== */
+
+@keyframes camera {
+  from {
+    transform: rotateX(26deg) translateY(6%);
+  }
+
+  50% {
+    transform: rotateX(8deg);
+  }
+
+  to {
+    transform: rotateX(-4deg) translateY(-4%);
+  }
+}
+
+@keyframes fold-up {
+  from {
+    transform: rotateX(86deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateX(-14deg) rotateY(-60deg);
+  }
+
+  to {
+    transform: rotateX(-14deg) rotateY(300deg);
+  }
+}
+
+@keyframes drive {
+  from {
+    transform: translateX(-150px);
+  }
+
+  to {
+    transform: translateX(110px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .d-car {
+    animation: drive 8s ease-in-out infinite alternate;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* The pages fold up while the stage enters the screen and are all standing
+       once it is fully in view; the view tilts through the scene across the
+       stage's whole pass. The carton turns over the whole chapter. */
+    .spread {
+      view-timeline: --spread block;
+    }
+
+    .spread__stage {
+      view-timeline: --stage block;
+    }
+
+    .diorama {
+      animation: camera linear both;
+      animation-timeline: --stage;
+      animation-range: cover 0% cover 100%;
+    }
+
+    .layer > .pop {
+      animation: fold-up linear both;
+      animation-timeline: --stage;
+      animation-range: entry 20% entry 100%;
+    }
+
+    .layer--sky > .pop {
+      animation-range: entry 0% entry 50%;
+    }
+
+    .layer--hills-far > .pop,
+    .layer--drawing > .pop {
+      animation-range: entry 10% entry 60%;
+    }
+
+    .layer--hills > .pop {
+      animation-range: entry 15% entry 70%;
+    }
+
+    .layer--main > .pop {
+      animation-range: entry 25% entry 85%;
+    }
+
+    .layer--side > .pop,
+    .layer--box > .pop {
+      animation-range: entry 35% entry 95%;
+    }
+
+    .layer--front > .pop {
+      animation-range: entry 45% entry 100%;
+    }
+
+    .box {
+      animation: spin linear both;
+      animation-timeline: --spread;
+      animation-range: cover 15% cover 85%;
+    }
+  }
+
+  /* Without scroll-driven animations, script.js marks html.no-sda and opens each
+     spread with .is-open as it comes into view. */
+  .no-sda .layer > .pop {
+    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .no-sda .layer--main > .pop {
+    transition-delay: 0.15s;
+  }
+
+  .no-sda .layer--side > .pop,
+  .no-sda .layer--box > .pop {
+    transition-delay: 0.3s;
+  }
+
+  .no-sda .layer--front > .pop {
+    transition-delay: 0.4s;
+  }
+
+  .no-sda .spread:not(.is-open) .layer > .pop {
+    transform: rotateX(86deg);
+  }
+}
+
+/* Photo hold =================================================================
+   While <html> has is-holding-photos (head of index.html), photos below the
+   opening screen stay out of the layout, so the lazy loader leaves them alone
+   until the page has loaded and been painted. */
+@media screen {
+  .is-holding-photos img[loading='lazy'] {
+    display: none;
+  }
+}
+
+/* Print ====================================================================== */
+
+@media print {
+  .masthead nav,
+  .skip-link {
+    display: none;
+  }
+
+  .diorama,
+  .layer,
+  .layer > .pop,
+  .box {
+    animation: none !important;
+    transform: none !important;
+  }
+}

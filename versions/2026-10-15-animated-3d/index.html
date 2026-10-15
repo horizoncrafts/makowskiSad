@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Książka z wycinanką – Makowski Sad</title>
+    <meta
+      name="description"
+      content="Naturalne, tłoczone soki jabłkowe z rodzinnego, ekologicznego sadu w Makowie Podhalańskim."
+    />
+    <meta name="theme-color" content="#f3ead6" />
+    <link rel="icon" href="../../assets/icons/vertical_color.svg" type="image/svg+xml" />
+    <!-- Preloads the typefaces of the opening screen when the page comes from a server.
+         A page opened from disk can't make the CORS request a font preload needs, so
+         there, and without JavaScript, styles.css loads them on its own. -->
+    <script>
+      if (/^https?:$/.test(location.protocol)) {
+        for (const href of ['fonts/fraunces-display.woff2', 'fonts/fraunces-text.woff2']) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'font';
+          link.type = 'font/woff2';
+          link.crossOrigin = '';
+          link.href = href;
+          document.head.append(link);
+        }
+      }
+    </script>
+    <!-- Holds back the photos below the opening screen until the page has loaded and
+         been painted (see styles.css). It must run before the first layout, so it stays
+         inline and ahead of the stylesheet. Without JavaScript nothing is held. -->
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const loaded = new Promise((resolve) => window.addEventListener('load', resolve));
+        const painted = new Promise((resolve) => {
+          if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {
+            resolve();
+            return;
+          }
+          new PerformanceObserver((list, observer) => {
+            if (!list.getEntriesByName('first-contentful-paint').length) return;
+            observer.disconnect();
+            resolve();
+          }).observe({ type: 'paint', buffered: true });
+        });
+
+        root.classList.add('js', 'is-holding-photos');
+        Promise.all([loaded, painted]).then(() => root.classList.remove('is-holding-photos'));
+      })();
+    </script>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+    <header class="masthead">
+      <a class="masthead__logo" href="../../index.html">
+        <img src="../../assets/icons/horizontal_color.svg" width="180" height="41" alt="Makowski Sad" />
+      </a>
+      <nav aria-label="Inne strony">
+        <ul>
+          <li><a href="../../index.html">Strona główna</a></li>
+          <li><a href="../index.html">Wszystkie wersje</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="tresc" tabindex="-1">
+      <header class="cover">
+        <p class="cover__kicker">Książka z&nbsp;wycinanką</p>
+        <h1>Naturalne soki z Makowskiego Sadu</h1>
+        <p class="cover__lead">Odkryj wyjątkowe walory tłoczonych soków jabłkowych z ekologicznego sadu w Małopolsce.</p>
+        <nav class="contents" aria-label="Rozdziały">
+          <ol>
+            <li><a href="#miejsce">Dom wśród jabłoni</a></li>
+            <li><a href="#kwiat">Wiosna w koronach</a></li>
+            <li><a href="#jablko">Lato pełne gości</a></li>
+            <li><a href="#zbior">Jesienne zbiory</a></li>
+            <li><a href="#transport">Droga do tłoczni</a></li>
+            <li><a href="#tloczenie">W tłoczni</a></li>
+            <li><a href="#pakowanie">Sok w kartonie</a></li>
+            <li><a href="#sprzedaz">Dni targowe</a></li>
+          </ol>
+        </nav>
+      </header>
+
+      <section id="miejsce" class="spread spread--spring" aria-labelledby="miejsce-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--main layer--portrait" style="--z: -10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-jablon-przed-domem-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg" srcset="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg 1000w, ../shared/photos/0-miejsce-jablon-przed-domem-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="1333" fetchpriority="high" decoding="async" alt="Kwitnąca jabłoń przed naszym domem w sadzie" />
+                </picture>
+                <figcaption>Ta jabłoń co wiosnę kwitnie tuż przed naszym domem.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--landscape" style="--z: 40px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/0-miejsce-taras-ze-stolem-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg" srcset="../shared/photos/0-miejsce-taras-ze-stolem-1000.jpg 1000w, ../shared/photos/0-miejsce-taras-ze-stolem-2000.jpg 2000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="750" loading="lazy" decoding="async" alt="Drewniany taras z nakrytym stołem wśród kwitnących jabłoni, w oddali wzgórza" />
+                </picture>
+                <figcaption>Nasz taras wśród kwitnących jabłoni.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 1</p>
+          <h2 id="miejsce-title">Dom wśród jabłoni</h2>
+          <p>
+            Jesteśmy niewielkim, rodzinnym przedsięwzięciem z urokliwego Makowa Podhalańskiego. Zajmujemy się
+            tworzeniem naturalnych soków jabłkowych, z pasją oraz troską o środowisko.
+          </p>
+          <p>Z dala od ruchliwych dróg w sadzie znajduje się nasz dom.</p>
+        </div>
+      </section>
+      <section id="kwiat" class="spread spread--blossom spread--flip" aria-labelledby="kwiat-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--main layer--portrait" style="--z: -10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg" srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg 1000w, ../shared/photos/1-kwiat-kwiaty-zblizenie-1440.jpg 1440w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="1167" loading="lazy" decoding="async" alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami z bliska" />
+                </picture>
+                <figcaption>Tak z bliska wyglądają kwiaty naszych jabłoni.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--portrait" style="--z: 40px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/1-kwiat-rozowe-paki-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/1-kwiat-rozowe-paki-1000.jpg" srcset="../shared/photos/1-kwiat-rozowe-paki-1000.jpg 1000w, ../shared/photos/1-kwiat-rozowe-paki-2000.jpg 2000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="1333" loading="lazy" decoding="async" alt="Różowe pąki jabłoni tuż przed rozkwitnięciem" />
+                </picture>
+                <figcaption>Różowe pąki tuż przed rozkwitnięciem.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                <circle class="blossom" cx="30" cy="22" r="5" /><circle class="blossom" cx="95" cy="18" r="5" /><circle class="blossom" cx="150" cy="24" r="5" /><circle class="blossom" cx="210" cy="16" r="5" /><circle class="blossom" cx="270" cy="22" r="5" /><circle class="blossom" cx="330" cy="18" r="5" /><circle class="blossom" cx="385" cy="24" r="5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 2</p>
+          <h2 id="kwiat-title">Wiosna w koronach</h2>
+          <p>
+            Nasze kilkudziesięcioletnie jabłonie rosną w naturalny sposób bez przyspieszaczy wzrostu i są
+            organicznie odporne.
+          </p>
+          <p>
+            Mieszkając pośród drzew, nie chcemy obcować ze środkami chemicznymi służącymi do usprawniania uprawy –
+            stosujemy permakulturę.
+          </p>
+          <p>Jabłonie przycinamy jesienią, usuwamy pasożyty, wszystko ręcznie.</p>
+        </div>
+      </section>
+      <section id="jablko" class="spread spread--summer" aria-labelledby="jablko-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--main layer--portrait" style="--z: -10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-zielone-w-smugach-slonca-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg" srcset="../shared/photos/2-jablko-zielone-w-smugach-slonca-1000.jpg 1000w, ../shared/photos/2-jablko-zielone-w-smugach-slonca-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="1333" loading="lazy" decoding="async" alt="Zielone jabłko na gałęzi, w tle sad w smugach słońca" />
+                </picture>
+                <figcaption>Zielone jabłko dojrzewa w smugach słońca.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--landscape" style="--z: 40px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/2-jablko-jaszczurka-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/2-jablko-jaszczurka-1000.jpg" srcset="../shared/photos/2-jablko-jaszczurka-1000.jpg 1000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="751" loading="lazy" decoding="async" alt="Jaszczurka na ziemi wśród liści" />
+                </picture>
+                <figcaption>Jaszczurka, jeden z gości naszego sadu.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 3</p>
+          <h2 id="jablko-title">Lato pełne gości</h2>
+          <p>
+            Nasz sad to mikroekosystem, gdzie każde drzewo i owad ma swoją rolę. Nie chcemy tego zaburzać,
+            stosując „chemię”.
+          </p>
+          <p>Dbamy o różnorodność sadu, tworząc środowisko, w którym różni goście są mile widziani.</p>
+          <p class="pledge">Nie stosujemy oprysków, środków ochronnych ani sztucznych nawozów.</p>
+        </div>
+      </section>
+      <section id="zbior" class="spread spread--harvest spread--flip" aria-labelledby="zbior-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--main layer--portrait" style="--z: -10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-zrywanie-z-drzewa-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg" srcset="../shared/photos/3-zbior-zrywanie-z-drzewa-1000.jpg 1000w, ../shared/photos/3-zbior-zrywanie-z-drzewa-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="1484" loading="lazy" decoding="async" alt="Zrywanie jabłek prosto z drzewa" />
+                </picture>
+                <figcaption>Jabłka zrywamy prosto z drzewa.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--portrait" style="--z: 40px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/3-zbior-skrzynki-jablek-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg" srcset="../shared/photos/3-zbior-skrzynki-jablek-1000.jpg 1000w, ../shared/photos/3-zbior-skrzynki-jablek-2000.jpg 2000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="1308" loading="lazy" decoding="async" alt="Drewniane skrzynki pełne czerwonych jabłek na trawie" />
+                </picture>
+                <figcaption>Pełne skrzynki czekają na trawie.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                <circle class="apple" cx="45" cy="40" r="7" /><circle class="apple" cx="120" cy="44" r="7" /><circle class="apple" cx="190" cy="38" r="7" /><circle class="apple" cx="255" cy="46" r="7" /><circle class="apple" cx="320" cy="40" r="7" /><circle class="apple" cx="370" cy="46" r="7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 4</p>
+          <h2 id="zbior-title">Jesienne zbiory</h2>
+          <p>Starannie zbieramy i selekcjonujemy jabłka, tylko najlepsze trafiają do naszych soków.</p>
+        </div>
+      </section>
+      <section id="transport" class="spread spread--autumn" aria-labelledby="transport-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--drawing" style="--z: -40px">
+              <figure class="pop drawing-card">
+                <svg viewBox="0 60 640 210" role="img" aria-labelledby="route-title">
+                  <title id="route-title">Ilustracja: droga z naszego sadu w Makowie Podhalańskim do Tłoczni Choczni pod Wadowicami</title>
+                  <path class="d-road" d="M120 200 C 210 240 260 130 340 150 S 470 230 520 190" />
+                  <g class="d-tree" transform="translate(70 110)">
+                    <rect x="-5" y="40" width="10" height="44" rx="3" />
+                    <circle cx="0" cy="22" r="34" />
+                    <circle class="d-apple" cx="-14" cy="18" r="6" />
+                    <circle class="d-apple" cx="12" cy="30" r="6" />
+                    <circle class="d-apple" cx="6" cy="6" r="6" />
+                  </g>
+                  <g class="d-house" transform="translate(520 110)">
+                    <path d="M0 84 V24 L40 0 L80 24 V84 Z" />
+                    <rect class="d-door" x="28" y="44" width="24" height="40" rx="2" />
+                  </g>
+                  <g class="d-car">
+                    <g transform="translate(300 118)">
+                      <rect x="0" y="10" width="64" height="20" rx="6" />
+                      <path d="M10 10 L20 -4 H46 L56 10 Z" />
+                      <circle class="d-wheel" cx="16" cy="32" r="7" />
+                      <circle class="d-wheel" cx="48" cy="32" r="7" />
+                    </g>
+                  </g>
+                  <text x="70" y="258" text-anchor="middle">Makowski Sad</text>
+                  <text x="560" y="258" text-anchor="middle">Tłocznia Chocznia</text>
+                </svg>
+                <figcaption><span class="tag">Ilustracja</span> Droga z sadu do „Tłoczni Choczni” pod Wadowicami.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--main layer--landscape" style="--z: 10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/4-transport-bagaznik-pelen-workow-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg" srcset="../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg 1000w, ../shared/photos/4-transport-bagaznik-pelen-workow-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="750" loading="lazy" decoding="async" alt="Bagażnik samochodu pełen worków z jabłkami" />
+                </picture>
+                <figcaption>Bagażnik pełen worków – tak wieziemy jabłka do tłoczni.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--landscape" style="--z: 50px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/4-transport-koniki-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/4-transport-koniki-1000.jpg" srcset="../shared/photos/4-transport-koniki-1000.jpg 1000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="760" loading="lazy" decoding="async" alt="Dwa konie na pastwisku, w tle zalesione wzgórza i słońce" />
+                </picture>
+                <figcaption>Nadmiarowe jabłka trafiają do koników.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 5</p>
+          <h2 id="transport-title">Droga do tłoczni</h2>
+          <p>Wyselekcjonowane jabłka transportujemy do „Tłoczni Choczni” pod Wadowicami.</p>
+          <h3>Współpracujemy z lokalnymi biznesami</h3>
+          <ul class="partners">
+            <li>
+              <strong>Stadnina koni.</strong> Nadmiarowe jabłka zawozimy dla koników pana Andrzeja.
+              <a href="http://www.makowskagora.pl" rel="noopener">Jazda konna</a>
+            </li>
+            <li>
+              <strong>Leśnicy i myśliwi.</strong> Nasze jabłka też idealnie nadają się do karmienia zwierząt leśnych.
+              Dzikie zwierzątka zostają w lesie i nie wchodzą w szkodę :)
+            </li>
+          </ul>
+          <p>Pozostałe odpady oddajemy do lokalnego Punktu Selektywnej Zbiórki Odpadów Komunalnych.</p>
+        </div>
+      </section>
+      <section id="tloczenie" class="spread spread--press spread--flip" aria-labelledby="tloczenie-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--drawing" style="--z: -40px">
+              <figure class="pop drawing-card">
+                <svg viewBox="40 10 580 280" role="img" aria-labelledby="press-title">
+                  <title id="press-title">Ilustracja: jabłka w nowoczesnych urządzeniach tłoczni, z których płynie sok</title>
+                  <path class="d-floor" d="M40 270 H620 V290 H40Z" />
+                  <g class="d-steel">
+                    <path d="M60 60 H180 L150 130 H90 Z" />
+                    <rect x="100" y="130" width="40" height="40" />
+                    <rect x="200" y="120" width="250" height="120" rx="14" />
+                    <rect x="220" y="240" width="20" height="30" />
+                    <rect x="410" y="240" width="20" height="30" />
+                    <rect x="490" y="110" width="100" height="160" rx="30" />
+                  </g>
+                  <path class="d-pipe" d="M140 150 H200 M450 200 H490" />
+                  <g class="d-panel">
+                    <rect x="380" y="140" width="50" height="30" rx="4" />
+                    <circle cx="395" cy="155" r="5" />
+                    <circle cx="415" cy="155" r="5" />
+                  </g>
+                  <g class="d-rollers">
+                    <circle cx="250" cy="180" r="22" />
+                    <circle cx="310" cy="180" r="22" />
+                    <circle cx="370" cy="180" r="22" />
+                  </g>
+                  <g class="d-apples">
+                    <circle cx="95" cy="52" r="12" />
+                    <circle cx="120" cy="44" r="12" />
+                    <circle cx="145" cy="54" r="12" />
+                    <circle cx="108" cy="30" r="12" />
+                    <circle cx="134" cy="26" r="12" />
+                  </g>
+                  <path class="d-juice" d="M520 150 h40 v90 a10 10 0 0 1 -10 10 h-20 a10 10 0 0 1 -10 -10 Z" />
+                </svg>
+                <figcaption><span class="tag">Ilustracja</span> Nowoczesne urządzenia tłoczni.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--portrait" style="--z: 50px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/5-tloczenie-worki-w-tloczni-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg" srcset="../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg 1000w, ../shared/photos/5-tloczenie-worki-w-tloczni-2000.jpg 2000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="1411" loading="lazy" decoding="async" alt="Worki z jabłkami w tłoczni, obok waga" />
+                </picture>
+                <figcaption>Nasze worki z jabłkami czekają w tłoczni na swoją kolej.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 6</p>
+          <h2 id="tloczenie-title">W tłoczni</h2>
+          <p>
+            „Tłocznia Chocznia” to profesjonalna tłocznia, wyposażona w nowoczesne urządzenia, które zapewniają
+            precyzję, skuteczność procesu tłoczenia i dbałość o środowisko naturalne.
+          </p>
+          <p>Cały proces jest zoptymalizowany przez tłocznię.</p>
+          <ul class="ticks">
+            <li>100% naturalne składniki</li>
+            <li>Bez dodatku cukru i konserwantów</li>
+          </ul>
+        </div>
+      </section>
+      <section id="pakowanie" class="spread spread--indoor" aria-labelledby="pakowanie-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--main layer--landscape" style="--z: -60px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-karton-i-worek-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg" srcset="../shared/photos/6-pakowanie-karton-i-worek-1000.jpg 1000w, ../shared/photos/6-pakowanie-karton-i-worek-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="750" loading="lazy" decoding="async" alt="Kartony z ostemplowanym logo i worki soku z kranikami na stole pod jabłonią" />
+                </picture>
+                <figcaption>Kartony z naszym logo i worki soku z kranikami.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--box" style="--z: 40px">
+              <div class="pop">
+                <div class="box" role="img" aria-label="Karton soku Makowski Sad z ostemplowanym logo, obracający się przy czytaniu">
+                  <div class="box__face box__face--front"><img src="../../assets/icons/vertical_color.svg" width="120" height="120" alt="" /></div>
+                  <div class="box__face box__face--back"><img src="../../assets/icons/vertical_color.svg" width="120" height="120" alt="" /></div>
+                  <div class="box__face box__face--right"><span>Soki naturalne</span></div>
+                  <div class="box__face box__face--left"><span>Makowski Sad</span></div>
+                  <div class="box__face box__face--top"></div>
+                  <div class="box__face box__face--bottom"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layer layer--side layer--portrait" style="--z: 60px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg" srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg 1000w, ../shared/photos/6-pakowanie-stempel-i-etykiety-2000.jpg 2000w" sizes="(min-width: 64rem) 14rem, 34vw" width="1000" height="1333" loading="lazy" decoding="async" alt="Stempel z logo, ręcznie wycięte kartonowe etykiety i szpulka sznurka" />
+                </picture>
+                <figcaption>Stempel, sznurek i etykiety wycięte z kartonu.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 7</p>
+          <h2 id="pakowanie-title">Sok w kartonie</h2>
+          <p class="subhead">W pudełku lub same worki 3 l.</p>
+          <ul class="ticks">
+            <li>Przydatność do spożycia przez co najmniej 5 dni po otwarciu</li>
+            <li>Mniej materiałów na opakowanie</li>
+            <li>Łatwe przechowywanie i nalewanie</li>
+          </ul>
+          <p>Soki są dystrybuowane w workach PET z kranikiem.</p>
+          <p>
+            Opcjonalnie soki są dodatkowo opakowane w prosty karton, umożliwiający łatwe nalewanie oraz zabezpieczający
+            bukłak przed przypadkowym uszkodzeniem.
+          </p>
+          <p>
+            Etykiety robimy własnoręcznie, wycinając z kartonów po pizzy lub zużytych pudeł. Przywiązujemy je
+            najprostszym sznurkiem.
+          </p>
+          <p>
+            Wszystkie napisy i logo są umieszczane poprzez ostemplowanie – w ten sposób nie tworzymy dodatkowych
+            etykiet, nie używamy naklejek. W ten sposób kartony mogą być wielokrotnie używane – wystarczy uzupełniać
+            „wkład”, do czego gorąco zachęcamy.
+          </p>
+          <h3>Jak posegregować opakowanie</h3>
+          <p>
+            Etykietki można utylizować jako papier, podobnie jak samo pudełko, jak się już zużyje. Worek PET, po
+            całkowitym opróżnieniu, można wyrzucić do plastików. Zalecamy odciąć wcześniej kranik – umożliwia to
+            wykorzystanie całości soku i ułatwia sortowanie.
+          </p>
+        </div>
+      </section>
+      <section id="sprzedaz" class="spread spread--market spread--flip" aria-labelledby="sprzedaz-title">
+        <div class="spread__stage">
+          <div class="diorama">
+            <div class="layer layer--sky" style="--z: -200px" aria-hidden="true"><div class="pop"></div></div>
+            <div class="layer layer--hills-far" style="--z: -140px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V70 C 40 40 80 38 120 58 S 200 30 250 52 S 340 26 400 48 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--hills" style="--z: -90px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 120" preserveAspectRatio="none" focusable="false">
+                <path d="M0 120 V82 C 60 52 110 70 160 80 S 250 50 300 66 S 370 74 400 62 V120 Z" />
+              </svg>
+            </div>
+            <div class="layer layer--main layer--portrait" style="--z: -10px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-640.jpg 640w" sizes="46vw" />
+                  <img src="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg" srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg 1000w, ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-2000.jpg 2000w" sizes="(min-width: 64rem) 20rem, 46vw" width="1000" height="1333" loading="lazy" decoding="async" alt="Stoisko z sokami pod białym namiotem, za stołem dwie osoby" />
+                </picture>
+                <figcaption>Nasze stoisko z sokami pod białym namiotem.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--side layer--portrait" style="--z: 40px">
+              <figure class="pop card">
+                <picture>
+                  <source media="(max-width: 29.99rem)" srcset="../shared/photos/7-sprzedaz-impreza-ludowa-640.jpg 640w" sizes="34vw" />
+                  <img src="../shared/photos/7-sprzedaz-impreza-ludowa-914.jpg" srcset="../shared/photos/7-sprzedaz-impreza-ludowa-914.jpg 914w" sizes="(min-width: 64rem) 14rem, 34vw" width="914" height="1024" loading="lazy" decoding="async" alt="Karton z logo i worek soku, w tle występ zespołu w strojach ludowych" />
+                </picture>
+                <figcaption>Nasz sok na lokalnej imprezie.</figcaption>
+              </figure>
+            </div>
+            <div class="layer layer--front" style="--z: 70px" aria-hidden="true">
+              <svg class="pop" viewBox="0 0 400 60" preserveAspectRatio="none" focusable="false">
+                <path d="M0 60 V34 Q 10 14 20 32 Q 30 10 40 30 Q 52 8 62 30 Q 74 12 84 32 Q 96 6 108 30 Q 120 14 130 32 Q 142 4 154 30 Q 166 14 176 32 Q 188 8 200 30 Q 212 12 222 32 Q 234 6 246 30 Q 258 14 268 32 Q 280 8 292 30 Q 304 12 314 32 Q 326 6 338 30 Q 350 14 360 32 Q 372 8 384 30 Q 392 16 400 30 V60 Z" />
+                
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="spread__page">
+          <p class="spread__num" aria-hidden="true">Rozdział 8</p>
+          <h2 id="sprzedaz-title">Dni targowe</h2>
+          <p>Produkujemy rocznie około 300 litrów wysokiej jakości soków jabłkowych.</p>
+          <p>Chętnie obsługujemy imprezy lokalne.</p>
+          <p><a class="button" href="mailto:info@makowskisad.pl">Napisz do nas</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="kontakt" class="colophon" aria-labelledby="kontakt-title">
+      <div class="colophon__inner">
+        <img class="colophon__logo" src="../../assets/icons/vertical_color.svg" width="150" height="150" loading="lazy" alt="Makowski Sad" />
+        <address>
+          <h2 id="kontakt-title">Makowski Sad</h2>
+          <p>ul. Sosnowa 7<br />34-220 Maków Podhalański</p>
+          <p><a href="mailto:info@makowskisad.pl">info@makowskisad.pl</a></p>
+        </address>
+        <div>
+          <h2>Znajdź nas na socialach</h2>
+          <ul class="social">
+            <li><a href="https://instagram.com/makowskisad">Instagram: @makowskisad</a></li>
+            <li><a href="https://facebook.com/makowskisad">Facebook: @makowskisad</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="colophon__base">
+        <p>© 2026 HorizonCrafts.</p>
+        <p>Wersja robocza „Książka z wycinanką” z 15 października 2026. Złożył ją Claude.</p>
+        <nav aria-label="Na koniec">
+          <a href="../../index.html">Strona główna</a>
+          <a href="../index.html">Wszystkie wersje</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

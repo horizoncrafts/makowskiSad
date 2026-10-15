@@ -9,3 +9,7 @@ No Three.js, Babylon, glTF, or physics. On a phone, use fewer layers. With reduc
 Done when the depth reads on a phone at a smooth frame rate and the still version is complete.
 
 Follow `versions/PLAN.md` for every shared rule.
+
+## Done
+
+Built by Claude on 2026-10-15 in `versions/2026-10-15-animated-3d/`. Eight paper dioramas, one per chapter, in CSS 3D only. Their layers fold up off the page as each stage scrolls into view, and the view tilts through the scene. The carton is a six-faced box that turns across the packaging chapter. There are no particles. Phones drop the far hills and use less depth. With reduced motion every page stands still. Lighthouse mobile on a gzip static server: performance 98, accessibility 100. A scripted scroll at 4× CPU throttling held 60 fps, with no frame over 50 ms. No sideways scroll from 320 to 1920 px.
