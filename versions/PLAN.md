@@ -19,6 +19,7 @@ Do not edit these.
 | `2026-10-14-anime/`                                                               | The anime telling, eight episodes. Built by Claude   |
 | `2026-10-15-animated-3d/`                                                         | The CSS 3D pop-up book. Built by Claude              |
 | `2026-10-16-brutal/`                                                              | Art direction from BrutalPrompt.md. Built by Claude  |
+| `2026-11-04-orchard-tales/`                                                       | Baśń z sadu, with generated illustrations. Built by Codex |
 
 
 ## Still to build
@@ -27,6 +28,7 @@ Do not edit these.
 - [x] `build-animated-3d-version.md` — CSS 3D pop-up book. After build-anime-version.md. Built by Claude.
 - [x] `build-framer-site-version.md` — The Framer site rebuilt in plain HTML, CSS, and JS. No order.
 - [x] `build-brutal-prompt-version.md` — Art direction from BrutalPrompt.md. No order. Built by Claude.
+- [x] `build-orchard-tales-version.md` — Baśń z sadu. Piotr selected a fairytale told entirely with generated illustrations for this edition. Built by Codex.
 
 After these, stop. A further round only happens when Piotr picks a style.
 
