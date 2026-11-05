@@ -4,6 +4,6 @@
 
 ## Repository tasks
 
-Use `.repota/` for repository task tracking.
+Use `.repota/` for tracking incoming repository tasks. 
 Read `docs/repota.md` before creating, editing, finding, or moving tasks.
-Follow existing task-writing conventions in this project.
+Create repota tasks only when instructed directly to do so. Do no create just for the sake of tracking work.
