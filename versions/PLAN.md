@@ -9,7 +9,8 @@ Do not edit these.
 
 | Folder                                                                            | What it is                                           |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| `../index.html`, `../ecology.html`, `../styles.css`, `../script.js`, `../assets/` | The basic site                                       |
+| `../index.html`, `../styles.css`, `../script.js`, `../assets/orchard-tales/` | The main site, promoted from orchard tales on 2026-11-05 by Codex |
+| `2026-11-05-basic/` | The previous basic site and ecology page, archived by Codex |
 | `shared/story.md` and `shared/photos/`                                            | The facts, alt texts, and resized photos             |
 | `2026-10-05-fairy-tale/`                                                          | The book. Approved. Phone lab score 95               |
 | `2026-10-06-fairy-tale/`                                                          | The walk-in orchard. Captions rewritten in `e9ef811` |
@@ -32,7 +33,7 @@ Do not edit these.
 - [x] `build-orchard-tales-version.md` — Baśń z sadu. Piotr selected a fairytale told entirely with generated illustrations for this edition. Built by Codex.
 - [x] `build-stamped-version.md` — Odbite w sadzie. Piotr asked for a new version drawn in the spirit of Baśń z sadu, with motion and animation. Built by Claude.
 
-After these, stop. A further round only happens when Piotr picks a style.
+Piotr selected orchard tales as the main site on 2026-11-05. The original version folder remains a snapshot. The former main site is archived in `2026-11-05-basic/`. Further edits to the live orchard tales site belong at the repository root.
 
 ## What every version shares
 

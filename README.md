@@ -7,11 +7,14 @@ Plain HTML, CSS and JavaScript — no build step, no dependencies.
 
 ## Structure
 
-- `index.html` — home page
-- `ecology.html` — ecology page
-- `styles.css` — all styles
-- `script.js` — mobile menu
-- `assets/` — images, videos and icons
+- `index.html` — orchard tales home page
+- `styles.css` — main page styles
+- `script.js` — chapter navigation
+- `assets/orchard-tales/` — main page illustrations and self-hosted fonts
+- `assets/` — shared images, videos and icons
+- `versions/2026-11-05-basic/` — archived original home and ecology pages
+- `ecology.html` — compatibility redirect to the archived ecology page
+- `versions/` — preserved site editions
 - `design/` — design mockups
 
 ## Usage
