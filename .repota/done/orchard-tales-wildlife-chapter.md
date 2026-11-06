@@ -5,3 +5,5 @@ Add a separate chapter to the main orchard tales site at the repository root (`i
 Use `versions/shared/story.md` and its wildlife references for the facts and visual inspiration. Keep this edition's generated fairytale artwork and Polish family voice. Introduce no new species or claims. Update chapter navigation and numbering to include the new chapter.
 
 Done when the birds in their nest and the lizard feature in the dedicated chapter and its navigation works on desktop and phone.
+
+Rozdział „Goście” stoi po jabłku, a przed zbiorem, bo w `versions/shared/story.md` gniazdo i jaszczurka należą do tej części sadu. Jedna plansza pokazuje oba. Muchołówki szarej nie nazywam: na ilustracji są pisklęta w gnieździe z traw i jaszczurka.
