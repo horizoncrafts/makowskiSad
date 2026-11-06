@@ -528,19 +528,17 @@ h1 em {
   text-wrap: balance;
 }
 .chapter-copy > p:not(.eyebrow),
-.packaging-note p {
+.sorting-head p {
   font-size: clamp(1.17rem, 1.45vw, 1.38rem);
   line-height: 1.48;
   color: var(--text);
   text-wrap: pretty;
 }
-.chapter-copy > p + p,
-.packaging-note p {
+.chapter-copy > p + p {
   margin-top: 0.65rem;
 }
 
-.text-link,
-.packaging-note summary {
+.text-link {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
@@ -577,26 +575,74 @@ h1 em {
 .text-link {
   margin-top: 0.9rem;
 }
-.packaging-note {
-  border-block: 1px solid #cabea0;
-  margin-top: 1.15rem;
+.sorting {
+  width: min(100%, 80rem);
+  margin-inline: auto;
+  margin-top: clamp(2.2rem, 4.5vw, 3.6rem);
+  padding-top: clamp(1.5rem, 3vw, 2.4rem);
+  border-top: 1px solid #cabea0;
 }
-.packaging-note summary {
+.sorting h3 {
+  margin: 0 0 0.45rem;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.sorting-head p {
+  max-width: 36rem;
+}
+.sorting-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.sorting-frame {
+  border: 1px solid #ab9668;
+  border-radius: 5px;
+  padding: 4px;
+}
+.sorting-frame picture,
+.sorting-steps img {
+  width: 100%;
+  aspect-ratio: 1;
+}
+.sorting-steps img {
+  height: auto;
+  object-fit: cover;
+  border-radius: 1px;
+}
+.sorting-steps figcaption {
   display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  cursor: pointer;
-  list-style-type: none;
-  padding-block: 0.85rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  font: 400 1.05rem/1.4 var(--serif);
+  color: var(--ink);
+  text-align: left;
+  text-wrap: pretty;
 }
-.packaging-note summary::-webkit-details-marker {
-  display: none;
+.sorting-label {
+  display: inline-block;
+  padding: 0.16rem 0.55rem 0.12rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #f7f3e6;
+  font: 400 0.68rem/1.35 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
-.packaging-note[open] summary .icon {
-  transform: rotate(180deg);
+.sorting-label--paper {
+  background: #1e4e8c;
+  color: #fff;
 }
-.packaging-note p {
-  margin: 0 0 1rem;
+.sorting-label--plastic {
+  background: #e3b12a;
+  color: #1c2a16;
 }
 
 @media screen {
@@ -775,6 +821,19 @@ h1 em {
     grid-column: 1 / -1;
   }
 }
+@media (max-width: 62rem) {
+  .sorting-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 30rem) {
+  .sorting-steps {
+    grid-template-columns: 1fr;
+  }
+  .sorting-steps figcaption {
+    font-size: 1.12rem;
+  }
+}
 @media (max-width: 43rem) {
   .spread {
     display: flex;
@@ -792,7 +851,7 @@ h1 em {
     margin-top: 0.65rem;
   }
   .chapter-copy > p:not(.eyebrow),
-  .packaging-note p {
+  .sorting-head p {
     font-size: 1.22rem;
   }
   .plate figcaption {
