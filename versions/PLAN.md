@@ -22,6 +22,7 @@ Do not edit these.
 | `2026-10-16-brutal/`                                                              | Art direction from BrutalPrompt.md. Built by Claude  |
 | `2026-11-04-orchard-tales/`                                                       | Baśń z sadu, with generated illustrations. Built by Codex |
 | `2026-11-05-stamped/`                                                             | Odbite w sadzie, animated stamp and linocut prints in SVG. Built by Claude |
+| `2026-11-13-true-tale/` | Prawdziwa baśń. Piotr's favorites combined: Baśń z sadu plates with a real photo pinned to each on a stamped kraft tag, Brutal type, Anime seasons, Wejdź do sadu walk-in. Built by Claude |
 
 
 ## Still to build

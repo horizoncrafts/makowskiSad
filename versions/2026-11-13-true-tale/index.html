@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#14302a" />
+  <meta name="description" content="Naturalne, tłoczone soki jabłkowe z rodzinnego sadu w Makowie Podhalańskim. Baśń o naszym sadzie, a przy każdym obrazku prawdziwe zdjęcie." />
+  <title>Prawdziwa baśń – Makowski Sad</title>
+  <link rel="icon" type="image/webp" href="../../assets/orchard-tales/art/sygnet.webp" />
+  <script>
+    document.documentElement.classList.add('js', 'cover-loading');
+    // The cover gets the first paint; photos further down wait until it is on screen.
+    window.addEventListener('load', function () {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          document.documentElement.classList.remove('cover-loading');
+        });
+      });
+    }, { once: true });
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      for (const name of ['eb-garamond', 'eb-garamond-italic', 'rubik']) {
+        const font = document.createElement('link');
+        font.rel = 'preload';
+        font.as = 'font';
+        font.type = 'font/woff2';
+        font.crossOrigin = 'anonymous';
+        font.href = 'fonts/' + name + '.woff2';
+        document.head.append(font);
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
+    <defs>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6" /></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5Z" /></symbol>
+    </defs>
+  </svg>
+  <a class="skip-link" href="#miejsce">Przejdź do opowieści</a>
+
+  <header class="topbar">
+    <a class="brand" href="#poczatek">
+      <img src="../../assets/orchard-tales/art/sygnet.webp" width="128" height="123" alt="" />
+      <span>Makowski Sad <small>Soki naturalne</small></span>
+    </a>
+    <nav class="topnav" aria-label="Strony">
+      <a href="../../index.html">Strona główna</a>
+      <a href="../index.html">Wszystkie wersje</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <button class="motion-toggle" type="button" aria-pressed="false" hidden>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pause"></use></svg>
+      <span>Zatrzymaj ruch</span>
+    </button>
+  </header>
+
+  <div class="sky" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <section class="intro" id="poczatek" aria-labelledby="intro-title">
+    <div class="intro-stage">
+      <picture class="intro-art">
+        <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/hero-640.webp" width="640" height="545" />
+        <img src="../../assets/orchard-tales/art/hero-1000.webp" srcset="../../assets/orchard-tales/art/hero-1000.webp 1000w, ../../assets/orchard-tales/art/hero-1942.webp 1942w" sizes="100vw"
+          width="1942" height="809"
+          alt="Ilustracja: kwitnąca jabłoń przy narożniku jasnego domu, w tle górskie grzbiety i księżyc." />
+      </picture>
+      <div class="intro-copy">
+        <p class="kicker">Makowski Sad · Soki naturalne · Maków Podhalański</p>
+        <h1 id="intro-title">Baśń z&nbsp;sadu, <em>która dzieje się naprawdę</em></h1>
+        <p class="lead">Opowiadamy nasz sad jak baśń. Przy każdym obrazku przypinamy zdjęcie, bo wszystko tu jest prawdziwe: dom, jabłonie i&nbsp;sok.</p>
+        <a class="cta" href="#miejsce">Wejdź do sadu <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-down"></use></svg></a>
+      </div>
+      <figure class="portal">
+        <picture class="portal-window">
+          <source media="(max-width: 30rem)" srcset="photos/dom-480.jpg" data-later="../shared/photos/0-miejsce-jablon-przed-domem-640.jpg" width="480" height="640" />
+          <img src="../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg"
+            srcset="../shared/photos/0-miejsce-jablon-przed-domem-640.jpg 640w, ../shared/photos/0-miejsce-jablon-przed-domem-1000.jpg 1000w, ../shared/photos/0-miejsce-jablon-przed-domem-2000.jpg 2000w"
+            sizes="100vw" width="1000" height="1333" fetchpriority="high"
+            alt="Kwitnąca jabłoń przed naszym domem w sadzie" />
+        </picture>
+        <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Wiosną jabłoń przed naszym domem cała tonie w&nbsp;kwiatach.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <main>
+    <nav class="chapters" aria-label="Rozdziały">
+      <ol>
+          <li><a href="#miejsce" aria-current="location"><span class="chip-no">1</span> Miejsce</a></li>
+          <li><a href="#kwiat"><span class="chip-no">2</span> Kwiat</a></li>
+          <li><a href="#jablko"><span class="chip-no">3</span> Jabłko</a></li>
+          <li><a href="#goscie"><span class="chip-no">4</span> Goście</a></li>
+          <li><a href="#zbior"><span class="chip-no">5</span> Zbiór</a></li>
+          <li><a href="#transport"><span class="chip-no">6</span> Transport</a></li>
+          <li><a href="#tloczenie"><span class="chip-no">7</span> Tłoczenie</a></li>
+          <li><a href="#pakowanie"><span class="chip-no">8</span> Pakowanie</a></li>
+          <li><a href="#sprzedaz"><span class="chip-no">9</span> Sprzedaż</a></li>
+      </ol>
+    </nav>
+
+    <article class="chapter" id="miejsce" data-season="wiosna" aria-labelledby="miejsce-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>01</span> / 09</p>
+        <p class="kicker">Rozdział I · Miejsce · wiosna</p>
+        <h2 id="miejsce-title">Dom wśród jabłoni</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-01-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-01-756.webp" srcset="../../assets/orchard-tales/art/chapter-01-640.webp 640w, ../../assets/orchard-tales/art/chapter-01-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Pośród kwitnących jabłoni ścieżka prowadzi do jasnego domu z ciemnym dachem i panelami słonecznymi." />
+          </picture>
+          </div>
+          <figcaption>Tędy, między jabłoniami, wracamy do domu.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/0-miejsce-widok-z-balkonu-640.jpg" srcset="../shared/photos/0-miejsce-widok-z-balkonu-640.jpg 640w, ../shared/photos/0-miejsce-widok-z-balkonu-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="750" loading="lazy" decoding="async"
+              alt="Kwitnąca jabłoń widziana z drewnianego balkonu, w oddali wzgórza" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> A&nbsp;tak wygląda sad z&nbsp;naszego balkonu.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Jesteśmy niewielkim, rodzinnym przedsięwzięciem z&nbsp;urokliwego Makowa Podhalańskiego.</p>
+          <p>Z&nbsp;dala od ruchliwych dróg, w&nbsp;sadzie, stoi nasz dom. Z&nbsp;owoców tych drzew powstają nasze naturalne soki jabłkowe.</p>
+        </div>
+      </div>
+    </article>
+    <article class="chapter chapter--rev" id="kwiat" data-season="wiosna" aria-labelledby="kwiat-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>02</span> / 09</p>
+        <p class="kicker">Rozdział II · Kwiat · wiosna</p>
+        <h2 id="kwiat-title">Zaczyna się od kwiatu</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-02-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-02-756.webp" srcset="../../assets/orchard-tales/art/chapter-02-640.webp 640w, ../../assets/orchard-tales/art/chapter-02-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami na gałązce." />
+          </picture>
+          </div>
+          <figcaption>Tak kwitną drzewa, wśród których mieszkamy.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/1-kwiat-kwiaty-zblizenie-640.jpg" srcset="../shared/photos/1-kwiat-kwiaty-zblizenie-640.jpg 640w, ../shared/photos/1-kwiat-kwiaty-zblizenie-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="1167" loading="lazy" decoding="async"
+              alt="Białoróżowe kwiaty jabłoni z żółtymi pręcikami z bliska" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Kwiaty naszych jabłoni z&nbsp;bliska.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Nasze kilkudziesięcioletnie jabłonie rosną w&nbsp;naturalny sposób, bez przyspieszaczy wzrostu.</p>
+          <p>Mieszkając pośród drzew, nie chcemy obcować ze środkami chemicznymi służącymi do usprawniania uprawy – stosujemy permakulturę.</p>
+          <p>Jabłonie przycinamy jesienią, a&nbsp;pasożyty usuwamy ręcznie.</p>
+        </div>
+      </div>
+    </article>
+    <article class="chapter" id="jablko" data-season="lato" aria-labelledby="jablko-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>03</span> / 09</p>
+        <p class="kicker">Rozdział III · Jabłko · lato</p>
+        <h2 id="jablko-title">Pod osłoną liści</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-03-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-03-756.webp" srcset="../../assets/orchard-tales/art/chapter-03-640.webp 640w, ../../assets/orchard-tales/art/chapter-03-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Trzy czerwone jabłka na gałęzi wśród zielonych liści." />
+          </picture>
+          </div>
+          <figcaption>Tu dojrzewają jabłka na nasz sok.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/2-jablko-czerwone-na-drzewie-640.jpg" srcset="../shared/photos/2-jablko-czerwone-na-drzewie-640.jpg 640w, ../shared/photos/2-jablko-czerwone-na-drzewie-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="750" loading="lazy" decoding="async"
+              alt="Jabłoń obsypana czerwonymi jabłkami w promieniach słońca" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Nasza jabłoń, kiedy jabłka już się rumienią.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Nasz sad to mikroekosystem, w&nbsp;którym każde drzewo i&nbsp;każdy owad ma swoją rolę. Nie chcemy tego zaburzać, stosując „chemię”.</p>
+        </div>
+      </div>
+    </article>
+    <article class="chapter chapter--rev" id="goscie" data-season="lato" aria-labelledby="goscie-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>04</span> / 09</p>
+        <p class="kicker">Rozdział IV · Goście · lato</p>
+        <h2 id="goscie-title">Goście sadu</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/goscie-640.webp" />
+            <img src="../../assets/orchard-tales/art/goscie-756.webp" srcset="../../assets/orchard-tales/art/goscie-640.webp 640w, ../../assets/orchard-tales/art/goscie-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Pisklęta w gnieździe uwitym z traw wśród liści jabłoni. Na ziemi wśród liści leży jaszczurka." />
+          </picture>
+          </div>
+          <figcaption>W&nbsp;liściach jest gniazdo z&nbsp;traw, a&nbsp;na ziemi jaszczurka.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/2-jablko-piskle-mucholowki-640.jpg" srcset="../shared/photos/2-jablko-piskle-mucholowki-640.jpg 640w, ../shared/photos/2-jablko-piskle-mucholowki-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="921" loading="lazy" decoding="async"
+              alt="Pisklę muchołówki szarej z szeroko otwartym dziobem" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Pisklę muchołówki szarej, prosto z&nbsp;naszego gniazda.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Pisklęta muchołówki szarej są w&nbsp;gnieździe uwitym z&nbsp;traw. Jaszczurka jest na ziemi, wśród liści.</p>
+          <p>Dbamy o&nbsp;różnorodność sadu, tworząc środowisko, w&nbsp;którym różni goście są mile widziani.</p>
+        </div>
+      </div>
+    </article>
+    <aside class="interlude" data-season="lato" aria-label="Bez oprysków.">
+      <p class="interlude-big reveal"><span class="stamp-text">Bez oprysków.</span></p>
+      <p class="interlude-small">Bez środków ochronnych i&nbsp;sztucznych nawozów.</p>
+    </aside>
+    <article class="chapter" id="zbior" data-season="jesien" aria-labelledby="zbior-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>05</span> / 09</p>
+        <p class="kicker">Rozdział V · Zbiór · jesień</p>
+        <h2 id="zbior-title">Czas pełnych skrzynek</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-04-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-04-756.webp" srcset="../../assets/orchard-tales/art/chapter-04-640.webp 640w, ../../assets/orchard-tales/art/chapter-04-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Drewniana skrzynka jabłek i zielona siatka rozłożona pod drzewami." />
+          </picture>
+          </div>
+          <figcaption>Pod naszymi jabłoniami rozkładamy zielone siatki.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/3-zbior-skrzynki-jablek-640.jpg" srcset="../shared/photos/3-zbior-skrzynki-jablek-640.jpg 640w, ../shared/photos/3-zbior-skrzynki-jablek-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="1308" loading="lazy" decoding="async"
+              alt="Drewniane skrzynki pełne czerwonych jabłek na trawie" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Skrzynki pełne jabłek, prosto spod drzew.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Jesienią pod drzewami leżą siatki, a&nbsp;obok czekają skrzynki.</p>
+          <p>Starannie zbieramy i&nbsp;selekcjonujemy jabłka. Tylko najlepsze trafiają do naszych soków.</p>
+        </div>
+      </div>
+    </article>
+    <article class="chapter chapter--rev" id="transport" data-season="jesien" aria-labelledby="transport-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>06</span> / 09</p>
+        <p class="kicker">Rozdział VI · Transport · jesień</p>
+        <h2 id="transport-title">Droga do tłoczni</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-05-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-05-756.webp" srcset="../../assets/orchard-tales/art/chapter-05-640.webp 640w, ../../assets/orchard-tales/art/chapter-05-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Ilustracja drogi do tłoczni. Samochód z workami jedzie wśród jesiennych wzgórz." />
+          </picture>
+          </div>
+          <figcaption><span class="plate-label">Ilustracja</span> Z&nbsp;wybranymi jabłkami wyruszamy do Choczni.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/4-transport-bagaznik-pelen-workow-640.jpg" srcset="../shared/photos/4-transport-bagaznik-pelen-workow-640.jpg 640w, ../shared/photos/4-transport-bagaznik-pelen-workow-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="750" loading="lazy" decoding="async"
+              alt="Bagażnik samochodu pełen worków z jabłkami" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Tak naprawdę wygląda nasz bagażnik przed drogą.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Wyselekcjonowane jabłka wieziemy do Tłoczni Chocznia pod Wadowicami.</p>
+          <p>Nadmiarowe owoce mają inną drogę. Część zawozimy konikom pana Andrzeja, u&nbsp;którego można też <a href="http://www.makowskagora.pl">pojeździć konno</a>, a&nbsp;jabłkami dla leśnych zwierząt dzielimy się z&nbsp;leśnikami i&nbsp;myśliwymi. Dzikie zwierzęta zostają wtedy w&nbsp;lesie i&nbsp;nie wchodzą w&nbsp;szkodę.</p>
+          <p>Pozostałe odpady oddajemy do lokalnego Punktu Selektywnej Zbiórki Odpadów Komunalnych.</p>
+        </div>
+      </div>
+    </article>
+    <article class="chapter" id="tloczenie" data-season="jesien" aria-labelledby="tloczenie-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>07</span> / 09</p>
+        <p class="kicker">Rozdział VII · Tłoczenie · jesień</p>
+        <h2 id="tloczenie-title">Pierwsza kropla</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-06-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-06-756.webp" srcset="../../assets/orchard-tales/art/chapter-06-640.webp 640w, ../../assets/orchard-tales/art/chapter-06-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Ilustracja tłoczenia. Z metalowej prasy wypływa złocisty sok jabłkowy." />
+          </picture>
+          </div>
+          <figcaption><span class="plate-label">Ilustracja</span> W&nbsp;Choczni z&nbsp;naszych jabłek powstaje sok.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/5-tloczenie-worki-w-tloczni-640.jpg" srcset="../shared/photos/5-tloczenie-worki-w-tloczni-640.jpg 640w, ../shared/photos/5-tloczenie-worki-w-tloczni-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="1411" loading="lazy" decoding="async"
+              alt="Worki z jabłkami w tłoczni, obok waga" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Nasze worki z&nbsp;jabłkami czekają w&nbsp;tłoczni na swoją kolej.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Tłocznia Chocznia dysponuje nowoczesnymi urządzeniami, które pozwalają precyzyjnie tłoczyć jabłka z&nbsp;dbałością o&nbsp;środowisko. Cały proces jest zoptymalizowany przez tłocznię.</p>
+        </div>
+      </div>
+    </article>
+    <aside class="interlude" data-season="jesien" aria-label="Tylko jabłka.">
+      <p class="interlude-big reveal"><span class="stamp-text">Tylko jabłka.</span></p>
+      <p class="interlude-small">Bez dodatku cukru i&nbsp;konserwantów.</p>
+    </aside>
+    <article class="chapter chapter--rev" id="pakowanie" data-season="jesien" aria-labelledby="pakowanie-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>08</span> / 09</p>
+        <p class="kicker">Rozdział VIII · Pakowanie · jesień</p>
+        <h2 id="pakowanie-title">Karton, kranik i&nbsp;sznurek</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/chapter-07-640.webp" />
+            <img src="../../assets/orchard-tales/art/chapter-07-756.webp" srcset="../../assets/orchard-tales/art/chapter-07-640.webp 640w, ../../assets/orchard-tales/art/chapter-07-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Karton i worek soku z kranikami, obok sznurek i kartonowa zawieszka." />
+          </picture>
+          </div>
+          <figcaption>Każdą kartonową zawieszkę wycinamy i&nbsp;stemplujemy sami.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/6-pakowanie-stempel-i-etykiety-640.jpg" srcset="../shared/photos/6-pakowanie-stempel-i-etykiety-640.jpg 640w, ../shared/photos/6-pakowanie-stempel-i-etykiety-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="1333" loading="lazy" decoding="async"
+              alt="Stempel z logo, ręcznie wycięte kartonowe etykiety i szpulka sznurka" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Nasz stempel, sznurek i&nbsp;zawieszki z&nbsp;kartonów po pizzy.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Sok nalewamy do trzylitrowych worków PET z&nbsp;kranikiem. Można wybrać sam worek albo włożyć go do kartonu, który chroni worek i&nbsp;ułatwia nalewanie.</p>
+          <p>Etykietki wycinamy z&nbsp;kartonów po pizzy i&nbsp;starych pudeł, a&nbsp;przywiązujemy je sznurkiem. Napisy i&nbsp;logo odbijamy stemplem, więc nie używamy naklejek. Karton może służyć wiele razy. Gorąco zachęcamy, żeby wymieniać w&nbsp;nim tylko „wkład”.</p>
+          <ul class="facts">
+            <li>Przydatny do spożycia przez co najmniej 5&nbsp;dni po otwarciu</li>
+            <li>Mniej materiału na opakowanie</li>
+            <li>Łatwe przechowywanie i&nbsp;nalewanie</li>
+          </ul>
+        </div>
+      </div>
+      <section class="sorting" aria-labelledby="sorting-title">
+        <h3 id="sorting-title">Jak to posegregować</h3>
+        <p>Karton wykorzystaj ponownie. Resztę rozdziel tak.</p>
+        <ol class="sorting-steps">
+            <li>
+              <figure>
+                <picture>
+                  <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/sort-reuse-480.webp" />
+                  <img src="../../assets/orchard-tales/art/sort-reuse-640.webp" width="640" height="640" loading="lazy" decoding="async" alt="Pełny worek soku włożony do kartonu. Kranik wystaje z przodu." />
+                </picture>
+                <figcaption><span class="stamp stamp--small">Ponownie</span> Wystarczy wymienić „wkład” w&nbsp;tym samym kartonie.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <picture>
+                  <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/sort-paper-480.webp" />
+                  <img src="../../assets/orchard-tales/art/sort-paper-640.webp" width="640" height="640" loading="lazy" decoding="async" alt="Zużyty, pognieciony karton i kartonowa zawieszka na sznurku." />
+                </picture>
+                <figcaption><span class="stamp stamp--small stamp--blue">Papier</span> Zawieszkę i&nbsp;zużyty karton oddaj do papieru.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <picture>
+                  <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/sort-tap-480.webp" />
+                  <img src="../../assets/orchard-tales/art/sort-tap-640.webp" width="640" height="640" loading="lazy" decoding="async" alt="Nożyczki odcinają czarny kranik od pustego worka." />
+                </picture>
+                <figcaption><span class="stamp stamp--small">Kranik</span> Z&nbsp;całkowicie opróżnionego worka odetnij kranik. Tak wykorzystasz cały sok i&nbsp;łatwiej posegregujesz worek.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <picture>
+                  <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/sort-plastic-480.webp" />
+                  <img src="../../assets/orchard-tales/art/sort-plastic-640.webp" width="640" height="640" loading="lazy" decoding="async" alt="Pusty, przezroczysty worek PET bez kranika." />
+                </picture>
+                <figcaption><span class="stamp stamp--small stamp--yellow">Plastik</span> Pusty worek PET wyrzuć do plastików.</figcaption>
+              </figure>
+            </li>
+        </ol>
+      </section>
+    </article>
+    <aside class="interlude" data-season="targ" aria-label="Około 300&nbsp;litrów rocznie.">
+      <p class="interlude-big reveal"><span class="stamp-text">Około 300&nbsp;litrów rocznie.</span></p>
+      <p class="interlude-small">Tyle soku daje nasz sad w&nbsp;ciągu roku.</p>
+    </aside>
+    <article class="chapter" id="sprzedaz" data-season="targ" aria-labelledby="sprzedaz-title">
+      <header class="chapter-head">
+        <p class="chapter-no" aria-hidden="true"><span>09</span> / 09</p>
+        <p class="kicker">Rozdział IX · Sprzedaż · dzień targowy</p>
+        <h2 id="sprzedaz-title">Spotkajmy się przy stoisku</h2>
+      </header>
+      <div class="spread">
+        <figure class="plate reveal">
+          <div class="plate-frame">
+          <picture>
+            <source media="(max-width: 30rem)" srcset="../../assets/orchard-tales/art/stall-640.webp" />
+            <img src="../../assets/orchard-tales/art/stall-756.webp" srcset="../../assets/orchard-tales/art/stall-640.webp 640w, ../../assets/orchard-tales/art/stall-756.webp 756w"
+              sizes="(min-width: 60rem) 40rem, 92vw" width="756" height="504" loading="lazy" decoding="async"
+              alt="Białe stoisko pod namiotem. Za stołem dwie osoby podają kubek gościowi. Na stole kartony i worki soku z kranikami." />
+          </picture>
+          </div>
+          <figcaption>Na stoisku rozstawiamy kartony i&nbsp;spotykamy gości.</figcaption>
+        </figure>
+        <figure class="tag reveal">
+          <span class="tag-string" aria-hidden="true"></span>
+          <div class="tag-photo">
+            <img src="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-640.jpg" srcset="../shared/photos/7-sprzedaz-stoisko-pod-namiotem-640.jpg 640w, ../shared/photos/7-sprzedaz-stoisko-pod-namiotem-1000.jpg 1000w"
+              sizes="(min-width: 60rem) 17rem, 58vw" width="1000" height="1333" loading="lazy" decoding="async"
+              alt="Stoisko z sokami pod białym namiotem, za stołem dwie osoby" />
+          </div>
+          <figcaption><span class="stamp">Zdjęcie z&nbsp;sadu</span> Nasze stoisko pod białym namiotem.</figcaption>
+        </figure>
+        <div class="chapter-copy">
+          <p>Rocznie produkujemy około 300&nbsp;litrów soku jabłkowego. Z&nbsp;sokiem z&nbsp;naszego sadu chętnie przyjeżdżamy na lokalne imprezy.</p>
+          <p>Chcesz spróbować naszego soku? Napisz do nas: <a href="mailto:info@makowskisad.pl">info@makowskisad.pl</a>.</p>
+      <a class="cta" href="mailto:info@makowskisad.pl">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg>
+        Napisz do sadu
+      </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer" id="kontakt" data-season="targ" aria-labelledby="contact-title">
+    <div class="footer-tag">
+      <span class="tag-string" aria-hidden="true"></span>
+      <img src="../../assets/icons/vertical_color.svg" width="160" height="126" alt="Makowski Sad" />
+      <h2 id="contact-title">Napisz do sadu</h2>
+      <a class="footer-email" href="mailto:info@makowskisad.pl">info@makowskisad.pl</a>
+      <address>ul. Sosnowa 7<br />34-220 Maków Podhalański</address>
+    </div>
+    <div class="footer-links">
+      <h3>Znajdź nas na socialach</h3>
+      <p><a href="https://instagram.com/makowskisad">Instagram @makowskisad</a><br /><a href="https://facebook.com/makowskisad">Facebook @makowskisad</a></p>
+      <p><a href="../../index.html">Strona główna</a> · <a href="../index.html">Wszystkie wersje</a></p>
+      <p class="credit">© 2026 HorizonCrafts. Wersję złożył Claude z&nbsp;ulubionych wersji Piotra. Ilustracje z&nbsp;wersji „Baśń z&nbsp;sadu” (Codex), zdjęcia z&nbsp;sadu.</p>
+    </div>
+  </footer>
+</body>
+</html>
