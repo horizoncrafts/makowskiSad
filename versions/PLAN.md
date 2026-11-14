@@ -23,6 +23,7 @@ Do not edit these.
 | `2026-11-04-orchard-tales/`                                                       | Baśń z sadu, with generated illustrations. Built by Codex |
 | `2026-11-05-stamped/`                                                             | Odbite w sadzie, animated stamp and linocut prints in SVG. Built by Claude |
 | `2026-11-13-true-tale/` | Prawdziwa baśń. Piotr's favorites combined: Baśń z sadu plates with a real photo pinned to each on a stamped kraft tag, Brutal type, Anime seasons, Wejdź do sadu walk-in. Built by Claude |
+| `2026-11-14-orchard-year/` | Rok w sadzie. Piotr asked for a version worked through completely and as impressive as it can be, with motion graphics. Real photos in four seasons, pinned season scenes, a ripening apple, an animated road and press, petals and leaves in the air. Built by Claude |
 
 
 ## Still to build
